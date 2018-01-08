@@ -3,10 +3,11 @@ html {
 }
 
 body {
+    background-color: #CCC;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #CCC;
+
 }
 
 /*Adapt the following styling depending on where you want to put your map. If you want a 'full screen' map, then set the width and height to 100 percent and remove the margins.*/
