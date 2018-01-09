@@ -38,26 +38,25 @@ function loadGameMap () {
 }
 // Function that loads the map markers.
 function loadMapMarkers () {
-  // GLASTONBURY -----------------
-  // Setting the position of the Glastonbury map marker.
-  let markerPositionSundsvall = new google.maps.LatLng(62.389920, 17.317393)
+  // Setting the position of the Usa Pizza map marker.
+  let markerPositionUsaPizza = new google.maps.LatLng(59.312601, 18.106447)
   // Creating the Glastonbury map marker.
-  markerSundsvall = new google.maps.Marker({
+  markerUsaPizza = new google.maps.Marker({
     // uses the position set above.
-    position: markerPositionSundsvall,
+    position: markerPositionUsaPizza,
     // adds the marker to the map.
     map: gameMap,
-    title: 'Ingen aning',
+    title: 'Usa Pizza',
     icon: 'pins/green_MarkerB.png'
   })
-  let markerPositionArlanda = new google.maps.LatLng(59.649762, 17.923781)
-  // Creating the Glastonbury map marker.
-  markerArlanda = new google.maps.Marker({
+  let markerPositionHenkansPizza = new google.maps.LatLng(59.311326, 18.116483)
+  // Creating the Henkans Pizza map marker.
+  markerHenkansPizza = new google.maps.Marker({
     // uses the position set above.
-    position: markerPositionArlanda,
+    position: markerPositionHenkansPizza,
     // adds the marker to the map.
     map: gameMap,
-    title: 'Flyg, yaaaay!',
+    title: 'Henkans Pizza',
     icon: 'pins/orange_MarkerC.png'
   })
 }
