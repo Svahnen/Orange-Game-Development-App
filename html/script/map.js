@@ -4,9 +4,9 @@
 
 // Create the variables that will be used within the map configuration options.
 // The latitude and longitude of the center of the map.
-//  let gameMapCenter = new google.maps.LatLng(59.313316, 18.110538)
+let gameMapCenter = new google.maps.LatLng(59.313316, 18.110538)
 
-let gameMapCenter = getLocation()
+// let gameMapCenter = getLocation()
 
 // The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
 gameMapZoom = 16
