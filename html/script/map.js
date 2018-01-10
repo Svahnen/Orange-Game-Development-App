@@ -4,12 +4,13 @@
 
 // Create the variables that will be used within the map configuration options.
 // The latitude and longitude of the center of the map.
-let gameMapCenter = new google.maps.LatLng(59.313316, 18.110538)
+// 58.908708, 17.944074
+let gameMapCenter = new google.maps.LatLng(58.903556, 17.946995)
 
 // let gameMapCenter = getLocation()
 
 // The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
-gameMapZoom = 16
+gameMapZoom = 0
 // The max and min zoom levels that are allowed.
 let gameMapZoomMax = 21
 let gameMapZoomMin = 6
@@ -28,7 +29,9 @@ let gameMapOptions = {
 // Create the variable for the main map itself.
 let gameMap
 // When the page loads, the line below calls the function below called 'loadgameMap' to load up the map.
+
 google.maps.event.addDomListener(window, 'load', loadGameMap)
+
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS --------------------------------------------------------------------------------
 function loadGameMap () {
   // The empty map variable ('gameMap') was created above. The line below creates the map, assigning it to this variable. The line below also loads the map into the div with the id 'game-map' (see code within the 'body' tags below), and applies the 'gameMapOptions' (above) to configure this map.
@@ -80,4 +83,9 @@ function showPosition (position) {
     icon: 'pins/pink_MarkerA.png'
   })
 }
+
+// while (true) {
+//  setTimeout(getLocation(), 30000)
+// }
+
 getLocation()
