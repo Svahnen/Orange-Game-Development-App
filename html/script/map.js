@@ -10,7 +10,7 @@ let gameMapCenter = new google.maps.LatLng(58.903556, 17.946995)
 // let gameMapCenter = getLocation()
 
 // The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
-gameMapZoom = 0
+gameMapZoom = 18
 // The max and min zoom levels that are allowed.
 let gameMapZoomMax = 21
 let gameMapZoomMin = 6
@@ -64,10 +64,14 @@ function loadMapMarkers () {
   })
 }
 
+let pos
+
 function getLocation () {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (callback) {
-      showPosition(callback)
+    navigator.geolocation.getCurrentPosition(function (position) {
+      showPosition(position)
+
+      pos = position.coords.latitude + ', ' + position.coords.longitude
     }, function (error) {
       console.log(error)
     })
@@ -84,8 +88,10 @@ function showPosition (position) {
   })
 }
 
-// while (true) {
-//  setTimeout(getLocation(), 30000)
-// }
+let loopFunction = function () {
+  getLocation()
+  // console.log('Updated GeoLocation')
+  window.setTimeout(loopFunction, 10000)
+}
 
-getLocation()
+loopFunction()
