@@ -75,7 +75,11 @@ function loadMapMarkers () {
     title: 'Henkans Pizza',
     icon: 'pins/orange_MarkerC.png'
   })
+
+  // Calculate the distance between Henkans pizza and Usa pizza
+  console.log(google.maps.geometry.spherical.computeDistanceBetween(markerPositionUsaPizza, markerPositionHenkansPizza))
 }
+
 
 function getLocation () {
   if (navigator.geolocation) {
