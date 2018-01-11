@@ -4,7 +4,8 @@
 
 // Create the variables that will be used within the map configuration options.
 // The latitude and longitude of the center of the map.
-let gameMapCenter = new google.maps.LatLng(59.313316, 18.110538)
+// 58.908708, 17.944074
+let gameMapCenter = new google.maps.LatLng(59.311326, 18.116483)
 
 // let gameMapCenter = getLocation()
 
@@ -28,7 +29,9 @@ let gameMapOptions = {
 // Create the variable for the main map itself.
 let gameMap
 // When the page loads, the line below calls the function below called 'loadgameMap' to load up the map.
+
 google.maps.event.addDomListener(window, 'load', loadGameMap)
+
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS --------------------------------------------------------------------------------
 function loadGameMap () {
   // The empty map variable ('gameMap') was created above. The line below creates the map, assigning it to this variable. The line below also loads the map into the div with the id 'game-map' (see code within the 'body' tags below), and applies the 'gameMapOptions' (above) to configure this map.
@@ -80,16 +83,19 @@ function loadMapMarkers () {
   console.log(google.maps.geometry.spherical.computeDistanceBetween(markerPositionUsaPizza, markerPositionHenkansPizza))
 }
 
+let posSelf
 function getLocation () {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (callback) {
-      showPosition(callback)
+    navigator.geolocation.getCurrentPosition(function (position) {
+      showPosition(position)
+      posSelf = position
     }, function (error) {
       console.log(error)
     })
   }
 }
 
+let markerSELF = ''
 function showPosition (position) {
   markerPositionSELF = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
   markerSELF = new google.maps.Marker({
@@ -99,4 +105,21 @@ function showPosition (position) {
     icon: 'pins/pink_MarkerA.png'
   })
 }
-getLocation()
+
+let loopFunction = function () {
+  console.log('Update GeoLocation')
+  if (markerSELF !== '') {
+    markerSELF.setMap(null)
+  }
+  return getLocation()
+}
+
+let doLoop = true
+let intervalFunction = function () {
+  if (doLoop) {
+    loopFunction()
+  }
+  return window.setTimeout(intervalFunction, 10000)
+}
+
+intervalFunction()
