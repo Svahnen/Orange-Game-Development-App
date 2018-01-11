@@ -64,7 +64,7 @@ function loadMapMarkers () {
     content: contentString
   })
   // Adds the infowindow on gameMap triggerd by mouse move on map
-  gameMap.addListener('mousemove', function () {
+  markerUsaPizza.addListener('click', function () {
     infowindow.open(gameMap, markerUsaPizza)
   })
 
