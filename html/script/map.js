@@ -13,7 +13,7 @@ gameMapZoom = 16
 // The max and min zoom levels that are allowed.
 let gameMapZoomMax = 21
 let gameMapZoomMin = 6
-// These options configure the setup of th     e map.
+// These options configure the setup of the map.
 let gameMapOptions = {
   center: gameMapCenter,
   zoom: gameMapZoom,
@@ -46,8 +46,8 @@ function loadMapMarkers () {
     position: markerPositionUsaPizza,
     // adds the marker to the map.
     map: gameMap,
-    title: 'Usa Pizza',
-    icon: 'pins/green_MarkerB.png'
+    title: 'USA Pizza',
+    icon: 'pins/scroll.png'
   })
   let markerPositionHenkansPizza = new google.maps.LatLng(59.311326, 18.116483)
   // Creating the Henkans Pizza map marker.
@@ -57,7 +57,27 @@ function loadMapMarkers () {
     // adds the marker to the map.
     map: gameMap,
     title: 'Henkans Pizza',
-    icon: 'pins/orange_MarkerC.png'
+    icon: 'pins/bomb.png'
+  })
+  let markerPositionPiren = new google.maps.LatLng(59.316722, 18.123316)
+  // Creating the Piren map marker.
+  markerPiren = new google.maps.Marker({
+    // uses the position set above.
+    position: markerPositionPiren,
+    // adds the marker to the map.
+    map: gameMap,
+    title: 'Piren',
+    icon: 'pins/question-mark.png'
+  })
+  let markerPositionHouse = new google.maps.LatLng(59.313053, 18.108869)
+  // Creating the House map marker.
+  markerPiren = new google.maps.Marker({
+    // uses the position set above.
+    position: markerPositionHouse,
+    // adds the marker to the map.
+    map: gameMap,
+    title: 'House',
+    icon: 'pins/question-mark.png'
   })
 }
 
@@ -76,8 +96,8 @@ function showPosition (position) {
   markerSELF = new google.maps.Marker({
     position: markerPositionSELF,
     map: gameMap,
-    title: 'Self',
-    icon: 'pins/pink_MarkerA.png'
+    title: 'Player1',
+    icon: 'pins/Player1.png'
   })
 }
 getLocation()
