@@ -80,7 +80,6 @@ function loadMapMarkers () {
   console.log(google.maps.geometry.spherical.computeDistanceBetween(markerPositionUsaPizza, markerPositionHenkansPizza))
 }
 
-
 function getLocation () {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (callback) {
