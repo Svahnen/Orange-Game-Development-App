@@ -5,12 +5,12 @@
 // Create the variables that will be used within the map configuration options.
 // The latitude and longitude of the center of the map.
 // 58.908708, 17.944074
-let gameMapCenter = new google.maps.LatLng(59.311326, 18.116483)
+let gameMapCenter = new google.maps.LatLng(58.908708, 17.944074)
 
 // let gameMapCenter = getLocation()
 
 // The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
-gameMapZoom = 16
+gameMapZoom = 12
 // The max and min zoom levels that are allowed.
 let gameMapZoomMax = 21
 let gameMapZoomMin = 6
@@ -67,13 +67,14 @@ function loadMapMarkers () {
 let posSelf
 function getLocation () {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.watchPosition(function (position) {
       showPosition(position)
       posSelf = position
     }, function (error) {
       console.log(error)
     })
   }
+  console.log('New Position')
 }
 
 let markerSELF = ''
@@ -95,12 +96,14 @@ let loopFunction = function () {
   return getLocation()
 }
 
-let doLoop = true
-let intervalFunction = function () {
-  if (doLoop) {
-    loopFunction()
-  }
-  return window.setTimeout(intervalFunction, 10000)
-}
+// let doLoop = true
+// let intervalFunction = function () {
+//   if (doLoop) {
+//     loopFunction()
+//   }
+//   return window.setTimeout(intervalFunction, 10000)
+// }
+//
+// intervalFunction()
 
-intervalFunction()
+getLocation()
