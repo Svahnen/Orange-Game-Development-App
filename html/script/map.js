@@ -53,14 +53,14 @@ function loadMapMarkers () {
     icon: 'pins/green_MarkerB.png'
   })
   // Content for Usa Pizza Marker
-  var contentString = '<div class="clue">' +
+  let contentString = '<div class="clue">' +
       '<h1> Ledtråd</h1>' +
       '<div>' +
       '<p><b>Ledtråd</b> som går att styla ' +
       '</div>' +
       '</div>'
   // Creating the Usa Pizza infowindow
-  var infowindow = new google.maps.InfoWindow({
+  let infowindow = new google.maps.InfoWindow({
     content: contentString
   })
   // Adds the infowindow on gameMap triggerd by mouse move on map
@@ -98,6 +98,7 @@ function getLocation () {
 let markerSELF = ''
 function showPosition (position) {
   markerPositionSELF = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+
   markerSELF = new google.maps.Marker({
     position: markerPositionSELF,
     map: gameMap,
