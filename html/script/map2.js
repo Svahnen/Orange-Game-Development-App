@@ -53,7 +53,7 @@ class ClueMarker {
     })
     // Function for opening a Cluemarker on a marker click event
     this.configuration.marker = this.getMarker()
-    this.configuration.marker.addListener('click', function () {
+    this.configuration.marker.addListener('click', () => {
       this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
     })
   }
@@ -125,7 +125,7 @@ function getLocation (gameMap, positionMarkers) {
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
-    if (distance <= 217) {
+    if (distance <= 200) {
       positionMarkers[i].openClueWindow()
     } else {
       positionMarkers[i].closeClueWindow()
