@@ -9,6 +9,7 @@ google.maps.event.addDomListener(window, 'load', loadGameMap)
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 
 function loadGameMap () {
+  // Sets current location as center of the map
   navigator.geolocation.getCurrentPosition(function (position) {
     gameMapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     gameMap.setCenter(gameMapCenter)
@@ -128,8 +129,10 @@ let positionSelf
 function getLocation (gameMap, positionMarkers) {
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(function (position) {
+      // Creates initial self marker
       if (markerSELF === '') {
         positionSelf = showPosition(position, gameMap)
+        // Moves self marker if marker is already present
       } else {
         markerSELF.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude))
       }
