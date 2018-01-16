@@ -9,9 +9,13 @@ google.maps.event.addDomListener(window, 'load', loadGameMap)
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 
 function loadGameMap () {
-  let gameMapCenter = new google.maps.LatLng(58.902708, 17.944074)
-
-  gameMapZoom = 16
+  navigator.geolocation.getCurrentPosition(function (position) {
+    gameMapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+    gameMap.setCenter(gameMapCenter)
+  })
+  let gameMap
+  let gameMapCenter
+  let gameMapZoom = 16
   let gameMapZoomMax = 21
   let gameMapZoomMin = 6
   let gameMapOptions = {
@@ -23,7 +27,7 @@ function loadGameMap () {
     panControl: false,
     mapTypeControl: false
   }
-  let gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
+  gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   let positionMarkers = loadMapMarkers(gameMap)
   getLocation(gameMap, positionMarkers)
 }
