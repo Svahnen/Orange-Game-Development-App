@@ -167,15 +167,3 @@ function showPosition (position, gameMap) {
   markerSELF = positionSelf.getMarker()
   return positionSelf
 }
-
-// let loopFunction = function (gameMap, positionMarkers) {
-//   if (markerSELF !== '') {
-//     markerSELF.setMap(null)
-//   }
-//   return getLocation(gameMap, positionMarkers)
-// }
-//
-// let intervalFunction = function (gameMap, positionMarkers) {
-//   loopFunction(gameMap, positionMarkers)
-//   return window.setTimeout(intervalFunction.bind(null, gameMap, positionMarkers), 10000)
-// }
