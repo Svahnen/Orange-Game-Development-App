@@ -9,7 +9,7 @@ google.maps.event.addDomListener(window, 'load', loadGameMap)
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 
 function loadGameMap () {
-  let gameMapCenter = new google.maps.LatLng(59.311326, 18.116483)
+  let gameMapCenter = new google.maps.LatLng(59.313298, 18.110403)
 
   gameMapZoom = 16
   let gameMapZoomMax = 21
@@ -76,28 +76,69 @@ function loadMapMarkers (gameMap) {
   let positionMarkers = []
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.312601,
-    longitude: 18.106447,
-    title: 'Usa Pizza',
-    icon: 'pins/green_MarkerB.png',
+    latitude: 59.313038,
+    longitude: 18.109588,
+    title: 'Ledtråd 1',
+    icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd</h1>' +
+    '<h1> Ledtråd 1</h1>' +
     '<div>' +
-    '<p><b>Ledtråd</b> som går att styla ' +
+    '<p>1</p> ' +
+    '</div>'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.313082,
+    longitude: 18.110079,
+    title: 'Ledtråd 2',
+    icon: 'pins/orange_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1> Ledtråd 2</h1>' +
+    '<div>' +
+    '<p>2</p> ' +
     '</div>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.311326,
-    longitude: 18.116483,
-    title: 'Henkans Pizza',
+    latitude: 59.313495,
+    longitude: 18.110326,
+    title: 'Ledtråd 3',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd Henkans</h1>' +
+    '<h1> Ledtråd 3</h1>' +
     '<div>' +
-    '<p><b>Ledtråd</b> som går att styla ' +
+    '<p>3</p> ' +
+    '</div>' +
+    '</div>'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.313412,
+    longitude: 18.110581,
+    title: 'Ledtråd 4',
+    icon: 'pins/orange_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1> Ledtråd 4</h1>' +
+    '<div>' +
+    '<p>4</p> ' +
+    '</div>' +
+    '</div>'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.313581,
+    longitude: 18.110593,
+    title: 'Ledtråd 5',
+    icon: 'pins/orange_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1> Ledtråd 5</h1>' +
+    '<div>' +
+    '<p>5</p> ' +
     '</div>' +
     '</div>'
   }))
