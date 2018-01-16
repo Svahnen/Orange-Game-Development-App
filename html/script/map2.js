@@ -9,7 +9,7 @@ google.maps.event.addDomListener(window, 'load', loadGameMap)
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 
 function loadGameMap () {
-  let gameMapCenter = new google.maps.LatLng(59.311326, 18.116483)
+  let gameMapCenter = new google.maps.LatLng(58.902708, 17.944074)
 
   gameMapZoom = 16
   let gameMapZoomMax = 21
@@ -25,7 +25,7 @@ function loadGameMap () {
   }
   let gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   let positionMarkers = loadMapMarkers(gameMap)
-  intervalFunction(gameMap, positionMarkers)
+  getLocation(gameMap, positionMarkers)
 }
 
 // Class to control the map markers
@@ -37,7 +37,7 @@ class ClueMarker {
   getLatLng () {
     return new google.maps.LatLng(this.configuration.latitude, this.configuration.longitude)
   }
-// Creates new markers on the current Position
+// Adds all markers on map
   getMarker () {
     return new google.maps.Marker({
       position: this.getLatLng(),
@@ -46,6 +46,17 @@ class ClueMarker {
       icon: this.configuration.icon
     })
   }
+
+// Moves marker for current position
+  moveMarker () {
+    return new google.maps.Marker({
+      position: this.getLatLng(),
+      map: this.configuration.gameMap,
+      title: this.configuration.title,
+      icon: this.configuration.icon
+    })
+  }
+
   // Creates a new Clue info window
   createClueWindow () {
     this.configuration.infowindow = new google.maps.InfoWindow({
@@ -109,13 +120,16 @@ function loadMapMarkers (gameMap) {
   return positionMarkers
 }
 // Gets the current position of a self and finds out if the clue should be displayed or not
-let posSelf
+let positionSelf
 function getLocation (gameMap, positionMarkers) {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      let positionSelf = showPosition(position, gameMap)
+    navigator.geolocation.watchPosition(function (position) {
+      if (markerSELF === '') {
+        positionSelf = showPosition(position, gameMap)
+      } else {
+        markerSELF.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude))
+      }
       getDistances(positionSelf, positionMarkers)
-      posSelf = position
     }, function (error) {
       console.log(error)
     })
@@ -147,14 +161,14 @@ function showPosition (position, gameMap) {
   return positionSelf
 }
 
-let loopFunction = function (gameMap, positionMarkers) {
-  if (markerSELF !== '') {
-    markerSELF.setMap(null)
-  }
-  return getLocation(gameMap, positionMarkers)
-}
-
-let intervalFunction = function (gameMap, positionMarkers) {
-  loopFunction(gameMap, positionMarkers)
-  return window.setTimeout(intervalFunction.bind(null, gameMap, positionMarkers), 10000)
-}
+// let loopFunction = function (gameMap, positionMarkers) {
+//   if (markerSELF !== '') {
+//     markerSELF.setMap(null)
+//   }
+//   return getLocation(gameMap, positionMarkers)
+// }
+//
+// let intervalFunction = function (gameMap, positionMarkers) {
+//   loopFunction(gameMap, positionMarkers)
+//   return window.setTimeout(intervalFunction.bind(null, gameMap, positionMarkers), 10000)
+// }
