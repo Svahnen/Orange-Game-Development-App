@@ -101,6 +101,19 @@ function loadMapMarkers (gameMap) {
     '</div>' +
     '</div>'
   }))
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.306214,
+    longitude: 18.110301,
+    title: 'The Bomb',
+    icon: 'pins/red_MarkerQ.png',
+    image: 'images/bomb.png',
+    clue: '<div class="clue">' +
+    '<h1> BOMBEN</h1>' +
+    '<div>' + '<p> <b>Ledtråd</b> som går att styla ' +
+    '</div>' +
+    '</div>' + '<h5> 1 </h5>' + '<input type="text" name="fname">' + '<h5> 2 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 3 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 4 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 5 </h5>' + '<input type="text" name="fname"><br>' + '<br>' + '<input type="submit" value="Submit">'
+  }))
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
   for (i = 0; i < positionMarkers.length; i++) {
@@ -125,7 +138,7 @@ function getLocation (gameMap, positionMarkers) {
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
-    if (distance <= 200) {
+    if (distance <= 100) {
       positionMarkers[i].openClueWindow()
     } else {
       positionMarkers[i].closeClueWindow()
