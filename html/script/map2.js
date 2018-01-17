@@ -161,11 +161,38 @@ function loadMapMarkers (gameMap) {
     title: 'The Bomb',
     icon: 'pins/red_MarkerQ.png',
     clue: '<div class="clue">' +
-    '<h1> BOMBEN</h1>' +
+    '<h1> BOMBEN </h1>' + '<b>Tid kvar tills explodering</b>' +
+    '<p id="count-down"> </p>' +
     '<div>' + '<p> Desarmare bomben så snabbt du kan!!! </p>' +
     '</div>' +
-    '</div>' + '<form id="clueForm">' + '<h5> Ledtråd 1 </h5>' + '<input type="text" name="fname" class="inputFields" class="inputFields">' + '<h5> Ledtråd 2 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '<h5> Ledtråd 3 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '<h5> Ledtråd 4 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '<h5> Ledtråd 5 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '</form>' + '<br>' + '<input type="submit" value="Submit" class="submitButton">'
+    '</div>' + '<form class="clueForm">' + '<label for="clue1"><b> Ledtråd 1 <b></label>' + '<input type="text" id="clue1" name="clue1" class="inputFields" class="inputFields"><br>' + '<label for="clue2"> Ledtråd 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' + '<label for="clue3"> Ledtråd 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' + '<label for="clue4"> Ledtråd 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' + '<label for="clue5"> Ledtråd 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '</form>' + '<br>' + '<input type="submit" value="Desarmera Bomben" class="submitButton">'
   }))
+
+  // countdown
+// Set the date we're counting down to
+let countDownDate = new Date('January 17, 2018 20:35:00').getTime()
+
+// Update the count down every 1 second
+let x = setInterval(function () {
+  // Get todays date and time
+  let now = new Date().getTime()
+
+  // Find the distance between now an the count down date
+  let timeDifference = countDownDate - now
+
+  // Time calculations for days, hours, minutes and seconds
+  let minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60))
+  let seconds = Math.floor((timeDifference % (1000 * 60)) / 1000)
+
+  // Display the result in the element with id="demo"
+  document.getElementById('count-down').innerHTML = minutes + 'm ' + seconds + 's '
+
+  // If the count down is finished, write some text
+  if (timeDifference < 0) {
+    clearInterval(x)
+    document.getElementById('count-down').innerHTML = 'Bomb exploded!!'
+  }
+})
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
   for (i = 0; i < positionMarkers.length; i++) {

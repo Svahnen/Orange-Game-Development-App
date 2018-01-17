@@ -34,7 +34,13 @@ body {
 .submitButton {
   background-color: #000;
   color: #fff;
+  padding: 1em;
+  outline: none;
+
 }
 .inputFields {
-  width: 4em;
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 1em;
+  padding: 0.5em;
 }
