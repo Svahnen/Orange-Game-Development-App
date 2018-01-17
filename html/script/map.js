@@ -5,16 +5,16 @@
 // Create the variables that will be used within the map configuration options.
 // The latitude and longitude of the center of the map.
 // 58.908708, 17.944074
-let gameMapCenter = new google.maps.LatLng(59.311326, 18.116483)
+let gameMapCenter = new google.maps.LatLng(58.908708, 17.944074)
 
 // let gameMapCenter = getLocation()
 
 // The degree to which the map is zoomed in. This can range from 0 (least zoomed) to 21 and above (most zoomed).
-gameMapZoom = 16
+gameMapZoom = 12
 // The max and min zoom levels that are allowed.
 let gameMapZoomMax = 21
 let gameMapZoomMin = 6
-// These options configure the setup of th     e map.
+// These options configure the setup of the map.
 let gameMapOptions = {
   center: gameMapCenter,
   zoom: gameMapZoom,
@@ -43,7 +43,7 @@ function loadGameMap () {
 function loadMapMarkers () {
   // Setting the position of the Usa Pizza map marker.
   let markerPositionUsaPizza = new google.maps.LatLng(59.312601, 18.106447)
-  // Creating the Glastonbury map marker.
+  // Creating the Usa Pizza map marker.
   markerUsaPizza = new google.maps.Marker({
     // uses the position set above.
     position: markerPositionUsaPizza,
@@ -52,6 +52,22 @@ function loadMapMarkers () {
     title: 'Usa Pizza',
     icon: 'pins/green_MarkerB.png'
   })
+  // Content for Usa Pizza Marker
+  let contentString = '<div class="clue">' +
+      '<h1> Ledtråd</h1>' +
+      '<div>' +
+      '<p><b>Ledtråd</b> som går att styla ' +
+      '</div>' +
+      '</div>'
+  // Creating the Usa Pizza infowindow
+  let infowindow = new google.maps.InfoWindow({
+    content: contentString
+  })
+  // Adds the infowindow on gameMap triggerd by mouse move on map
+  markerUsaPizza.addListener('click', function () {
+    infowindow.open(gameMap, markerUsaPizza)
+  })
+
   let markerPositionHenkansPizza = new google.maps.LatLng(59.311326, 18.116483)
   // Creating the Henkans Pizza map marker.
   markerHenkansPizza = new google.maps.Marker({
@@ -62,23 +78,28 @@ function loadMapMarkers () {
     title: 'Henkans Pizza',
     icon: 'pins/orange_MarkerC.png'
   })
+
+  // Calculate the distance between Henkans pizza and Usa pizza
+  console.log(google.maps.geometry.spherical.computeDistanceBetween(markerPositionUsaPizza, markerPositionHenkansPizza))
 }
 
 let posSelf
 function getLocation () {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.watchPosition(function (position) {
       showPosition(position)
       posSelf = position
     }, function (error) {
       console.log(error)
     })
   }
+  console.log('New Position')
 }
 
 let markerSELF = ''
 function showPosition (position) {
   markerPositionSELF = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+
   markerSELF = new google.maps.Marker({
     position: markerPositionSELF,
     map: gameMap,
@@ -95,12 +116,14 @@ let loopFunction = function () {
   return getLocation()
 }
 
-let doLoop = true
-let intervalFunction = function () {
-  if (doLoop) {
-    loopFunction()
-  }
-  return window.setTimeout(intervalFunction, 10000)
-}
+// let doLoop = true
+// let intervalFunction = function () {
+//   if (doLoop) {
+//     loopFunction()
+//   }
+//   return window.setTimeout(intervalFunction, 10000)
+// }
+//
+// intervalFunction()
 
-intervalFunction()
+getLocation()
