@@ -53,7 +53,7 @@ class ClueMarker {
     })
     // Function for opening a Cluemarker on a marker click event
     this.configuration.marker = this.getMarker()
-    this.configuration.marker.addListener('click', function () {
+    this.configuration.marker.addListener('click', () => {
       this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
     })
   }
@@ -76,70 +76,66 @@ function loadMapMarkers (gameMap) {
   let positionMarkers = []
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313038,
-    longitude: 18.109588,
+    latitude: 59.313958,
+    longitude: 18.108520,
     title: 'Ledtråd 1',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd 1</h1>' +
-    '<div>' +
-    '<p>1</p> ' +
+    '<h1>Ledtråd 1: ' +
+    answer[0] +
+    '</h1>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313082,
-    longitude: 18.110079,
+    latitude: 59.313005,
+    longitude: 18.108450,
     title: 'Ledtråd 2',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd 2</h1>' +
-    '<div>' +
-    '<p>2</p> ' +
-    '</div>' +
+    '<h1>Ledtråd 2: ' +
+    answer[1] +
+    '</h1>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313495,
-    longitude: 18.110326,
+    latitude: 59.312622,
+    longitude: 18.110923,
     title: 'Ledtråd 3',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd 3</h1>' +
-    '<div>' +
-    '<p>3</p> ' +
-    '</div>' +
+    '<h1>Ledtråd 3: ' +
+    answer[2] +
+    '</h1>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313412,
-    longitude: 18.110581,
+    latitude: 59.314193,
+    longitude: 18.110961,
     title: 'Ledtråd 4',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd 4</h1>' +
-    '<div>' +
-    '<p>4</p> ' +
-    '</div>' +
+    '<h1>Ledtråd 4: ' +
+    answer[3] +
+    '</h1>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313581,
-    longitude: 18.110593,
+    latitude: 59.313848,
+    longitude: 18.111878,
     title: 'Ledtråd 5',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd 5</h1>' +
-    '<div>' +
-    '<p>5</p> ' +
-    '</div>' +
+    '<h1> Ledtråd 5: ' +
+    answer[4] +
+    '</h1>' +
     '</div>'
   }))
 
@@ -166,7 +162,7 @@ function getLocation (gameMap, positionMarkers) {
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
-    if (distance <= 217) {
+    if (distance <= 50) {
       positionMarkers[i].openClueWindow()
     } else {
       positionMarkers[i].closeClueWindow()
@@ -199,3 +195,5 @@ let intervalFunction = function (gameMap, positionMarkers) {
   loopFunction(gameMap, positionMarkers)
   return window.setTimeout(intervalFunction.bind(null, gameMap, positionMarkers), 10000)
 }
+
+let answer = [1, 2, 3, 4, 5]
