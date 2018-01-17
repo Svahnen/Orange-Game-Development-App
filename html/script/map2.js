@@ -92,29 +92,66 @@ function loadMapMarkers (gameMap) {
   let positionMarkers = []
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.312601,
-    longitude: 18.106447,
-    title: 'Usa Pizza',
-    icon: 'pins/green_MarkerB.png',
+    latitude: 59.313958,
+    longitude: 18.108520,
+    title: 'Ledtråd 1',
+    icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd</h1>' +
-    '<div>' +
-    '<p><b>Ledtråd</b> som går att styla ' +
-    '</div>' +
+    '<h1>Ledtråd 1: ' +
+    answer[0] +
+    '</h1>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.311326,
-    longitude: 18.116483,
-    title: 'Henkans Pizza',
+    latitude: 59.313005,
+    longitude: 18.108450,
+    title: 'Ledtråd 2',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd Henkans</h1>' +
-    '<div>' +
-    '<p><b>Ledtråd</b> som går att styla ' +
-    '</div>' +
+    '<h1>Ledtråd 2: ' +
+    answer[1] +
+    '</h1>' +
+    '</div>'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.312622,
+    longitude: 18.110923,
+    title: 'Ledtråd 3',
+    icon: 'pins/orange_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1>Ledtråd 3: ' +
+    answer[2] +
+    '</h1>' +
+    '</div>'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.314193,
+    longitude: 18.110961,
+    title: 'Ledtråd 4',
+    icon: 'pins/orange_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1>Ledtråd 4: ' +
+    answer[3] +
+    '</h1>' +
+    '</div>'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 59.313848,
+    longitude: 18.111878,
+    title: 'Ledtråd 5',
+    icon: 'pins/orange_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1> Ledtråd 5: ' +
+    answer[4] +
+    '</h1>' +
     '</div>'
   }))
 
@@ -146,7 +183,7 @@ function getLocation (gameMap, positionMarkers) {
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
-    if (distance <= 200) {
+    if (distance <= 50) {
       positionMarkers[i].openClueWindow()
     } else {
       positionMarkers[i].closeClueWindow()
@@ -167,3 +204,5 @@ function showPosition (position, gameMap) {
   markerSELF = positionSelf.getMarker()
   return positionSelf
 }
+
+let answer = [1, 2, 3, 4, 5]
