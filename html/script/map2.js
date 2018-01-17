@@ -156,8 +156,8 @@ function loadMapMarkers (gameMap) {
   }))
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.306214,
-    longitude: 18.110301,
+    latitude: 59.312370,
+    longitude: 18.108613,
     title: 'The Bomb',
     icon: 'pins/red_MarkerQ.png',
     clue: '<div class="clue">' +
