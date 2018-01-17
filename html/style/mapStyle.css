@@ -31,3 +31,10 @@ body {
     color: #ffffff;
     display: inline;
 }
+.submitButton {
+  background-color: #000;
+  color: #fff;
+}
+.inputFields {
+  width: 4em;
+}

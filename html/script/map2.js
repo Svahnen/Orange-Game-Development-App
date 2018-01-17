@@ -162,9 +162,9 @@ function loadMapMarkers (gameMap) {
     icon: 'pins/red_MarkerQ.png',
     clue: '<div class="clue">' +
     '<h1> BOMBEN</h1>' +
-    '<div>' + '<p> <b>Ledtråd</b> som går att styla ' +
+    '<div>' + '<p> Desarmare bomben så snabbt du kan!!! </p>' +
     '</div>' +
-    '</div>' + '<h5> 1 </h5>' + '<input type="text" name="fname">' + '<h5> 2 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 3 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 4 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 5 </h5>' + '<input type="text" name="fname"><br>' + '<br>' + '<input type="submit" value="Submit">'
+    '</div>' + '<form id="clueForm">' + '<h5> Ledtråd 1 </h5>' + '<input type="text" name="fname" class="inputFields" class="inputFields">' + '<h5> Ledtråd 2 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '<h5> Ledtråd 3 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '<h5> Ledtråd 4 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '<h5> Ledtråd 5 </h5>' + '<input type="text" name="fname" class="inputFields"><br>' + '</form>' + '<br>' + '<input type="submit" value="Submit" class="submitButton">'
   }))
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
