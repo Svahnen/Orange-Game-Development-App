@@ -29,7 +29,7 @@ function loadGameMap () {
     mapTypeControl: false
   }
   gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
-  let positionMarkers = loadMapMarkers(gameMap)
+  loadMapMarkers(gameMap)
   getLocation(gameMap, positionMarkers)
 }
 
@@ -88,8 +88,8 @@ class ClueMarker {
   }
 }
 // loadMapMarkers creates an array that contains all markers and initiates the markers
+let positionMarkers = []
 function loadMapMarkers (gameMap) {
-  let positionMarkers = []
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
     latitude: 59.313958,
@@ -154,6 +154,20 @@ function loadMapMarkers (gameMap) {
     '</h1>' +
     '</div>'
   }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 58.902486,
+    longitude: 17.947655,
+    title: 'Ledtråd Nynäshamn',
+    icon: 'pins/blue_MarkerC.png',
+    clue: '<div class="clue">' +
+    '<h1> Ledtråd Nynäshamn: ' +
+    answer[4] +
+    '</h1>' +
+    '</div>'
+  }))
+
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
     latitude: 59.312370,
@@ -218,3 +232,7 @@ function showPosition (position, gameMap) {
 }
 
 let answer = [1, 2, 3, 4, 5]
+
+let delMarker = function (gameMap, positionMarkers) {
+  positionMarkers[5].setMap(null)
+}
