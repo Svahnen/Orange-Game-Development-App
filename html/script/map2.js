@@ -7,14 +7,13 @@
 google.maps.event.addDomListener(window, 'load', loadGameMap)
 
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
-
+let gameMap
 function loadGameMap () {
   // Sets current location as center of the map
   navigator.geolocation.getCurrentPosition(function (position) {
     gameMapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     gameMap.setCenter(gameMapCenter)
   })
-  let gameMap
   let gameMapCenter
   let gameMapZoom = 16
   let gameMapZoomMax = 21
@@ -157,19 +156,6 @@ function loadMapMarkers (gameMap) {
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 58.902486,
-    longitude: 17.947655,
-    title: 'Ledtråd Nynäshamn',
-    icon: 'pins/blue_MarkerC.png',
-    clue: '<div class="clue">' +
-    '<h1> Ledtråd Nynäshamn: ' +
-    answer[4] +
-    '</h1>' +
-    '</div>'
-  }))
-
-  positionMarkers.push(new ClueMarker({
-    gameMap: gameMap,
     latitude: 59.312370,
     longitude: 18.108613,
     title: 'The Bomb',
@@ -179,6 +165,19 @@ function loadMapMarkers (gameMap) {
     '<div>' + '<p> <b>Ledtråd</b> som går att styla ' +
     '</div>' +
     '</div>' + '<h5> 1 </h5>' + '<input type="text" name="fname">' + '<h5> 2 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 3 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 4 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 5 </h5>' + '<input type="text" name="fname"><br>' + '<br>' + '<input type="submit" value="Submit">'
+  }))
+
+  positionMarkers.push(new ClueMarker({
+    gameMap: gameMap,
+    latitude: 58.902486,
+    longitude: 17.947655,
+    title: 'Ledtråd Nynäshamn',
+    icon: 'pins/green_MarkerB.png',
+    clue: '<div class="clue">' +
+    '<h1> Ledtråd Nynäshamn: ' +
+    answer[4] +
+    '</h1>' +
+    '</div>'
   }))
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
@@ -233,6 +232,8 @@ function showPosition (position, gameMap) {
 
 let answer = [1, 2, 3, 4, 5]
 
-let delMarker = function (gameMap, positionMarkers) {
-  positionMarkers[5].setMap(null)
+let switchIcon = function (theMarker, icon) {
+  theMarker.configuration.marker.icon = icon
+  theMarker.configuration.marker.setMap(null)
+  theMarker.configuration.marker.setMap(gameMap)
 }
