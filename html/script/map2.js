@@ -213,10 +213,10 @@ function getDistances (positionSelf, positionMarkers) {
       console.log(positionMarkers[i])
       switchIcon(positionMarkers[i], 'pins/blue_MarkerC.png')
       if (beenToLocationCheck(i)) {
-        console.log('Already been here')
+        console.log('Already been at ' + i)
       } else {
         beenToLocations.push(i)
-        console.log('Pushing new location')
+        console.log('Pushing new location ' + i)
       }
     } else {
       positionMarkers[i].closeClueWindow()
