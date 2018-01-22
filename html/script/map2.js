@@ -224,12 +224,35 @@ function disarmBomb () {
   let clue3 = document.forms['clueForm']['clue3'].value
   let clue4 = document.forms['clueForm']['clue4'].value
   let clue5 = document.forms['clueForm']['clue5'].value
-  if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4]) {
+  if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     alert('Du har vunnit')
   } else {
     alert('Du har förlurat')
   }
   return false
+}
+
+let timer
+function countDownTimer (duration, display) {
+  timer = duration
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10)
+    seconds = parseInt(timer % 60, 10)
+
+    minutes = minutes < 10 ? '0' + minutes : minutes
+    seconds = seconds < 10 ? '0' + seconds : seconds
+
+    display.textContent = minutes + ':' + seconds
+
+    if (--timer < 0) {
+      timer = duration
+    }
+  }, 1000)
+}
+window.onload = function () {
+  let minutes = (60 * 30)
+  display = document.querySelector('#time')
+  countDownTimer(minutes, display)
 }
 
 let answer = ['1', '2', '3', '4', '5']
