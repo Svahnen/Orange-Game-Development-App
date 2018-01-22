@@ -210,6 +210,14 @@ function getDistances (positionSelf, positionMarkers) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
     if (distance <= 50) {
       positionMarkers[i].openClueWindow()
+      console.log(positionMarkers[i])
+      switchIcon(positionMarkers[i], 'pins/blue_MarkerC.png')
+      if (beenToLocationCheck(i)) {
+        console.log('Already been here')
+      } else {
+        beenToLocations.push(i)
+        console.log('Pushing new location')
+      }
     } else {
       positionMarkers[i].closeClueWindow()
     }
@@ -236,4 +244,14 @@ let switchIcon = function (theMarker, icon) {
   theMarker.configuration.marker.icon = icon
   theMarker.configuration.marker.setMap(null)
   theMarker.configuration.marker.setMap(gameMap)
+}
+
+let beenToLocations = []
+
+let beenToLocationCheck = function (a) {
+  for (let i = 0; i < beenToLocations.length; i++) {
+    if (beenToLocations[i] === a) {
+      return true
+    }
+  } return false
 }
