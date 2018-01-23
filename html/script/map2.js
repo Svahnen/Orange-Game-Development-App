@@ -237,8 +237,9 @@ function countDownTimer (duration, display) {
 }
 window.onload = function () {
   let minutes = (60 * 30)
-  display = document.querySelector('#time')
+  display = document.getElementById('time').style.display = 'none'
   countDownTimer(minutes, display)
+  /* document.getElementById('time') */
 }
 
 let endTime
