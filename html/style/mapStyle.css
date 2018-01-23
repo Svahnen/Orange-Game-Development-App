@@ -50,6 +50,7 @@ body {
   display: flex;
   font-size: 2em;
   justify-content: center;
+  display: none;
 }
 label {
   font-weight: bold;

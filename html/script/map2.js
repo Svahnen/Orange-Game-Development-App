@@ -87,6 +87,7 @@ class ClueMarker {
     return distanceResult
   }
 }
+
 // loadMapMarkers creates an array that contains all markers and initiates the markers
 function loadMapMarkers (gameMap) {
   let positionMarkers = []
@@ -165,7 +166,15 @@ function loadMapMarkers (gameMap) {
     '<p id="count-down"> </p>' +
     '<div>' + '<p> Desarmare bomben så snabbt du kan!!! </p>' +
     '</div>' +
-    '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' + '<label for="clue1"> Ledtråd 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' + '<label for="clue2"> Ledtråd 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' + '<label for="clue3"> Ledtråd 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' + '<label for="clue4"> Ledtråd 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' + '<label for="clue5"> Ledtråd 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '<br>' + '<input type="submit" value="Desarmera Bomben" class="submitButton">' + '</form>'
+    '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
+    '<label for="clue1"> Ledtråd 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' +
+    '<label for="clue2"> Ledtråd 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' +
+    '<label for="clue3"> Ledtråd 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' +
+    '<label for="clue4"> Ledtråd 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' +
+    '<label for="clue5"> Ledtråd 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' +
+    '<br>' +
+    '<input type="submit" value="Desarmera Bomben" class="submitButton">' +
+    '</form>'
   }))
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
@@ -174,6 +183,7 @@ function loadMapMarkers (gameMap) {
   }
   return positionMarkers
 }
+
 // Gets the current position of a self and finds out if the clue should be displayed or not
 let positionSelf
 function getLocation (gameMap, positionMarkers) {
@@ -192,6 +202,7 @@ function getLocation (gameMap, positionMarkers) {
     })
   }
 }
+
 // Calculates the distance between PositionSelf and all markers and opens up Clue windows if you are within 5 meters of the markers position
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
@@ -204,6 +215,7 @@ function getDistances (positionSelf, positionMarkers) {
     console.log(distance)
   }
 }
+
 // Places a pink marker of your own position
 let markerSELF = ''
 function showPosition (position, gameMap) {
@@ -235,11 +247,16 @@ function countDownTimer (duration, display) {
     }
   }, 1000)
 }
+
 window.onload = function () {
   let minutes = (60 * 30)
-  display = document.getElementById('time').style.display = 'none'
+  display = document.getElementsByClassName('timer')[0]
   countDownTimer(minutes, display)
-  /* document.getElementById('time') */
+}
+
+// TODO: Add this function to switchIcons function later
+let showBombTimer = function () {
+  document.getElementsByClassName('timer')[0].style.display = 'block'
 }
 
 let endTime
