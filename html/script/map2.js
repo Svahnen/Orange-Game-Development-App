@@ -161,10 +161,11 @@ function loadMapMarkers (gameMap) {
     title: 'The Bomb',
     icon: 'pins/red_MarkerQ.png',
     clue: '<div class="clue">' +
-    '<h1> BOMBEN</h1>' +
-    '<div>' + '<p> <b>Ledtråd</b> som går att styla ' +
+    '<h1> BOMBEN </h1>' + '<b>Tid kvar tills explodering</b>' +
+    '<p id="count-down"> </p>' +
+    '<div>' + '<p> Desarmare bomben så snabbt du kan!!! </p>' +
     '</div>' +
-    '</div>' + '<h5> 1 </h5>' + '<input type="text" name="fname">' + '<h5> 2 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 3 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 4 </h5>' + '<input type="text" name="fname"><br>' + '<h5> 5 </h5>' + '<input type="text" name="fname"><br>' + '<br>' + '<input type="submit" value="Submit">'
+    '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' + '<label for="clue1"> Ledtråd 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' + '<label for="clue2"> Ledtråd 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' + '<label for="clue3"> Ledtråd 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' + '<label for="clue4"> Ledtråd 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' + '<label for="clue5"> Ledtråd 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '<br>' + '<input type="submit" value="Desarmera Bomben" class="submitButton">' + '</form>'
   }))
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
@@ -217,4 +218,43 @@ function showPosition (position, gameMap) {
   return positionSelf
 }
 
-let answer = [1, 2, 3, 4, 5]
+let timer
+function countDownTimer (duration, display) {
+  timer = duration
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10)
+    seconds = parseInt(timer % 60, 10)
+
+    minutes = minutes < 10 ? '0' + minutes : minutes
+    seconds = seconds < 10 ? '0' + seconds : seconds
+
+    display.textContent = minutes + ':' + seconds
+
+    if (--timer < 0) {
+      timer = duration
+    }
+  }, 1000)
+}
+window.onload = function () {
+  let minutes = (60 * 30)
+  display = document.querySelector('#time')
+  countDownTimer(minutes, display)
+}
+
+let endTime
+function disarmBomb () {
+  let clue1 = document.forms['clueForm']['clue1'].value
+  let clue2 = document.forms['clueForm']['clue2'].value
+  let clue3 = document.forms['clueForm']['clue3'].value
+  let clue4 = document.forms['clueForm']['clue4'].value
+  let clue5 = document.forms['clueForm']['clue5'].value
+  if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
+    endTime = timer
+    alert('Du har vunnit ' + endTime)
+  } else {
+    alert('Du har förlorat')
+  }
+  return false
+}
+
+let answer = ['1', '2', '3', '4', '5']
