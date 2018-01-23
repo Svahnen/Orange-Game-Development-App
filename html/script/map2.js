@@ -218,20 +218,6 @@ function showPosition (position, gameMap) {
   return positionSelf
 }
 
-function disarmBomb () {
-  let clue1 = document.forms['clueForm']['clue1'].value
-  let clue2 = document.forms['clueForm']['clue2'].value
-  let clue3 = document.forms['clueForm']['clue3'].value
-  let clue4 = document.forms['clueForm']['clue4'].value
-  let clue5 = document.forms['clueForm']['clue5'].value
-  if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
-    alert('Du har vunnit')
-  } else {
-    alert('Du har förlurat')
-  }
-  return false
-}
-
 let timer
 function countDownTimer (duration, display) {
   timer = duration
@@ -253,6 +239,22 @@ window.onload = function () {
   let minutes = (60 * 30)
   display = document.querySelector('#time')
   countDownTimer(minutes, display)
+}
+
+let endTime
+function disarmBomb () {
+  let clue1 = document.forms['clueForm']['clue1'].value
+  let clue2 = document.forms['clueForm']['clue2'].value
+  let clue3 = document.forms['clueForm']['clue3'].value
+  let clue4 = document.forms['clueForm']['clue4'].value
+  let clue5 = document.forms['clueForm']['clue5'].value
+  if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
+    endTime = timer
+    alert('Du har vunnit ' + endTime)
+  } else {
+    alert('Du har förlorat')
+  }
+  return false
 }
 
 let answer = ['1', '2', '3', '4', '5']

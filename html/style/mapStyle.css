@@ -45,8 +45,12 @@ body {
   padding: 0.5em;
 }
 .timer {
+  background-color: #eef;
   color: red;
   display: flex;
   font-size: 2em;
   justify-content: center;
+}
+label {
+  font-weight: bold;
 }
