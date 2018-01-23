@@ -10,7 +10,7 @@ google.maps.event.addDomListener(window, 'load', loadGameMap)
 let gameMap
 function loadGameMap () {
   // Sets current location as center of the map
-  navigator.geolocation.getCurrentPosition(function (position) {
+  navigator.geolocation.watchPosition(function (position) {
     gameMapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     gameMap.setCenter(gameMapCenter)
   })
@@ -91,8 +91,8 @@ let positionMarkers = []
 function loadMapMarkers (gameMap) {
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313958,
-    longitude: 18.108520,
+    latitude: 59.313304,
+    longitude: 18.111540,
     title: 'Ledtråd 1',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
@@ -104,8 +104,8 @@ function loadMapMarkers (gameMap) {
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313005,
-    longitude: 18.108450,
+    latitude: 59.313050,
+    longitude: 18.109947,
     title: 'Ledtråd 2',
     icon: 'pins/orange_MarkerC.png',
     clue: '<div class="clue">' +
@@ -187,17 +187,24 @@ function loadMapMarkers (gameMap) {
   return positionMarkers
 }
 // Gets the current position of a self and finds out if the clue should be displayed or not
-let positionSelf
+let position
+let currentPosition
+let getLocationRun = false
 function getLocation (gameMap, positionMarkers) {
   if (navigator.geolocation) {
     navigator.geolocation.watchPosition(function (position) {
       // Creates initial self marker
-      if (markerSELF === '') {
-        positionSelf = showPosition(position, gameMap)
-        // Moves self marker if marker is already present
-      } else {
+      if (getLocationRun) {
         markerSELF.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude))
+        positionSelf.configuration.latitude = position.coords.latitude
+        positionSelf.configuration.longitude = position.coords.longitude
+        console.log('Efter')
+      } else {
+        getLocationRun = true
+        console.log('Först')
+        showPosition(position, gameMap)
       }
+      currentPosition = position
       getDistances(positionSelf, positionMarkers)
     }, function (error) {
       console.log(error)
@@ -226,8 +233,9 @@ function getDistances (positionSelf, positionMarkers) {
 }
 // Places a pink marker of your own position
 let markerSELF = ''
+let positionSelf
 function showPosition (position, gameMap) {
-  let positionSelf = new ClueMarker({
+  positionSelf = new ClueMarker({
     gameMap: gameMap,
     latitude: position.coords.latitude,
     longitude: position.coords.longitude,
@@ -246,7 +254,10 @@ let switchIcon = function (theMarker, icon) {
   theMarker.configuration.marker.setMap(gameMap)
 }
 
-let beenToLocations = []
+let beenToLocations = [
+  5,
+  4
+]
 
 let beenToLocationCheck = function (a) {
   for (let i = 0; i < beenToLocations.length; i++) {
