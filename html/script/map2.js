@@ -95,7 +95,7 @@ function loadMapMarkers (gameMap) {
     latitude: 59.313958,
     longitude: 18.108520,
     title: 'Clue #1',
-    icon: 'images/question_small.png',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
     '<h1>Clue #1 = ' +
     answer[0] +
@@ -108,7 +108,7 @@ function loadMapMarkers (gameMap) {
     latitude: 59.313005,
     longitude: 18.108450,
     title: 'Clue #2',
-    icon: 'images/question_small.png',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
     '<h1>Clue #2 = ' +
     answer[1] +
@@ -121,7 +121,7 @@ function loadMapMarkers (gameMap) {
     latitude: 59.312622,
     longitude: 18.110923,
     title: 'Clue #3',
-    icon: 'images/question_small.png',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
     '<h1>Clue #3 = ' +
     answer[2] +
@@ -134,7 +134,7 @@ function loadMapMarkers (gameMap) {
     latitude: 59.314193,
     longitude: 18.110961,
     title: 'Clue #4',
-    icon: 'images/question_small.png',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
     '<h1>Clue #4 = ' +
     answer[3] +
@@ -147,7 +147,7 @@ function loadMapMarkers (gameMap) {
     latitude: 59.313848,
     longitude: 18.111878,
     title: 'Clue #5',
-    icon: 'images/question_small.png',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
     '<h1> Clue #5 = ' +
     answer[4] +
@@ -159,7 +159,7 @@ function loadMapMarkers (gameMap) {
     latitude: 59.312370,
     longitude: 18.108613,
     title: 'The Bomb',
-    icon: 'images/bomb_small.png',
+    icon: 'images/bomb.png',
     clue: '<div class="clue">' +
     '<h1> BOMB! </h1>' + '<b>Time left before the bomb explodes</b>' +
     '<p id="count-down"> </p>' +
@@ -212,7 +212,7 @@ function showPosition (position, gameMap) {
     latitude: position.coords.latitude,
     longitude: position.coords.longitude,
     title: 'Self',
-    icon: 'images/player1_small.png'
+    icon: 'images/player1.png'
   })
   markerSELF = positionSelf.getMarker()
   return positionSelf
