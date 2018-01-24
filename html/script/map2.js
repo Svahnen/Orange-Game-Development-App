@@ -6,11 +6,33 @@
 
 google.maps.event.addDomListener(window, 'load', loadGameMap)
 
+// Icons
+
+let iconBomb = {
+  url: 'images/bomb.png', // url
+  scaledSize: new google.maps.Size(30, 30) // size
+}
+
+let iconQuestion = {
+  url: 'images/question.png', // url
+  scaledSize: new google.maps.Size(20, 25) // size
+}
+
+let iconPlayer = {
+  url: 'images/player1.png', // url
+  scaledSize: new google.maps.Size(23, 25) // size
+}
+
+let iconClue = {
+  url: 'images/clue.png', // url
+  scaledSize: new google.maps.Size(22, 27) // size
+}
+
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 let gameMap
 function loadGameMap () {
   // Sets current location as center of the map
-  navigator.geolocation.watchPosition(function (position) {
+  navigator.geolocation.getCurrentPosition(function (position) {
     gameMapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
     gameMap.setCenter(gameMapCenter)
   })
@@ -32,9 +54,9 @@ function loadGameMap () {
   getLocation(gameMap, positionMarkers)
   for (let i = 0; i < beenToLocations.length; i++) {
     if (positionMarkers[beenToLocations[i]].configuration.title === "The Bomb") {
-      switchIcon(positionMarkers[beenToLocations[i]], 'pins/red_MarkerB.png')
+      switchIcon(positionMarkers[beenToLocations[i]], iconBomb)
     } else {
-      switchIcon(positionMarkers[beenToLocations[i]], 'pins/blue_MarkerC.png')
+      switchIcon(positionMarkers[beenToLocations[i]], iconClue)
     }
   }
 }
@@ -100,8 +122,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.313304,
     longitude: 18.111540,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'Ledtråd 1',
-    icon: 'pins/orange_MarkerC.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1>Ledtråd 1: ' +
     answer[0] +
@@ -113,8 +136,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.313050,
     longitude: 18.109947,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'Ledtråd 2',
-    icon: 'pins/orange_MarkerC.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1>Ledtråd 2: ' +
     answer[1] +
@@ -126,8 +150,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.312622,
     longitude: 18.110923,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'Ledtråd 3',
-    icon: 'pins/orange_MarkerC.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1>Ledtråd 3: ' +
     answer[2] +
@@ -139,8 +164,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.314193,
     longitude: 18.110961,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'Ledtråd 4',
-    icon: 'pins/orange_MarkerC.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1>Ledtråd 4: ' +
     answer[3] +
@@ -152,8 +178,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.313848,
     longitude: 18.111878,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'Ledtråd 5',
-    icon: 'pins/orange_MarkerC.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1> Ledtråd 5: ' +
     answer[4] +
@@ -165,8 +192,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.312370,
     longitude: 18.108613,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'The Bomb',
-    icon: 'pins/red_MarkerQ.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1> BOMBEN </h1>' + '<b>Tid kvar tills explodering</b>' +
     '<p id="count-down"> </p>' +
@@ -179,8 +207,9 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 58.902486,
     longitude: 17.947655,
+    scaledSize: new google.maps.Size(5, 5),
     title: 'Ledtråd Nynäshamn',
-    icon: 'pins/green_MarkerB.png',
+    icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1> Ledtråd Nynäshamn: ' +
     answer[4] +
@@ -226,7 +255,8 @@ function getDistances (positionSelf, positionMarkers) {
     if (distance <= 50) {
       positionMarkers[i].openClueWindow()
       console.log(positionMarkers[i])
-      switchIcon(positionMarkers[i], 'pins/blue_MarkerC.png')
+      // TODO: Change so that the function knows if its a bomb or clue
+      switchIcon(positionMarkers[i], iconClue)
       if (beenToLocationCheck(i)) {
         console.log('Already been at ' + i)
       } else {
@@ -248,7 +278,7 @@ function showPosition (position, gameMap) {
     latitude: position.coords.latitude,
     longitude: position.coords.longitude,
     title: 'Self',
-    icon: 'pins/pink_MarkerA.png'
+    icon: iconPlayer
   })
   markerSELF = positionSelf.getMarker()
   return positionSelf
@@ -303,7 +333,8 @@ let switchIcon = function (theMarker, icon) {
 
 let beenToLocations = [
   2,
-  1
+  1,
+  5
 ]
 
 let beenToLocationCheck = function (a) {
