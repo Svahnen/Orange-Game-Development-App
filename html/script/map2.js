@@ -233,7 +233,7 @@ function showPosition (position, gameMap) {
 let timer
 function countDownTimer (duration, display) {
   timer = duration
-  setInterval(function () {
+  let interval = setInterval(function () {
     minutes = parseInt(timer / 60, 10)
     seconds = parseInt(timer % 60, 10)
 
@@ -243,7 +243,8 @@ function countDownTimer (duration, display) {
     display.textContent = minutes + ':' + seconds
 
     if (--timer < 0) {
-      timer = duration
+      alert('You have lost the game')
+      clearInterval(interval)
     }
   }, 1000)
 }
