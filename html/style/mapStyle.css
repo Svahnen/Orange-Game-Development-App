@@ -45,12 +45,14 @@ body {
   padding: 0.5em;
 }
 .timer {
+  align-self: center;
   background-color: #eef;
   color: red;
-  display: flex;
+  /*display: none;*/
+  z-index: 9999;
   font-size: 2em;
-  justify-content: center;
-  display: none;
+  position: fixed;
+
 }
 label {
   font-weight: bold;
