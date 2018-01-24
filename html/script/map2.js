@@ -95,10 +95,10 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.313958,
     longitude: 18.108520,
-    title: 'Ledtråd 1',
-    icon: 'pins/orange_MarkerC.png',
+    title: 'Clue #1',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
-    '<h1>Ledtråd 1: ' +
+    '<h1>Clue #1 = ' +
     answer[0] +
     '</h1>' +
     '</div>'
@@ -108,10 +108,10 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.313005,
     longitude: 18.108450,
-    title: 'Ledtråd 2',
-    icon: 'pins/orange_MarkerC.png',
+    title: 'Clue #2',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
-    '<h1>Ledtråd 2: ' +
+    '<h1>Clue #2 = ' +
     answer[1] +
     '</h1>' +
     '</div>'
@@ -121,10 +121,10 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.312622,
     longitude: 18.110923,
-    title: 'Ledtråd 3',
-    icon: 'pins/orange_MarkerC.png',
+    title: 'Clue #3',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
-    '<h1>Ledtråd 3: ' +
+    '<h1>Clue #3 = ' +
     answer[2] +
     '</h1>' +
     '</div>'
@@ -134,10 +134,10 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.314193,
     longitude: 18.110961,
-    title: 'Ledtråd 4',
-    icon: 'pins/orange_MarkerC.png',
+    title: 'Clue #4',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
-    '<h1>Ledtråd 4: ' +
+    '<h1>Clue #4 = ' +
     answer[3] +
     '</h1>' +
     '</div>'
@@ -147,10 +147,10 @@ function loadMapMarkers (gameMap) {
     gameMap: gameMap,
     latitude: 59.313848,
     longitude: 18.111878,
-    title: 'Ledtråd 5',
-    icon: 'pins/orange_MarkerC.png',
+    title: 'Clue #5',
+    icon: 'images/question.png',
     clue: '<div class="clue">' +
-    '<h1> Ledtråd 5: ' +
+    '<h1> Clue #5 = ' +
     answer[4] +
     '</h1>' +
     '</div>'
@@ -160,21 +160,20 @@ function loadMapMarkers (gameMap) {
     latitude: 59.312370,
     longitude: 18.108613,
     title: 'The Bomb',
-    icon: 'pins/red_MarkerQ.png',
+    icon: 'images/bomb.png',
     clue: '<div class="clue">' +
-    '<h1> BOMBEN </h1>' + '<b>Tid kvar tills explodering</b>' +
+    '<h1> BOMB! </h1>' + '<b>Time left before the bomb explodes</b>' +
     '<p id="count-down"> </p>' +
-    '<div>' + '<p> Desarmare bomben så snabbt du kan!!! </p>' +
+    '<div>' + '<p>Hurry up and disarm it!!! </p>' +
     '</div>' +
     '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
-    '<label for="clue1"> Ledtråd 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' +
-    '<label for="clue2"> Ledtråd 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' +
-    '<label for="clue3"> Ledtråd 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' +
-    '<label for="clue4"> Ledtråd 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' +
-    '<label for="clue5"> Ledtråd 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' +
-    '<br>' +
-    '<input type="submit" value="Desarmera Bomben" class="submitButton">' +
-    '</form>'
+    '<label for="clue1"> Clue 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' +
+   '<label for="clue2"> Clue 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' +
+   '<label for="clue3"> Clue 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' +
+   '<label for="clue4"> Clue 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' +
+   '<label for="clue5"> Clue 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '<br>' +
+   '<input type="submit" value="DISARM BOMB!" class="submitButton">' +
+   '</form>'
   }))
 
 // The for loop runs through the markers of the array and make sure they are printed out on the map
@@ -224,7 +223,7 @@ function showPosition (position, gameMap) {
     latitude: position.coords.latitude,
     longitude: position.coords.longitude,
     title: 'Self',
-    icon: 'pins/pink_MarkerA.png'
+    icon: 'images/player1.png'
   })
   markerSELF = positionSelf.getMarker()
   return positionSelf
@@ -270,10 +269,10 @@ function disarmBomb () {
   let clue5 = document.forms['clueForm']['clue5'].value
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
-    alert('Du har vunnit ' + endTime)
+    alert('You made it! ***WINNING!*** ' + endTime)
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
-    alert('Du har förlorat')
+    alert('You are dead AF!')
     document.getElementsByClassName('timer')[0].style.display = 'none'
   }
   return false
