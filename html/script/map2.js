@@ -26,7 +26,7 @@ function loadGameMap () {
     maxZoom: gameMapZoomMax,
     minZoom: gameMapZoomMin,
     panControl: false,
-    mapTypeControl: false
+    disableDefaultUI: true
   }
   gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   let positionMarkers = loadMapMarkers(gameMap)
