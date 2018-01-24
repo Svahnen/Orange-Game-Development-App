@@ -251,7 +251,7 @@ function countDownTimer (duration, display) {
 }
 
 window.onload = function () {
-  let minutes = (60 * 30)
+  let minutes = (60 * 0.20)
   display = document.getElementsByClassName('timer')[0]
   countDownTimer(minutes, display)
 }
