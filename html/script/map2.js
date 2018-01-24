@@ -30,6 +30,13 @@ function loadGameMap () {
   gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   loadMapMarkers(gameMap)
   getLocation(gameMap, positionMarkers)
+  for (let i = 0; i < beenToLocations.length; i++) {
+    if (positionMarkers[beenToLocations[i]].configuration.title === "The Bomb") {
+      switchIcon(positionMarkers[beenToLocations[i]], 'pins/red_MarkerB.png')
+    } else {
+      switchIcon(positionMarkers[beenToLocations[i]], 'pins/blue_MarkerC.png')
+    }
+  }
 }
 
 // Class to control the map markers
@@ -255,8 +262,8 @@ let switchIcon = function (theMarker, icon) {
 }
 
 let beenToLocations = [
-  5,
-  4
+  2,
+  1
 ]
 
 let beenToLocationCheck = function (a) {
