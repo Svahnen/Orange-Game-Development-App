@@ -7,7 +7,6 @@
 google.maps.event.addDomListener(window, 'load', loadGameMap)
 
 // Icons
-
 let iconBomb = {
   url: 'images/bomb.png', // url
   scaledSize: new google.maps.Size(30, 30) // size
@@ -53,7 +52,7 @@ function loadGameMap () {
   loadMapMarkers(gameMap)
   getLocation(gameMap, positionMarkers)
   for (let i = 0; i < beenToLocations.length; i++) {
-    if (positionMarkers[beenToLocations[i]].configuration.title === "The Bomb") {
+    if (positionMarkers[beenToLocations[i]].configuration.title === 'The Bomb') {
       switchIcon(positionMarkers[beenToLocations[i]], iconBomb)
     } else {
       switchIcon(positionMarkers[beenToLocations[i]], iconClue)
@@ -96,11 +95,14 @@ class ClueMarker {
       content: this.configuration.clue
     })
     // Function for opening a Cluemarker on a marker click event
+    // TODO: Figure out if this part is needed or needs to be moved to get info windows
+    // to only open when already visited
     this.configuration.marker = this.getMarker()
     this.configuration.marker.addListener('click', () => {
       this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
     })
   }
+
   // Function which opens an InfoWindow on a marker
   openClueWindow () {
     this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
@@ -242,7 +244,9 @@ function getLocation (gameMap, positionMarkers) {
     navigator.geolocation.watchPosition(function (position) {
       // Creates initial self marker
       if (getLocationRun) {
+        // Updates the acctual marker on the map
         markerSELF.setPosition(new google.maps.LatLng(position.coords.latitude, position.coords.longitude))
+        // Updates the saved lat/long position in the variable that stores the location
         positionSelf.configuration.latitude = position.coords.latitude
         positionSelf.configuration.longitude = position.coords.longitude
         console.log('Efter')
@@ -265,9 +269,23 @@ function getDistances (positionSelf, positionMarkers) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
     if (distance <= 50) {
       positionMarkers[i].openClueWindow()
+      //
+      //
+      // TODO: Use removeListener() ? https://developers.google.com/maps/documentation/javascript/events
+      // positionMarkers[i].configuration.marker = this.getMarker()
+      // this.configuration.marker.addListener('click', () => {
+      //   this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
+      // })
+      //
+      // Test Test:
+      // document.getElementsByClassName("clue")[6].parentNode.parentNode.parentNode.parentNode.style.display = 'none'
+      //
       console.log(positionMarkers[i])
-      // TODO: Change so that the function knows if its a bomb or clue
-      switchIcon(positionMarkers[i], iconClue)
+      if (positionMarkers[i].configuration.title === 'The Bomb') {
+        switchIcon(positionMarkers[i], iconBomb)
+      } else {
+        switchIcon(positionMarkers[i], iconClue)
+      }
       if (beenToLocationCheck(i)) {
         console.log('Already been at ' + i)
       } else {
@@ -350,9 +368,8 @@ let switchIcon = function (theMarker, icon) {
 }
 
 let beenToLocations = [
-  2,
-  1,
-  5
+  6,
+  2
 ]
 
 let beenToLocationCheck = function (a) {
