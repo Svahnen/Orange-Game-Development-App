@@ -245,6 +245,7 @@ function countDownTimer (duration, display) {
     if (--timer < 0) {
       alert('You have lost the game')
       clearInterval(interval)
+      document.getElementsByClassName('timer')[0].style.display = 'none'
     }
   }, 1000)
 }
@@ -270,8 +271,10 @@ function disarmBomb () {
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
     alert('Du har vunnit ' + endTime)
+    document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
     alert('Du har förlorat')
+    document.getElementsByClassName('timer')[0].style.display = 'none'
   }
   return false
 }
