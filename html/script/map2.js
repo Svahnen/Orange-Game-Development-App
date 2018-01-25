@@ -55,6 +55,7 @@ function loadGameMap () {
     if (positionMarkers[beenToLocations[i]].configuration.title === 'The Bomb') {
       switchIcon(positionMarkers[beenToLocations[i]], iconBomb)
       addClickEvent(positionMarkers[beenToLocations[i]])
+      showBombTimer(positionMarkers[beenToLocations[i]])
     } else {
       switchIcon(positionMarkers[beenToLocations[i]], iconClue)
       addClickEvent(positionMarkers[beenToLocations[i]])
