@@ -51,11 +51,15 @@ function loadGameMap () {
   gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   loadMapMarkers(gameMap)
   getLocation(gameMap, positionMarkers)
+  let lat
+  let long
   for (let i = 0; i < beenToLocations.length; i++) {
-    if (positionMarkers[beenToLocations[i]].configuration.title === 'The Bomb') {
-      switchIcon(positionMarkers[beenToLocations[i]], iconBomb)
-    } else {
-      switchIcon(positionMarkers[beenToLocations[i]], iconClue)
+    lat = positionMarkers[i].configuration.latitude
+    long = positionMarkers[i].configuration.longitude
+    if (beenToLocationCheck(lat + ', ' + long) && positionMarkers[i].configuration.title === 'The Bomb') {
+      switchIcon(positionMarkers[i], iconBomb)
+    } else if (beenToLocationCheck(lat + ', ' + long)) {
+      switchIcon(positionMarkers[i], iconClue)
     }
   }
 }
@@ -102,8 +106,7 @@ class ClueMarker {
     this.configuration.marker = this.getMarker()
     this.configuration.marker.addListener('click', () => {
       // TODO: Add this lat and long to beenToLocationCheck
-      // if (beenToLocationCheck( put this lat long here)) {
-      if (true) {
+      if (beenToLocationCheck(this.configuration.latitude + ', ' + this.configuration.longitude)) {
         thisTest = this
         this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
       }
@@ -374,7 +377,10 @@ let switchIcon = function (theMarker, icon) {
   theMarker.configuration.marker.setMap(gameMap)
 }
 
-let beenToLocations = []
+let beenToLocations = [
+  '59.314193, 18.110961',
+  '59.312370, 18.108613'
+]
 
 let beenToLocationCheck = function (a) {
   for (let i = 0; i < beenToLocations.length; i++) {
