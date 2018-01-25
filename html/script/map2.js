@@ -274,7 +274,8 @@ function getDistances (positionSelf, positionMarkers) {
       addClickEvent(positionMarkers[i])
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
-        switchIcon(positionMarkers[i], iconBomb, showBombTimer())
+        switchIcon(positionMarkers[i], iconBomb)
+        showBombTimer()
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
@@ -364,7 +365,8 @@ let switchIcon = function (theMarker, icon) {
 
 let beenToLocations = [
   6,
-  2
+  2,
+  5
 ]
 
 let beenToLocationCheck = function (a) {
