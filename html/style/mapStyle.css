@@ -47,9 +47,15 @@ body {
 .timer {
   background-color: #eef;
   color: red;
-  display: flex;
+  /*display: none;*/
   font-size: 2em;
-  justify-content: center;
+  margin: 0 auto;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 9999;
+
+
 }
 label {
   font-weight: bold;
