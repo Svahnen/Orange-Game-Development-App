@@ -273,7 +273,7 @@ function getDistances (positionSelf, positionMarkers) {
       addClickEvent(positionMarkers[i])
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
-        switchIcon(positionMarkers[i], iconBomb)
+        switchIcon(positionMarkers[i], iconBomb, showBombTimer())
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
@@ -331,7 +331,6 @@ window.onload = function () {
   countDownTimer(minutes, display)
 }
 
-// TODO: Add this function to switchIcons function later
 let showBombTimer = function () {
   document.getElementsByClassName('timer')[0].style.display = 'block'
 }
