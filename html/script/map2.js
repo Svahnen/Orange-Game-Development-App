@@ -60,6 +60,8 @@ function loadGameMap () {
   }
 }
 
+let thisTest
+
 // Class to control the map markers
 class ClueMarker {
   constructor (configuration) {
@@ -99,7 +101,12 @@ class ClueMarker {
     // to only open when already visited
     this.configuration.marker = this.getMarker()
     this.configuration.marker.addListener('click', () => {
-      this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
+      // TODO: Add this lat and long to beenToLocationCheck
+      // if (beenToLocationCheck( put this lat long here)) {
+      if (true) {
+        thisTest = this
+        this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
+      }
     })
   }
 
@@ -287,10 +294,10 @@ function getDistances (positionSelf, positionMarkers) {
         switchIcon(positionMarkers[i], iconClue)
       }
       if (beenToLocationCheck(i)) {
-        console.log('Already been at ' + i)
+        console.log('Already been at ' + positionMarkers[i].configuration.latitude + ', ' + positionMarkers[i].configuration.longitude)
       } else {
-        beenToLocations.push(i)
-        console.log('Pushing new location ' + i)
+        beenToLocations.push(positionMarkers[i].configuration.latitude + ', ' + positionMarkers[i].configuration.longitude)
+        console.log('Pushing new location ' + positionMarkers[i].configuration.latitude + ', ' + positionMarkers[i].configuration.longitude)
       }
     } else {
       positionMarkers[i].closeClueWindow()
@@ -367,10 +374,7 @@ let switchIcon = function (theMarker, icon) {
   theMarker.configuration.marker.setMap(gameMap)
 }
 
-let beenToLocations = [
-  6,
-  2
-]
+let beenToLocations = []
 
 let beenToLocationCheck = function (a) {
   for (let i = 0; i < beenToLocations.length; i++) {
