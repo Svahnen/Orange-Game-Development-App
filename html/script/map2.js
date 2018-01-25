@@ -54,8 +54,10 @@ function loadGameMap () {
   for (let i = 0; i < beenToLocations.length; i++) {
     if (positionMarkers[beenToLocations[i]].configuration.title === 'The Bomb') {
       switchIcon(positionMarkers[beenToLocations[i]], iconBomb)
+      addClickEvent(positionMarkers[beenToLocations[i]])
     } else {
       switchIcon(positionMarkers[beenToLocations[i]], iconClue)
+      addClickEvent(positionMarkers[beenToLocations[i]])
     }
   }
 }
@@ -98,9 +100,9 @@ class ClueMarker {
     // TODO: Figure out if this part is needed or needs to be moved to get info windows
     // to only open when already visited
     this.configuration.marker = this.getMarker()
-    this.configuration.marker.addListener('click', () => {
-      this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
-    })
+    // this.configuration.marker.addListener('click', () => {
+    //   this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
+    // })
   }
 
   // Function which opens an InfoWindow on a marker
@@ -269,17 +271,7 @@ function getDistances (positionSelf, positionMarkers) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
     if (distance <= 50) {
       positionMarkers[i].openClueWindow()
-      //
-      //
-      // TODO: Use removeListener() ? https://developers.google.com/maps/documentation/javascript/events
-      // positionMarkers[i].configuration.marker = this.getMarker()
-      // this.configuration.marker.addListener('click', () => {
-      //   this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
-      // })
-      //
-      // Test Test:
-      // document.getElementsByClassName("clue")[6].parentNode.parentNode.parentNode.parentNode.style.display = 'none'
-      //
+      addClickEvent(positionMarkers[i])
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
         switchIcon(positionMarkers[i], iconBomb)
@@ -295,7 +287,7 @@ function getDistances (positionSelf, positionMarkers) {
     } else {
       positionMarkers[i].closeClueWindow()
     }
-    console.log(distance)
+    // console.log(distance)
   }
 }
 
@@ -378,4 +370,10 @@ let beenToLocationCheck = function (a) {
       return true
     }
   } return false
+}
+
+let addClickEvent = function (theMarker) {
+  theMarker.configuration.marker.addListener('click', () => {
+    theMarker.configuration.infowindow.open(theMarker.configuration.gameMap, theMarker.configuration.marker)
+  })
 }
