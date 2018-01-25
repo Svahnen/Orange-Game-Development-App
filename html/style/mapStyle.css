@@ -54,3 +54,10 @@ body {
 label {
   font-weight: bold;
 }
+.end-game{
+  background-color: white;
+  display: fixed;
+  z-index: 3;
+  width: 80%;
+  height: 80%;  
+}
