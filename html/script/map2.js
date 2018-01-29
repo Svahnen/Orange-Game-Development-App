@@ -62,6 +62,11 @@ function loadGameMap () {
       addClickEvent(positionMarkers[beenToLocations[i]])
     }
   }
+  var centerControlDiv = document.createElement('div');
+  var centerControl = new CenterControl(centerControlDiv, gameMap);
+
+  centerControlDiv.index = 1;
+  gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
 }
 
 // Class to control the map markers
