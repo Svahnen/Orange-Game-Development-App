@@ -46,7 +46,8 @@ function loadGameMap () {
     maxZoom: gameMapZoomMax,
     minZoom: gameMapZoomMin,
     panControl: false,
-    mapTypeControl: false
+    mapTypeControl: false,
+    styles: mapStyle
   }
   gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   loadMapMarkers(gameMap)
