@@ -46,7 +46,12 @@ function loadGameMap () {
     maxZoom: gameMapZoomMax,
     minZoom: gameMapZoomMin,
     panControl: false,
+<<<<<<< HEAD
     disableDefaultUI: true
+=======
+    mapTypeControl: false,
+    styles: mapStyle
+>>>>>>> 6c43335186f4bb237ec9a0a8657613655aebf13a
   }
   gameMap = new google.maps.Map(document.getElementById('game-map'), gameMapOptions)
   loadMapMarkers(gameMap)
@@ -55,6 +60,7 @@ function loadGameMap () {
     if (positionMarkers[beenToLocations[i]].configuration.title === 'The Bomb') {
       switchIcon(positionMarkers[beenToLocations[i]], iconBomb)
       addClickEvent(positionMarkers[beenToLocations[i]])
+      showBombTimer(positionMarkers[beenToLocations[i]])
     } else {
       switchIcon(positionMarkers[beenToLocations[i]], iconClue)
       addClickEvent(positionMarkers[beenToLocations[i]])
@@ -274,6 +280,7 @@ function getDistances (positionSelf, positionMarkers) {
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
         switchIcon(positionMarkers[i], iconBomb)
+        showBombTimer()
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
@@ -331,7 +338,6 @@ window.onload = function () {
   countDownTimer(minutes, display)
 }
 
-// TODO: Add this function to switchIcons function later
 let showBombTimer = function () {
   document.getElementsByClassName('timer')[0].style.display = 'block'
 }
@@ -364,7 +370,8 @@ let switchIcon = function (theMarker, icon) {
 
 let beenToLocations = [
   6,
-  2
+  2,
+  5
 ]
 
 let beenToLocationCheck = function (a) {
