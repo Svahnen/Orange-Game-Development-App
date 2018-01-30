@@ -62,11 +62,6 @@ function loadGameMap () {
       addClickEvent(positionMarkers[beenToLocations[i]])
     }
   }
-  var centerControlDiv = document.createElement('div');
-  var centerControl = new CenterControl(centerControlDiv, gameMap);
-
-  centerControlDiv.index = 1;
-  gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
 }
 
 // Class to control the map markers
@@ -352,10 +347,18 @@ function disarmBomb () {
   let clue5 = document.forms['clueForm']['clue5'].value
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
-    alert('You made it! ***WINNING!*** ' + endTime)
+
+    var centerControlDiv = document.createElement('div');
+    var centerControl = new WinningModal(centerControlDiv, gameMap);
+    gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
-    alert('You are dead AF!')
+    
+    var centerControlDiv = document.createElement('div');
+    var centerControl = new LosingModal(centerControlDiv, gameMap);
+    gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+
     document.getElementsByClassName('timer')[0].style.display = 'none'
   }
   return false
