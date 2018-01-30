@@ -55,8 +55,11 @@ body {
   width: 100%;
   z-index: 9999;
 
-
 }
 label {
   font-weight: bold;
+}
+/* removes yellow guy */
+.gm-svpc {
+  display: none;
 }
