@@ -147,7 +147,7 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #2',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue #2 = ' +
+    '<h1>Clue 2: ' +
     answer[1] +
     '</h1>' +
     '</div>'
@@ -161,7 +161,7 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #3',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue #3 = ' +
+    '<h1>Clue 3: ' +
     answer[2] +
     '</h1>' +
     '</div>'
@@ -325,7 +325,7 @@ function countDownTimer (duration, display) {
       // Losing modal 
       var centerControlDiv = document.createElement('div');
       var centerControl = new LosingModal(centerControlDiv, gameMap);
-      gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+      gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
 
       clearInterval(interval)
       document.getElementsByClassName('timer')[0].style.display = 'none'
@@ -356,14 +356,14 @@ function disarmBomb () {
     //Winning modal
     var centerControlDiv = document.createElement('div');
     var centerControl = new WinningModal(centerControlDiv, gameMap);
-    gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+    gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
     // Losing modal 
     var centerControlDiv = document.createElement('div');
     var centerControl = new LosingModal(centerControlDiv, gameMap);
-    gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+    gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
   }
