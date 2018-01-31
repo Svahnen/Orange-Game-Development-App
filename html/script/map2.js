@@ -308,6 +308,7 @@ function showPosition (position, gameMap) {
   return positionSelf
 }
 
+
 let timer
 function countDownTimer (duration, display) {
   timer = duration
@@ -321,7 +322,11 @@ function countDownTimer (duration, display) {
     display.textContent = minutes + ':' + seconds
 
     if (--timer < 0) {
-      alert('You have lost the game')
+      // Losing modal 
+      var centerControlDiv = document.createElement('div');
+      var centerControl = new LosingModal(centerControlDiv, gameMap);
+      gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+
       clearInterval(interval)
       document.getElementsByClassName('timer')[0].style.display = 'none'
     }
@@ -332,6 +337,7 @@ window.onload = function () {
   let minutes = (60 * 30)
   display = document.getElementsByClassName('timer')[0]
   countDownTimer(minutes, display)
+
 }
 
 let showBombTimer = function () {
@@ -347,14 +353,14 @@ function disarmBomb () {
   let clue5 = document.forms['clueForm']['clue5'].value
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
-
+    //Winning modal
     var centerControlDiv = document.createElement('div');
     var centerControl = new WinningModal(centerControlDiv, gameMap);
     gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
-    
+    // Losing modal 
     var centerControlDiv = document.createElement('div');
     var centerControl = new LosingModal(centerControlDiv, gameMap);
     gameMap.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
