@@ -323,9 +323,9 @@ function countDownTimer (duration, display) {
 
     if (--timer < 0) {
       // Losing modal 
-      var centerControlDiv = document.createElement('div');
-      var centerControl = new LosingModal(centerControlDiv, gameMap);
-      gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
+      let modalDiv = document.createElement('div')
+      let modal = new LosingModal(modalDiv, gameMap)
+      gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
 
       clearInterval(interval)
       document.getElementsByClassName('timer')[0].style.display = 'none'
@@ -354,16 +354,16 @@ function disarmBomb () {
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
     //Winning modal
-    var centerControlDiv = document.createElement('div');
-    var centerControl = new WinningModal(centerControlDiv, gameMap);
-    gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
+    let modalDiv = document.createElement('div')
+    let modal = new WinningModal(modalDiv, gameMap)
+    gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
     // Losing modal 
-    var centerControlDiv = document.createElement('div');
-    var centerControl = new LosingModal(centerControlDiv, gameMap);
-    gameMap.controls[google.maps.ControlPosition.CENTER].push(centerControlDiv);
+    let modalDiv = document.createElement('div')
+    let modal = new LosingModal(modalDiv, gameMap)
+    gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
   }
