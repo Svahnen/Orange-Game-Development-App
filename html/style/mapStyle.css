@@ -60,3 +60,6 @@ body {
 label {
   font-weight: bold;
 }
+.gm-svpc {
+  display: none;
+}
