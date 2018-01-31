@@ -147,7 +147,7 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #2',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue #2 = ' +
+    '<h1>Clue 2: ' +
     answer[1] +
     '</h1>' +
     '</div>'
@@ -161,7 +161,7 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #3',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue #3 = ' +
+    '<h1>Clue 3: ' +
     answer[2] +
     '</h1>' +
     '</div>'
@@ -308,6 +308,7 @@ function showPosition (position, gameMap) {
   return positionSelf
 }
 
+
 let timer
 function countDownTimer (duration, display) {
   timer = duration
@@ -321,7 +322,11 @@ function countDownTimer (duration, display) {
     display.textContent = minutes + ':' + seconds
 
     if (--timer < 0) {
-      alert('You have lost the game')
+      // Losing modal 
+      let modalDiv = document.createElement('div')
+      let modal = new LosingModal(modalDiv, gameMap)
+      gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+
       clearInterval(interval)
       document.getElementsByClassName('timer')[0].style.display = 'none'
     }
@@ -332,6 +337,7 @@ window.onload = function () {
   let minutes = (60 * 30)
   display = document.getElementsByClassName('timer')[0]
   countDownTimer(minutes, display)
+
 }
 
 let showBombTimer = function () {
@@ -347,10 +353,18 @@ function disarmBomb () {
   let clue5 = document.forms['clueForm']['clue5'].value
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
-    alert('You made it! ***WINNING!*** ' + endTime)
+    //Winning modal
+    let modalDiv = document.createElement('div')
+    let modal = new WinningModal(modalDiv, gameMap)
+    gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
-    alert('You are dead AF!')
+    // Losing modal 
+    let modalDiv = document.createElement('div')
+    let modal = new LosingModal(modalDiv, gameMap)
+    gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+
     document.getElementsByClassName('timer')[0].style.display = 'none'
   }
   return false
