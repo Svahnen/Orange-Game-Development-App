@@ -133,9 +133,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #1',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue #1 = ' +
+    '<h2>Clue 1: ' +
     answer[0] +
-    '</h1>' +
+    '</h2>' +
     '</div>'
   }))
 
@@ -147,9 +147,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #2',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue 2: ' +
+    '<h2>Clue 2: ' +
     answer[1] +
-    '</h1>' +
+    '</h2>' +
     '</div>'
   }))
 
@@ -161,9 +161,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #3',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue 3: ' +
+    '<h2>Clue 3: ' +
     answer[2] +
-    '</h1>' +
+    '</h2>' +
     '</div>'
   }))
 
@@ -175,9 +175,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #4',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>Clue #4 = ' +
+    '<h2>Clue #4 = ' +
     answer[3] +
-    '</h1>' +
+    '</h2>' +
     '</div>'
   }))
 
@@ -189,9 +189,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #5',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1> Clue #5 = ' +
+    '<h2> Clue #5 = ' +
     answer[4] +
-    '</h1>' +
+    '</h2>' +
     '</div>'
   }))
 
@@ -213,7 +213,7 @@ function loadMapMarkers (gameMap) {
    '<label for="clue3"> Clue 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' +
    '<label for="clue4"> Clue 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' +
    '<label for="clue5"> Clue 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '<br>' +
-   '<input type="submit" value="DISARM BOMB!" class="submitButton">' +
+   '<input type="submit" value="DISARM BOMB!" class="btn btn-outline-dark">' +
    '</form>'
   }))
 
@@ -308,7 +308,6 @@ function showPosition (position, gameMap) {
   return positionSelf
 }
 
-
 let timer
 function countDownTimer (duration, display) {
   timer = duration
@@ -322,7 +321,7 @@ function countDownTimer (duration, display) {
     display.textContent = minutes + ':' + seconds
 
     if (--timer < 0) {
-      // Losing modal 
+      // Losing modal
       let modalDiv = document.createElement('div')
       let modal = new LosingModal(modalDiv, gameMap)
       gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
@@ -337,7 +336,6 @@ window.onload = function () {
   let minutes = (60 * 30)
   display = document.getElementsByClassName('timer')[0]
   countDownTimer(minutes, display)
-
 }
 
 let showBombTimer = function () {
@@ -353,14 +351,14 @@ function disarmBomb () {
   let clue5 = document.forms['clueForm']['clue5'].value
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
     endTime = timer
-    //Winning modal
+    // Winning modal
     let modalDiv = document.createElement('div')
     let modal = new WinningModal(modalDiv, gameMap)
     gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
   } else {
-    // Losing modal 
+    // Losing modal
     let modalDiv = document.createElement('div')
     let modal = new LosingModal(modalDiv, gameMap)
     gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
