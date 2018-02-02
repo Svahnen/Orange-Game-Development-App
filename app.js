@@ -8,7 +8,8 @@ const mysql = require('mysql')
 // Create connection
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
+  user: 'debian-sys-maint',
+  password: 'PTg2JrAD6bLfrVEU',
   database: 'nodemysql'
 })
 
@@ -22,8 +23,32 @@ db.connect((err) => {
 
 const app = express()
 
+/*db.query('SELECT * FROM clues', (err, rows) => {
+  if (err) throw err
+
+  console.log('Data received from Db:\n')
+  console.log(rows)
+  rows.forEach((row) => {
+    console.log(`${row.title} is in ${row.clue}`)
+  })
+})*/
+
+
+ const team = {name: 'Team Horses', score: '10:22'}
+ db.query('INSERT INTO teams SET ?', team, (err, res) => {
+   if (err) throw err
+   console.log('Last insert ID:', res.insertId)
+ })
+
+ db.query(
+  'DELETE FROM teams WHERE ID = ?', [1], (err, result) => {
+    if (err) throw err
+    console.log(`Deleted ${result.affectedRows}row(s)`)
+  }
+)
+
 // Create DB
-app.get('/createdb', (req, res) => {
+/* app.get('/createdb', (req, res) => {
   let sql = 'CREATE DATABASE nodemysql'
   db.query(sql, (err, result) => {
     if (err) throw err
@@ -40,6 +65,7 @@ app.get('/createpoststable', (req, res) => {
     res.send('Posts table created')
   })
 })
+// Add new team
 
 // insert post 1
 app.get('/addpost', (req, res) => {
@@ -67,12 +93,17 @@ app.get('/getposts', (req, res) => {
   let sql = 'SELECT * FROM posts'
   let query = db.query(sql, (err, results) => {
     if (err) throw err
-    console.log('results')
-    res.send('Post fetched')
+    // console.log(results)
+    res.send(results)
+    /* let html = 'This is the rows: <br>'
+    results.forEach((row) => {
+      html += `${row.title} is in ${row.body} with id ${row.id}<br>`
+    })
+    res.send(html) */
   })
 })
 // Select singel post
-app.get('/getpost/:id', (req, res) => {
+/*app.get('/getpost/:id', (req, res) => {
   let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`
   let query = db.query(sql, (err, result) => {
     if (err) throw err
@@ -101,6 +132,6 @@ app.get('/deletepost/:id', (req, res) => {
   })
 })
 
-app.listen('3000', () => {
-  console.log('Server running on port: 3000')
-})
+app.listen('8080', () => {
+  console.log('Server running on port: 8080')
+})*/

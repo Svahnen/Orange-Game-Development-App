@@ -268,6 +268,14 @@ function getLocation (gameMap, positionMarkers) {
 
 // Calculates the distance between PositionSelf and all markers and opens up Clue windows if you are within 5 meters of the markers position
 function getDistances (positionSelf, positionMarkers) {
+  $.get('http://localhost:8080/getposts/', function (results) {
+    let content = 'This is the rows: <br>'
+    results.forEach((row) => {
+      content += `${row.title} is in ${row.body} with id ${row.id}<br>`
+    })
+    $('.result').html(content)
+    alert('Load was performed.')
+  })
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
     if (distance <= 50) {
