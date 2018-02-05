@@ -22,6 +22,25 @@ db.connect((err) => {
 
 const app = express()
 
+// Create DB
+app.get('/createdb', (req, res) => {
+  let sql = 'CREATE DATABASE nodemysql'
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log(result)
+    res.send('Database created')
+  })
+})
+// Create Table
+app.get('/createpoststable', (req, res) => {
+  let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))'
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
+    res.send('Posts table created')
+  })
+})
+
 // Add new team
 let teamName = 'Team Anna'
 let endScore = '23:33'
@@ -81,7 +100,6 @@ app.get('/getclues', (req, res) => {
   let query = db.query(sql, (err, results) => {
     if (err) throw err
     // console.log(results)
-    res.send(results)
     let content = 'These are clues selected randomly: <br>'
     results.forEach((row) => {
       content += `${row.name} is in ${row.clue} with id ${row.id}<br>`
@@ -104,22 +122,3 @@ app.get('/updateteamname/:id', (req, res) => {
 app.listen('3000', () => {
   console.log('Server running on port: 3000')
 })
-
-/* // Create DB
-app.get('/createdb', (req, res) => {
-  let sql = 'CREATE DATABASE nodemysql'
-  db.query(sql, (err, result) => {
-    if (err) throw err
-    console.log(result)
-    res.send('Database created')
-  })
-})
-// Create Table
-app.get('/createpoststable', (req, res) => {
-  let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))'
-  db.query(sql, (err, result) => {
-    if (err) throw err
-    console.log('result')
-    res.send('Posts table created')
-  })
-}) */
