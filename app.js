@@ -33,7 +33,7 @@ app.get('/createdb', (req, res) => {
 })
 // Create Table
 app.get('/createteamstable', (req, res) => {
-  let sql = 'CREATE TABLE teams(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))'
+  let sql = 'CREATE TABLE teams(id int AUTO_INCREMENT, name VARCHAR(255), score VARCHAR(255), PRIMARY KEY (id))'
   db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
