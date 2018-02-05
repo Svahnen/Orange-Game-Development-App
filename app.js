@@ -53,6 +53,18 @@ app.get('/addteam', (req, res) => {
     res.send(teamName + ' won with ' + endScore)
   })
 })
+// Add new team 2
+let teamName2 = 'Team Balloons'
+let endScore2 = '14:33'
+app.get('/addteam2', (req, res) => {
+  let team = {name: teamName2, score: endScore2}
+  let sql = 'INSERT INTO teams SET ?'
+  let query = db.query(sql, team, (err, result) => {
+    if (err) throw err
+    console.log('result')
+    res.send(teamName2 + ' won with ' + endScore2)
+  })
+})
 // Select singel team
 app.get('/getteam/:id', (req, res) => {
   let sql = `SELECT * FROM teams WHERE id = ${req.params.id}`
