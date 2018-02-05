@@ -121,16 +121,19 @@ app.get('/getclues', (req, res) => {
 })
 
 // Change team name
-app.get('/updateteamname/:id', (req, res) => {
-  let newName = 'Team Blue'
-  let sql = `UPDATE teams SET name = '${newName}' WHERE id = ${req.params.id}`
+app.get('/updateteamname/:id/:teamname', (req, res) => {
+  let sql = `UPDATE teams SET name = '${teamname}' WHERE id = ${req.params.id}`
   let query = db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
-    res.send('Team name has been changed to ' + `${newName}`)
+    res.send('Team name has been changed to ' + `${teamname}`)
   })
 })
 
 app.listen('3000', () => {
   console.log('Server running on port: 3000')
+})
+
+app.get('/log/:mess', (req, res) => {
+  res.send('Team name has been changed to ' + `${mess}`)
 })
