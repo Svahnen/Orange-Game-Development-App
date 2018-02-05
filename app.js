@@ -8,7 +8,7 @@ const mysql = require('mysql')
 // Create connection
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root'
+  user: 'game'
   // database: 'nodemysql'
 })
 
