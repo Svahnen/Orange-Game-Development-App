@@ -63,3 +63,8 @@ label {
 .gm-svpc {
   display: none;
 }
+
+.modalButton {
+  border: 2px solid black;
+  font-size: 15px;
+}
