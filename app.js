@@ -42,15 +42,15 @@ app.get('/createteamstable', (req, res) => {
 })
 
 // Add new team
-let teamName = 'Team Anna'
-let endScore = '23:33'
-app.get('/addteam', (req, res) => {
+app.get('/addteam/:teamName/:score', (req, res) => {
+  let teamName = `${req.params.teamName}`
+  let endScore = `${req.params.score}`
   let team = {name: teamName, score: endScore}
   let sql = 'INSERT INTO teams SET ?'
   let query = db.query(sql, team, (err, result) => {
     if (err) throw err
     console.log('result')
-    res.send(teamName + ' won with ' + endScore)
+    res.json(teamName + ' won with ' + endScore)
   })
 })
 // Add new team 2
@@ -80,11 +80,12 @@ app.get('/getteams', (req, res) => {
   let query = db.query(sql, (err, results) => {
     if (err) throw err
     // console.log(results)
-    let content = 'These are the teams and their scores: <br><br>'
+    let content = '{scores: ['
     results.forEach((row) => {
-      content += `${row.name} finished in ${row.score} <br>`
+      content += `{name: ${row.name}, finished: ${row.score}},`
     })
-    res.send(content)
+    content += ']}'
+    res.json(content)
   })
 })
 // Delete a team
@@ -116,7 +117,7 @@ app.get('/getclues', (req, res) => {
     results.forEach((row) => {
       content += `${row.name} is in ${row.clue} with id ${row.id}<br>`
     })
-    res.send(content)
+    res.json(content)
   })
 })
 
@@ -130,10 +131,14 @@ app.get('/updateteamname/:id/:teamname', (req, res) => {
   })
 })
 
+app.get('/test/:mess', (req, res) => {
+  res.json('hej ' + `${req.params.mess}`)
+})
+
 app.listen('3000', () => {
   console.log('Server running on port: 3000')
 })
 
-app.get('/log/:mess', (req, res) => {
-  res.send('Team name has been changed to ' + `${mess}`)
-})
+// app.get('/log/:mess', (req, res) => {
+  // res.send('Team name has been changed to ' + `${mess}`)
+// })
