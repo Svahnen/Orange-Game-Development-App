@@ -7,6 +7,7 @@ const mysql = require('mysql')
 const https = require('https')
 const http = require('http')
 const fs = require('fs')
+const cors = require('cors')
 const app = express()
 
 const options = {
@@ -14,7 +15,10 @@ const options = {
   cert: fs.readFileSync('cert/cert.pem')
 }
 
-// Create connection
+// This enables Cors
+app.use(cors())
+
+// Create DB connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'game',

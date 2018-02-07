@@ -74,14 +74,14 @@ function readTeams2 () {
 }
 
 function readTeams3 () {
-  fetch('http://127.0.0.1:3000/getteams/')
+  fetch('https://reexe.duckdns.org:3001/getteams/')
   .then((res) => res.json())
   .then((data) => {
 
   })
 }
 
-function readTeams3 () {fetch('https://127.0.0.1:3001/getteams/').then(function(response) {
+function readTeams4 () {fetch('https://reexe.duckdns.org:3001/getteams/').then(function(response) {
     console.log(response.headers.get('Content-Type'));
     console.log(response.headers.get('Date'));
 

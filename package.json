@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Svahnen/Orange-Game-Development-App#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "mysql": "^2.15.0"
   }
