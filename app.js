@@ -75,6 +75,24 @@ app.get('/getteam/:id', (req, res) => {
   })
 })
 // Get all team information
+// app.get('/getteams2', (req, res) => {
+//   let sql = 'SELECT * FROM teams'
+//   let query = db.query(sql, (err, results) => {
+//     if (err) throw err
+//     // console.log(results)
+//     let scores = [
+//     results.forEach((row) => {
+//       scores += {
+//       name: `${row.name}`,
+//       finished: `${row.finished}`
+//     },)
+//     scores += ]}
+//     res.json(scores)
+//   })
+// })
+
+
+
 app.get('/getteams', (req, res) => {
   let sql = 'SELECT * FROM teams'
   let query = db.query(sql, (err, results) => {
@@ -88,6 +106,41 @@ app.get('/getteams', (req, res) => {
     res.json(content)
   })
 })
+
+// app.get('/getteams', (req, res) => {
+//   let sql = 'SELECT * FROM teams'
+//   let query = db.query(sql, (err, results) => {
+//     if (err) throw err
+//     // console.log(results)
+//     let content = `scores:'['`
+//     results.forEach((row) => {
+//       content += `{name: ${row.name},finished: ${row.score}},`
+//     })
+//     content += ']'
+//     res.json(content)
+//   })
+// })
+
+// let scores = [
+//   {
+//   name: 'TheBestTeamEver',
+//   finished: '01'
+// },
+// {
+//   name: 'TheBestTeamEver2',
+//   finished: '01'
+// },
+// ]
+
+// res.json.scores[0].finished
+
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue"
+}
+
 // Delete a team
 app.get('/deleteteam/:id', (req, res) => {
   let sql = `DELETE FROM teams WHERE id = ${req.params.id}`
@@ -135,6 +188,7 @@ app.get('/test/:mess', (req, res) => {
   res.json('hej ' + `${req.params.mess}`)
 })
 
+// TODO: change to https hosting
 app.listen('3000', () => {
   console.log('Server running on port: 3000')
 })

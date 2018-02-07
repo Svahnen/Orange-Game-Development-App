@@ -49,11 +49,49 @@ window.location = 'http://localhost:3000/addTeam/' + name + '/' + score
 
   function testAddNewTeamFetch(name, score) {
 
-fetch('http://10.7.2.94:3000/addTeam/' + name + '/' + score)
+fetch('http://127.0.0.1:3000/addTeam/' + name + '/' + score)
 .then((res) => res.json) // res.json.scores
 .then((data) => console.log("output:" + data))
 }
 
+function readTeams () {
+  fetch('http://127.0.0.1:3000/getteams/')
+  .then((res) => res.json.scores) // res.json.scores
+  .then((data) => console.log("output:" + data))
+  console.log(data);
+}
+
+
+function readTeams2 () {
+  fetch('http://127.0.0.1:3000/getteams/')
+  .then(function(data) {
+    // Here you get the data to modify as you please
+    console.log(data);
+    })
+  .catch(function(error) {
+    // If there is any error you will catch them here
+  });
+}
+
+function readTeams3 () {
+  fetch('http://127.0.0.1:3000/getteams/')
+  .then((res) => res.json())
+  .then((data) => {
+
+  })
+}
+
+function readTeams3 () {fetch('http://127.0.0.1:3000/getteams/').then(function(response) {
+    console.log(response.headers.get('Content-Type'));
+    console.log(response.headers.get('Date'));
+
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.type);
+    console.log(response.url);
+    console.log(response);
+});
+}
 
 </script>
   </body>
