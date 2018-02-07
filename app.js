@@ -4,6 +4,15 @@
 
 const express = require('express')
 const mysql = require('mysql')
+const https = require('https')
+const http = require('http')
+const fs = require('fs')
+const app = express()
+
+const options = {
+  key: fs.readFileSync('cert/key.pem'),
+  cert: fs.readFileSync('cert/cert.pem')
+}
 
 // Create connection
 const db = mysql.createConnection({
@@ -19,8 +28,6 @@ db.connect((err) => {
   }
   console.log('MySql Connected')
 })
-
-const app = express()
 
 // Create DB
 app.get('/createdb', (req, res) => {
@@ -91,8 +98,6 @@ app.get('/getteam/:id', (req, res) => {
 //   })
 // })
 
-
-
 app.get('/getteams', (req, res) => {
   let sql = 'SELECT * FROM teams'
   let query = db.query(sql, (err, results) => {
@@ -134,12 +139,12 @@ app.get('/getteams', (req, res) => {
 
 // res.json.scores[0].finished
 
-var person = {
-    firstName:"John",
-    lastName:"Doe",
-    age:50,
-    eyeColor:"blue"
-}
+// var person = {
+//     firstName:"John",
+//     lastName:"Doe",
+//     age:50,
+//     eyeColor:"blue"
+// }
 
 // Delete a team
 app.get('/deleteteam/:id', (req, res) => {
@@ -188,11 +193,9 @@ app.get('/test/:mess', (req, res) => {
   res.json('hej ' + `${req.params.mess}`)
 })
 
-// TODO: change to https hosting
-app.listen('3000', () => {
-  console.log('Server running on port: 3000')
+http.createServer(app).listen(3000, () => {
+  console.log('HTTP Server running on port: 3000')
 })
-
-// app.get('/log/:mess', (req, res) => {
-  // res.send('Team name has been changed to ' + `${mess}`)
-// })
+https.createServer(options, app).listen(3001, () => {
+  console.log('HTTPS Server running on port: 3001')
+})
