@@ -1,6 +1,8 @@
+/* eslint no-undef: 0 */
+/* eslint no-unused-vars: 0 */
+/* eslint-env browser */
 
 function WinningModal (controlDiv, gameMap) {
-
     // Set CSS for the control border.
   let controlUI = document.createElement('div')
   controlUI.style.backgroundColor = 'rgb(252, 249, 237)'
@@ -24,7 +26,6 @@ function WinningModal (controlDiv, gameMap) {
 }
 
 function LosingModal (controlDiv, gameMap) {
-
     // Set CSS for the control border.
   let controlUI = document.createElement('div')
   controlUI.style.backgroundColor = 'rgb(252, 249, 237)'
