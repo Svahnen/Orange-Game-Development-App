@@ -65,7 +65,7 @@ app.get('/addteam/:teamName/:score', (req, res) => {
   })
 })
 
-// Select singel team
+// Select single team
 app.get('/getteam/:id', (req, res) => {
   let sql = `SELECT * FROM teams WHERE id = ${req.params.id}`
   let query = db.query(sql, (err, result) => {
@@ -74,9 +74,9 @@ app.get('/getteam/:id', (req, res) => {
     res.send(teamName + ' fetched, with id number ' + `${req.params.id}`)
   })
 })
-
-// This works!!!
-// !!!!!!!!!!!!!
+// !!!!!!!!!!!!!!!!!!!!
+// !!!! This works !!!!
+// !!!!!!!!!!!!!!!!!!!!
 app.get('/getteams', (req, res) => {
   let sql = 'SELECT * FROM teams'
   let content = []
@@ -143,3 +143,5 @@ http.createServer(app).listen(3000, () => {
 https.createServer(options, app).listen(3001, () => {
   console.log('HTTPS Server running on port: 3001')
 })
+
+// Function to recreate the whole database including data
