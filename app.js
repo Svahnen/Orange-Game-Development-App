@@ -109,12 +109,19 @@ app.get('/getteams', (req, res) => {
     // console.log(results)
     let content = '{scores: ['
     results.forEach((row) => {
-      content += `{name: ${row.name}, finished: ${row.score}},`
+      content += '{name: +  ' + row.name + ',' + finished: ${row.score}},
     })
     content += ']}'
     res.json(content)
   })
 })
+
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue"
+}
 
 // app.get('/getteams', (req, res) => {
 //   let sql = 'SELECT * FROM teams'
@@ -143,12 +150,12 @@ app.get('/getteams', (req, res) => {
 
 // res.json.scores[0].finished
 
-// var person = {
-//     firstName:"John",
-//     lastName:"Doe",
-//     age:50,
-//     eyeColor:"blue"
-// }
+var person = {
+    firstName:"John",
+    lastName:"Doe",
+    age:50,
+    eyeColor:"blue"
+}
 
 // Delete a team
 app.get('/deleteteam/:id', (req, res) => {

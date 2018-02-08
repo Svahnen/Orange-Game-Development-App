@@ -74,10 +74,10 @@ function readTeams2 () {
 }
 
 function readTeams3 () {
-  fetch('https://reexe.duckdns.org:3001/getteams/')
+  fetch('https://127.0.0.1:3001/getteams/')
   .then((res) => res.json())
   .then((data) => {
-
+  console.log(data);
   })
 }
 
