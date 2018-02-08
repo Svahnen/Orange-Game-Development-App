@@ -9,6 +9,7 @@ const http = require('http')
 const fs = require('fs')
 const cors = require('cors')
 const app = express()
+const serverIp = 'localhost'
 
 const options = {
   key: fs.readFileSync('cert/key.pem'),
@@ -145,3 +146,10 @@ https.createServer(options, app).listen(3001, () => {
 })
 
 // Function to recreate the whole database including data
+let createDummyData = function () {
+  fetch(serverIP)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+  })
+}
