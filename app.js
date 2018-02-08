@@ -4,8 +4,22 @@
 
 const express = require('express')
 const mysql = require('mysql')
+const https = require('https')
+const http = require('http')
+const fs = require('fs')
+const cors = require('cors')
+const app = express()
+const serverIp = 'localhost'
 
-// Create connection
+const options = {
+  key: fs.readFileSync('cert/key.pem'),
+  cert: fs.readFileSync('cert/cert.pem')
+}
+
+// This enables Cors
+app.use(cors())
+
+// Create DB connection
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'game',
@@ -19,8 +33,6 @@ db.connect((err) => {
   }
   console.log('MySql Connected')
 })
-
-const app = express()
 
 // Create DB
 app.get('/createdb', (req, res) => {
@@ -42,30 +54,19 @@ app.get('/createteamstable', (req, res) => {
 })
 
 // Add new team
-let teamName = 'Team Anna'
-let endScore = '23:33'
-app.get('/addteam', (req, res) => {
+app.get('/addteam/:teamName/:score', (req, res) => {
+  let teamName = `${req.params.teamName}`
+  let endScore = `${req.params.score}`
   let team = {name: teamName, score: endScore}
   let sql = 'INSERT INTO teams SET ?'
   let query = db.query(sql, team, (err, result) => {
     if (err) throw err
     console.log('result')
-    res.send(teamName + ' won with ' + endScore)
+    res.json(teamName + ' won with ' + endScore)
   })
 })
-// Add new team 2
-let teamName2 = 'Team Balloons'
-let endScore2 = '14:33'
-app.get('/addteam2', (req, res) => {
-  let team = {name: teamName2, score: endScore2}
-  let sql = 'INSERT INTO teams SET ?'
-  let query = db.query(sql, team, (err, result) => {
-    if (err) throw err
-    console.log('result')
-    res.send(teamName2 + ' won with ' + endScore2)
-  })
-})
-// Select singel team
+
+// Select single team
 app.get('/getteam/:id', (req, res) => {
   let sql = `SELECT * FROM teams WHERE id = ${req.params.id}`
   let query = db.query(sql, (err, result) => {
@@ -74,19 +75,21 @@ app.get('/getteam/:id', (req, res) => {
     res.send(teamName + ' fetched, with id number ' + `${req.params.id}`)
   })
 })
-// Get all team information
+// !!!!!!!!!!!!!!!!!!!!
+// !!!! This works !!!!
+// !!!!!!!!!!!!!!!!!!!!
 app.get('/getteams', (req, res) => {
   let sql = 'SELECT * FROM teams'
+  let content = []
   let query = db.query(sql, (err, results) => {
     if (err) throw err
-    // console.log(results)
-    let content = 'These are the teams and their scores: <br><br>'
     results.forEach((row) => {
-      content += `${row.name} finished in ${row.score} <br>`
+      content.push({time: row.score, name: row.name})
     })
-    res.send(content)
+    res.json(content)
   })
 })
+
 // Delete a team
 app.get('/deleteteam/:id', (req, res) => {
   let sql = `DELETE FROM teams WHERE id = ${req.params.id}`
@@ -106,6 +109,7 @@ app.get('/addclue', (req, res) => {
     res.send('Clue added')
   })
 })
+
 // Get Random clues
 app.get('/getclues', (req, res) => {
   let sql = 'SELECT clue FROM clues ORDER BY RAND() LIMIT 5'
@@ -116,21 +120,36 @@ app.get('/getclues', (req, res) => {
     results.forEach((row) => {
       content += `${row.name} is in ${row.clue} with id ${row.id}<br>`
     })
-    res.send(content)
+    res.json(content)
   })
 })
 
 // Change team name
-app.get('/updateteamname/:id', (req, res) => {
-  let newName = 'Team Blue'
-  let sql = `UPDATE teams SET name = '${newName}' WHERE id = ${req.params.id}`
+app.get('/updateteamname/:id/:teamname', (req, res) => {
+  let sql = `UPDATE teams SET name = '${teamname}' WHERE id = ${req.params.id}`
   let query = db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
-    res.send('Team name has been changed to ' + `${newName}`)
+    res.send('Team name has been changed to ' + `${teamname}`)
   })
 })
 
-app.listen('3000', () => {
-  console.log('Server running on port: 3000')
+app.get('/test/:mess', (req, res) => {
+  res.json('hej ' + `${req.params.mess}`)
 })
+
+http.createServer(app).listen(3000, () => {
+  console.log('HTTP Server running on port: 3000')
+})
+https.createServer(options, app).listen(3001, () => {
+  console.log('HTTPS Server running on port: 3001')
+})
+
+// Function to recreate the whole database including data
+let createDummyData = function () {
+  fetch(serverIP)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+  })
+}

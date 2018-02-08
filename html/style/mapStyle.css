@@ -44,19 +44,23 @@ body {
   margin-top: 1em;
   padding: 0.5em;
 }
-.timer {
-  background-color: #eef;
-  color: red;
+.gm-fullscreen-control {
   display: none;
-  font-size: 2em;
+}
+
+.timer {
+  background-color: none;
+  color: red;
+  display: center;
+  font-size: 3em;
+  justify-content: center;
   margin: 0 auto;
   position: fixed;
   text-align: center;
   width: 100%;
   z-index: 9999;
-
-
 }
+
 label {
   font-weight: bold;
 }
