@@ -9,7 +9,7 @@ const http = require('http')
 const fs = require('fs')
 const cors = require('cors')
 const app = express()
-const serverIp = 'localhost'
+const serverIp = 'https://localhost:3001'
 
 const options = {
   key: fs.readFileSync('cert/key.pem'),
@@ -134,8 +134,18 @@ app.get('/updateteamname/:id/:teamname', (req, res) => {
   })
 })
 
-app.get('/test/:mess', (req, res) => {
-  res.json('hej ' + `${req.params.mess}`)
+// Function to recreate the whole database including data
+app.get('/createdummydata', (req, res) => {
+  // fetch(serverIp + '/createteamstable')
+  // .then((res) => res.json())
+  // .then((data) => {
+  // })
+  fetch(serverIp + '/addteam/TeamOne/3000/')
+  fetch(serverIp + '/addteam/Team2/2000/')
+  .then((res) => res.json())
+  .then((data) => {
+  })
+  res.send('Dummy database created')
 })
 
 http.createServer(app).listen(3000, () => {
@@ -144,12 +154,3 @@ http.createServer(app).listen(3000, () => {
 https.createServer(options, app).listen(3001, () => {
   console.log('HTTPS Server running on port: 3001')
 })
-
-// Function to recreate the whole database including data
-let createDummyData = function () {
-  fetch(serverIP)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-  })
-}
