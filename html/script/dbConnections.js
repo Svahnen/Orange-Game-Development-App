@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://192.168.43.98:3001'
+const serverIp = 'https://192.168.0.9:3001'
 
 // Read teams from DB and save into the teams variable
 let teams
@@ -38,28 +38,45 @@ function readbeenToLocations () {
 }
 
 // Creates a dummy database
-let createDummyData = function () {
-  setTimeout(() => fetch(serverIp + '/createteamstable'), 0)
-  setTimeout(() => fetch(serverIp + '/createcluestable'), 200)
-  setTimeout(() => fetch(serverIp + '/createvisitedtable'), 400)
-  setTimeout(() => fetch(serverIp + '/createbombtable'), 600)
-  setTimeout(() => console.log('Tables created'), 600)
-  setTimeout(() => fetch(serverIp + '/addteam/TeamOne/3000/'), 800)
-  setTimeout(() => fetch(serverIp + '/addteam/Team2/2000/'), 1000)
-  setTimeout(() => fetch(serverIp + '/addteam/Team3/1200/'), 1200)
-  setTimeout(() => fetch(serverIp + '/addclue/0/59.313304/18.111540'), 1400)
-  setTimeout(() => fetch(serverIp + '/addclue/1/59.313050/18.109947/'), 1600)
-  setTimeout(() => fetch(serverIp + '/addclue/2/59.312622/18.110923/'), 1800)
-  setTimeout(() => fetch(serverIp + '/addclue/3/59.314193/18.110961/'), 2000)
-  setTimeout(() => fetch(serverIp + '/addclue/4/59.313848/18.111878/'), 2200)
-  setTimeout(() => fetch(serverIp + '/addbomb/59.312370/18.108613'), 2400)
-  setTimeout(() => fetch(serverIp + '/addvisited/6'), 2600)
-  setTimeout(() => fetch(serverIp + '/addvisited/2'), 2800)
-  setTimeout(() => console.log('Data incerted'), 3000)
+let createTeamsTable = function () {
+  fetch(serverIp + '/createteamstable')
+}
+
+let createCluesTable = function () {
+  fetch(serverIp + '/createcluestable')
+}
+
+let createVisitedTable = function () {
+  fetch(serverIp + '/createvisitedtable')
+}
+
+let createBombTable = function () {
+  fetch(serverIp + '/createbombtable')
+}
+
+let createTeams = function () {
+  fetch(serverIp + '/addteam/Team3/1200/')
+  setTimeout(() => fetch(serverIp + '/addteam/TeamOne/3000/'), 1000)
+  setTimeout(() => fetch(serverIp + '/addteam/Team2/2000/'), 2000)
+}
+
+let createClues = function () {
+  fetch(serverIp + '/addclue/0/59.313304/18.111540/')
+  setTimeout(() => fetch(serverIp + '/addclue/1/59.313050/18.109947/'), 1000)
+  setTimeout(() => fetch(serverIp + '/addclue/2/59.312622/18.110923/'), 2000)
+  setTimeout(() => fetch(serverIp + '/addclue/3/59.314193/18.110961/'), 3000)
+  setTimeout(() => fetch(serverIp + '/addclue/4/59.313848/18.111878/'), 4000)
+}
+
+let createVisited = function () {
+  fetch(serverIp + '/addvisited/6/')
+  setTimeout(() => fetch(serverIp + '/addvisited/2/'), 1000)
+}
+
+let createBomb = function () {
+  fetch(serverIp + '/addbomb/59.312370/18.108613/')
 }
 
 function testLog () {
-  setTimeout(function () {
-    console.log('hi after 2 sec')
-  }, 2000)
+  setTimeout(() => console.log('hi after 2 sec'), 2000)
 }
