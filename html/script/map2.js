@@ -13,17 +13,17 @@ let iconBomb = {
 }
 
 let iconQuestion = {
-  url: 'images/question.png', // url
+  url: 'images/questionRED.png', // url
   scaledSize: new google.maps.Size(20, 25) // size
 }
 
 let iconPlayer = {
-  url: 'images/player1.png', // url
+  url: 'images/player1RED.png', // url
   scaledSize: new google.maps.Size(23, 25) // size
 }
 
 let iconClue = {
-  url: 'images/clue.png', // url
+  url: 'images/clueBROWN.png', // url
   scaledSize: new google.maps.Size(22, 27) // size
 }
 
@@ -271,7 +271,7 @@ function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
     if (distance <= 50) {
-      positionMarkers[i].openClueWindow()
+      // positionMarkers[i].openClueWindow()
       addClickEvent(positionMarkers[i])
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
@@ -286,9 +286,10 @@ function getDistances (positionSelf, positionMarkers) {
         beenToLocations.push(i)
         console.log('Pushing new location ' + i)
       }
-    } else {
-      positionMarkers[i].closeClueWindow()
     }
+    // else {
+    //   positionMarkers[i].closeClueWindow()
+    // }
     // console.log(distance)
   }
 }
