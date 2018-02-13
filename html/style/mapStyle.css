@@ -24,47 +24,30 @@ body {
     width: 100%;
 }
 
-.pop_up_box_text {
-    color: #ffffff;
-    display: inline;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 16px;
-    line-height: 22px;
-
-}
-.submitButton {
-  background-color: #000;
-  color: #fff;
-  outline: none;
-  padding: 1em;
-}
 .inputFields {
   font-size: 1em;
   font-weight: bold;
   margin-top: 1em;
   padding: 0.5em;
 }
-.timer {
-  background-color: #eef;
-  color: red;
+.gm-fullscreen-control {
   display: none;
-  font-size: 2em;
-  margin: 0 auto;
+}
+
+.timer {
+  align-self: flex-start;
+  color: red;
+  font-size: 2.5em;
+  font-weight: bold;
   position: fixed;
   text-align: center;
   width: 100%;
   z-index: 9999;
-
-
 }
+
 label {
   font-weight: bold;
 }
 .gm-svpc {
   display: none;
-}
-
-.modalButton {
-  border: 2px solid black;
-  font-size: 15px;
 }
