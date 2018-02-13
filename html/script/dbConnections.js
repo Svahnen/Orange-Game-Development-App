@@ -2,7 +2,39 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://192.168.0.9:3001'
+const serverIp = 'https://localhost:3001'
+
+document.getElementsByClassName('createDB')[0].addEventListener('click', function (event) {
+  createTeamsTable()
+})
+
+document.getElementsByClassName('createDB')[1].addEventListener('click', function (event) {
+  createTeams()
+})
+
+document.getElementsByClassName('createDB')[2].addEventListener('click', function (event) {
+  createCluesTable()
+})
+
+document.getElementsByClassName('createDB')[3].addEventListener('click', function (event) {
+  createClues()
+})
+
+document.getElementsByClassName('createDB')[4].addEventListener('click', function (event) {
+  createVisitedTable()
+})
+
+document.getElementsByClassName('createDB')[5].addEventListener('click', function (event) {
+  createVisited()
+})
+
+document.getElementsByClassName('createDB')[6].addEventListener('click', function (event) {
+  createBombTable()
+})
+
+document.getElementsByClassName('createDB')[7].addEventListener('click', function (event) {
+  createBomb()
+})
 
 // Read teams from DB and save into the teams variable
 let teams
@@ -39,42 +71,133 @@ function readbeenToLocations () {
 
 // Creates a dummy database
 let createTeamsTable = function () {
-  fetch(serverIp + '/createteamstable')
+  console.log('Started')
+  fetch(serverIp + '/createteamstable', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
 }
 
 let createCluesTable = function () {
-  fetch(serverIp + '/createcluestable')
+  console.log('Started')
+  fetch(serverIp + '/createcluestable', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
 }
 
 let createVisitedTable = function () {
-  fetch(serverIp + '/createvisitedtable')
+  console.log('Started')
+  fetch(serverIp + '/createvisitedtable', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
 }
 
 let createBombTable = function () {
-  fetch(serverIp + '/createbombtable')
+  console.log('Started')
+  fetch(serverIp + '/createbombtable', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
 }
 
 let createTeams = function () {
-  fetch(serverIp + '/addteam/Team3/1200/')
-  setTimeout(() => fetch(serverIp + '/addteam/TeamOne/3000/'), 1000)
-  setTimeout(() => fetch(serverIp + '/addteam/Team2/2000/'), 2000)
+  console.log('Started')
+  fetch(serverIp + '/addteam/Team3/1200/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => fetch(serverIp + '/addteam/TeamOne/3000/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 1000)
+  setTimeout(() => fetch(serverIp + '/addteam/Team2/2000/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 2000)
+  setTimeout(() => console.log('Done'), 3000)
 }
 
 let createClues = function () {
-  fetch(serverIp + '/addclue/0/59.313304/18.111540/')
-  setTimeout(() => fetch(serverIp + '/addclue/1/59.313050/18.109947/'), 1000)
-  setTimeout(() => fetch(serverIp + '/addclue/2/59.312622/18.110923/'), 2000)
-  setTimeout(() => fetch(serverIp + '/addclue/3/59.314193/18.110961/'), 3000)
-  setTimeout(() => fetch(serverIp + '/addclue/4/59.313848/18.111878/'), 4000)
+  console.log('Started')
+  fetch(serverIp + '/addclue/0/59.313304/18.111540/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => fetch(serverIp + '/addclue/1/59.313050/18.109947/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 1000)
+  setTimeout(() => fetch(serverIp + '/addclue/2/59.312622/18.110923/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 2000)
+  setTimeout(() => fetch(serverIp + '/addclue/3/59.314193/18.110961/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 3000)
+  setTimeout(() => fetch(serverIp + '/addclue/4/59.313848/18.111878/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 4000)
+  setTimeout(() => console.log('Done'), 5000)
 }
 
 let createVisited = function () {
-  fetch(serverIp + '/addvisited/6/')
-  setTimeout(() => fetch(serverIp + '/addvisited/2/'), 1000)
+  console.log('Started')
+  fetch(serverIp + '/addvisited/6/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => fetch(serverIp + '/addvisited/2/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  }), 1000)
+  setTimeout(() => console.log('Done'), 2000)
 }
 
 let createBomb = function () {
-  fetch(serverIp + '/addbomb/59.312370/18.108613/')
+  console.log('Started')
+  fetch(serverIp + '/addbomb/59.312370/18.108613/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => console.log('Done'), 1000)
 }
 
 function testLog () {
