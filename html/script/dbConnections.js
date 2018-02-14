@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://localhost:3001'
+const serverIp = 'https://orange-dev.duckdns.org:3001'
 
 document.getElementsByClassName('createDB')[0].addEventListener('click', function (event) {
   createTeamsTable()
