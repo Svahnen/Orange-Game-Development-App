@@ -39,6 +39,7 @@ Thumbs.db
 # Dependency directories
 ######################
 /node_modules
+/node/node_modules
 
 # Yarn
 npm-debug.log*
