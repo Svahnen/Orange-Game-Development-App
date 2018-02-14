@@ -130,12 +130,13 @@ function loadMapMarkers (gameMap) {
     latitude: 59.313304,
     longitude: 18.111540,
     scaledSize: new google.maps.Size(5, 5),
-    title: 'The Blue wire',
+    title: 'Clue #1',
     icon: iconQuestion,
     answer: answer[0],
-    clue: '<div class="clue">' +
-    '<h2>How many moons does Terrus have?' +
-    '</h2>' +
+    clue: '<div class="clue1">' +
+    '<h3> The Blue Wire: </h3><br>' +
+    '<p> How many moons does planet Terrus have?' +
+    '</p>' +
     '</div>'
   }))
 
@@ -146,10 +147,11 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #2',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue 2: ' +
-    answer[1] +
-    '</h2>' +
+    answer: answer[1],
+    clue: '<div class="clue2">' +
+    '<h3> The Purple Wire: </h3><br>' +
+    '<p> What two whole, postive numbers have the same answer <br>' +
+    'when multiplied together as when added together? </p>' +
     '</div>'
   }))
 
@@ -160,9 +162,9 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #3',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue 3: ' +
-    answer[2] +
+    answer: answer[2],
+    clue: '<div class="clue3">' +
+    '<h3> The Orange Wire: </h3><br>' +
     '</h2>' +
     '</div>'
   }))
@@ -174,10 +176,10 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #4',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue #4 = ' +
-    answer[3] +
-    '</h2>' +
+    answer: answer[3],
+    clue: '<div class="clue4">' +
+    '<h3> The Green Wire: </h3><br>' +
+    '<p> What English word is as long as it is valued? </p>' +
     '</div>'
   }))
 
@@ -188,8 +190,8 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #5',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2> Clue #5 = ' +
+    clue: '<div class="clue5">' +
+    '<h2> Clue 5 = ' +
     answer[4] +
     '</h2>' +
     '</div>'
@@ -379,10 +381,10 @@ let beenToLocations = [
   6,
   2,
   5,
-  4,
-  3,
+  0,
   1,
-  0
+  4,
+  3
 ]
 
 let beenToLocationCheck = function (a) {
