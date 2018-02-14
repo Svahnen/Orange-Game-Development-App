@@ -130,11 +130,11 @@ function loadMapMarkers (gameMap) {
     latitude: 59.313304,
     longitude: 18.111540,
     scaledSize: new google.maps.Size(5, 5),
-    title: 'Clue #1',
+    title: 'The Blue wire',
     icon: iconQuestion,
+    answer: answer[0],
     clue: '<div class="clue">' +
-    '<h2>Clue 1: ' +
-    answer[0] +
+    '<h2>How many moons does Terrus have?' +
     '</h2>' +
     '</div>'
   }))
@@ -203,18 +203,16 @@ function loadMapMarkers (gameMap) {
     title: 'The Bomb',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1> BOMB! </h1>' + '<b>Time left before the bomb explodes</b>' +
-    '<p id="count-down"> </p>' +
-    '<div>' + '<p>Hurry up and disarm it!!! </p>' +
-    '</div>' +
+    '<h1>THE BOMB! </h1>' +
+    '<div>' + '<p> Hurry up and disarm it!!! </p>' + '<p>Be careful to cut the cables at the right place</p>' +
     '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
-    '<label for="clue1"> Clue 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' +
-   '<label for="clue2"> Clue 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' +
-   '<label for="clue3"> Clue 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' +
-   '<label for="clue4"> Clue 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' +
-   '<label for="clue5"> Clue 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '<br>' +
+   '<input type="range" min="1" max="5" value="50" class="all-sliders slider1" id="clue1"><br>' +
+   '<input type="range" min="1" max="5" value="50" class="all-sliders slider2" id="clue2"><br>' +
+   '<input type="range" min="1" max="5" value="50" class="all-sliders slider3" id="clue3"><br>' +
+   '<input type="range" min="1" max="5" value="50" class="all-sliders slider4" id="clue4"><br>' +
+   '<input type="range" min="1" max="5" value="50" class="all-sliders slider5" id="clue5"><br>' + '<br>' +
    '<input type="submit" value="DISARM BOMB!" class="btn btn-outline-dark">' +
-   '</form>'
+   '</form>' + '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
@@ -380,7 +378,11 @@ let switchIcon = function (theMarker, icon) {
 let beenToLocations = [
   6,
   2,
-  5
+  5,
+  4,
+  3,
+  1,
+  0
 ]
 
 let beenToLocationCheck = function (a) {

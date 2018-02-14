@@ -24,11 +24,72 @@ body {
     width: 100%;
 }
 
-.inputFields {
-  font-size: 1em;
-  font-weight: bold;
-  margin-top: 1em;
-  padding: 0.5em;
+.clue {
+  overflow-x: hidden;
+  text-align: center;
+}
+
+.clueForm {
+  margin: 1em;
+  width: 100%;
+}
+
+.all-sliders {
+  height: 3px;
+  margin: 2em;
+  outline: none;
+  width: 80%;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.all-sliders::-webkit-slider-thumb {
+  background: #000;
+  cursor: pointer;
+  height: 15px;
+  width: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.slider1 {
+  background-color: blue;
+}
+
+.slider2 {
+  background-color: purple;
+}
+
+.slider3 {
+  background-color: orange;
+}
+
+.slider4 {
+  background-color: green;
+}
+
+.slider5 {
+  background-color: red;
+}
+
+.clue1 {
+  color: blue;
+}
+
+.clue2 {
+  color: purple;
+}
+
+.clue3 {
+  color: orange;
+}
+
+.clue4 {
+  color: green;
+}
+
+.clue5 {
+  color: red;
 }
 .gm-fullscreen-control {
   display: none;
