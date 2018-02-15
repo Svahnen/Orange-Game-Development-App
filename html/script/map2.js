@@ -133,10 +133,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #1',
     icon: iconQuestion,
     answer: answer[0],
-    clue: '<div class="clue1">' +
+    clue: '<div class="clue clue1">' +
     '<h3> The Blue Wire: </h3><br>' +
-    '<p> How many moons does planet Terrus have?' +
-    '</p>' +
+    '<p><b> How many moons does planet Terrus have?</b></p>' +
     '</div>'
   }))
 
@@ -148,10 +147,10 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #2',
     icon: iconQuestion,
     answer: answer[1],
-    clue: '<div class="clue2">' +
+    clue: '<div class="clue clue2">' +
     '<h3> The Purple Wire: </h3><br>' +
-    '<p> What two whole, postive numbers have the same answer <br>' +
-    'when multiplied together as when added together? </p>' +
+    '<p><b>What even, postive number <br> has the same answer when  <br>' +
+    'multiplied together as when added together?</b></p>' +
     '</div>'
   }))
 
@@ -163,9 +162,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #3',
     icon: iconQuestion,
     answer: answer[2],
-    clue: '<div class="clue3">' +
+    clue: '<div class="clue clue3">' +
     '<h3> The Orange Wire: </h3><br>' +
-    '</h2>' +
+    '<p><b> Which number are you left with <br> when you do a full round down on PI?</b></p>' +
     '</div>'
   }))
 
@@ -177,9 +176,9 @@ function loadMapMarkers (gameMap) {
     title: 'Clue #4',
     icon: iconQuestion,
     answer: answer[3],
-    clue: '<div class="clue4">' +
+    clue: '<div class="clue clue4">' +
     '<h3> The Green Wire: </h3><br>' +
-    '<p> What English word is as long as it is valued? </p>' +
+    '<p><b> What English word is as long as it is valued? </b></p>' +
     '</div>'
   }))
 
@@ -190,10 +189,12 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #5',
     icon: iconQuestion,
-    clue: '<div class="clue5">' +
-    '<h2> Clue 5 = ' +
-    answer[4] +
-    '</h2>' +
+    answer: answer[4],
+    clue: '<div class="clue clue5">' +
+    '<h3> The Red Wire: </h3><br>' +
+    '<p><b>Mr. Smith has 4 daughters.' +
+    '<br> Each of his daughters has a brother.<br>' +
+    'How many children does Mr. Smith have?</b></p> ' +
     '</div>'
   }))
 
@@ -206,13 +207,13 @@ function loadMapMarkers (gameMap) {
     icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1>THE BOMB! </h1>' +
-    '<div>' + '<p> Hurry up and disarm it!!! </p>' + '<p>Be careful to cut the cables at the right place</p>' +
+    '<div>' + '<h6> Hurry up and disarm it!!!</h6>' + '<h6>Make sure to cut the cables <br>at the right place!</h6>' +
     '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
-   '<input type="range" min="1" max="5" value="50" class="all-sliders slider1" id="clue1"><br>' +
-   '<input type="range" min="1" max="5" value="50" class="all-sliders slider2" id="clue2"><br>' +
-   '<input type="range" min="1" max="5" value="50" class="all-sliders slider3" id="clue3"><br>' +
-   '<input type="range" min="1" max="5" value="50" class="all-sliders slider4" id="clue4"><br>' +
-   '<input type="range" min="1" max="5" value="50" class="all-sliders slider5" id="clue5"><br>' + '<br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider1" id="clue1"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider2" id="clue2"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider3" id="clue3"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider4" id="clue4"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider5" id="clue5"><br>' + '<br>' +
    '<input type="submit" value="DISARM BOMB!" class="btn btn-outline-dark">' +
    '</form>' + '</div>'
   }))

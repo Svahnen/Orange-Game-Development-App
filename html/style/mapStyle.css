@@ -24,13 +24,30 @@ body {
     width: 100%;
 }
 .clue {
+
   overflow-x: hidden;
   text-align: center;
+}
+.clue h6 {
+  margin-left: 1em;
 }
 
 .clueForm {
   margin: 1em;
   width: 100%;
+}
+.all-sliders::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 30px;
+    width: 30px;
+    background: goldenrod;
+    background: url('../images/scissor.png') no-repeat;
+    margin-top: -15px;
+    border-radius: 0 !important;
+}
+.all-sliders+.thumb {
+    background-color: #FF8A80 !important;
 }
 
 .all-sliders {
@@ -38,15 +55,6 @@ body {
   margin: 2em;
   outline: none;
   width: 80%;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.all-sliders::-webkit-slider-thumb {
-  background: #000;
-  cursor: pointer;
-  height: 15px;
-  width: 10px;
   -webkit-appearance: none;
   appearance: none;
 }

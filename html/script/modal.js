@@ -23,7 +23,8 @@ function WinningModal (controlDiv, gameMap) {
   controlText.style.paddingBottom = '10px'
   controlText.innerHTML =
   '<h1> Winner </h1>' +
-  '<p> Your time: ' + (1800 - endTime) + '</p>' +
+  '<h6> You won with the record time of: <br>' +
+  '</h6>' + '<h3><b>' + (1800 - endTime) + '</b></h3>' +
   '<div class="modal-buttons">' +
   '<a href="http://orange-dev.duckdns.org/" role="button" class="btn btn-outline-success mb-md-1">New Game</a> <br>' +
   '<a href="http://orange-dev.duckdns.org:3002/" role="button" class="btn btn-outline-success mb-md-1">Leaderboard</a>' +
@@ -56,7 +57,7 @@ function LosingModal (controlDiv, gameMap) {
   controlText.style.paddingBottom = '20px'
   controlText.innerHTML =
   '<h1> Loser! </h1>' +
-  '<p> You did not disarm the bomb </p>' +
+  '<h6> You did not disarm the bomb </h6><br>' +
   '<div class="modal-buttons">' +
   '<a href="http://orange-dev.duckdns.org/" role="button" class="btn btn-outline-danger">New Game</a> <br>' +
   '<a href="http://orange-dev.duckdns.org:3002/" role="button" class="btn btn-outline-danger">Leaderboard</a>' +
