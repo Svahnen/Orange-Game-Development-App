@@ -19,7 +19,15 @@ function WinningModal (controlDiv, gameMap) {
   controlText.style.lineHeight = '38px'
   controlText.style.paddingLeft = '50px'
   controlText.style.paddingRight = '50px'
-  controlText.innerHTML = '<h1> Winner </h1> <br> Your time: ' + (1800 - endTime) + '<br> <a href="index.html" role="button" class="btn btn-outline-success mb-md-1">New Game</a> <br> <a href="#" role="button" class="btn btn-outline-success mb-md-1">Leaderboard</a>'
+  controlText.style.paddingTop = '10px'
+  controlText.style.paddingBottom = '10px'
+  controlText.innerHTML =
+  '<h1> Winner </h1>' +
+  '<p> Your time: ' + (1800 - endTime) + '</p>' +
+  '<div class="modal-buttons">' +
+  '<a href="http://orange-dev.duckdns.org/" role="button" class="btn btn-outline-success mb-md-1">New Game</a> <br>' +
+  '<a href="http://orange-dev.duckdns.org:3002/" role="button" class="btn btn-outline-success mb-md-1">Leaderboard</a>' +
+  '</div>'
   controlUI.appendChild(controlText)
 }
 
@@ -44,7 +52,15 @@ function LosingModal (controlDiv, gameMap) {
   controlText.style.lineHeight = '38px'
   controlText.style.paddingLeft = '50px'
   controlText.style.paddingRight = '50px'
-  controlText.innerHTML = '<h1> Loser! </h1> <br> You did not disarm the bomb <br> <a href="index.html" role="button" class="btn btn-outline-danger mb-md-1">New Game</a> <br> <a href="#" role="button" class="btn btn-outline-danger mb-md-1">Leaderboard</a>'
+  controlText.style.paddingTop = '10px'
+  controlText.style.paddingBottom = '20px'
+  controlText.innerHTML =
+  '<h1> Loser! </h1>' +
+  '<p> You did not disarm the bomb </p>' +
+  '<div class="modal-buttons">' +
+  '<a href="http://orange-dev.duckdns.org/" role="button" class="btn btn-outline-danger">New Game</a> <br>' +
+  '<a href="http://orange-dev.duckdns.org:3002/" role="button" class="btn btn-outline-danger">Leaderboard</a>' +
+  '</div>'
   controlUI.appendChild(controlText)
 }
 

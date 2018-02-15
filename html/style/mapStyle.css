@@ -23,7 +23,6 @@ body {
     margin-right: auto;
     width: 100%;
 }
-
 .clue {
   overflow-x: hidden;
   text-align: center;
@@ -111,4 +110,9 @@ label {
 }
 .gm-svpc {
   display: none;
+}
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
