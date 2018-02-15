@@ -43,7 +43,7 @@ body {
     width: 30px;
     background: goldenrod;
     background: url('../images/scissor.png') no-repeat;
-    margin-top: -15px;
+    margin-top: 25px;
     border-radius: 0 !important;
 }
 .all-sliders+.thumb {
