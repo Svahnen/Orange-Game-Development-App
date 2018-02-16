@@ -132,10 +132,10 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #1',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue 1: ' +
-    answer[0] +
-    '</h2>' +
+    answer: answer[0],
+    clue: '<div class="clue clue1">' +
+    '<h3> The Blue Wire: </h3><br>' +
+    '<p><b> How many moons does planet Terrus have?</b></p>' +
     '</div>'
   }))
 
@@ -146,10 +146,11 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #2',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue 2: ' +
-    answer[1] +
-    '</h2>' +
+    answer: answer[1],
+    clue: '<div class="clue clue2">' +
+    '<h3> The Purple Wire: </h3><br>' +
+    '<p><b>What even, postive number <br> has the same answer when  <br>' +
+    'multiplied together as when added together?</b></p>' +
     '</div>'
   }))
 
@@ -160,10 +161,10 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #3',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue 3: ' +
-    answer[2] +
-    '</h2>' +
+    answer: answer[2],
+    clue: '<div class="clue clue3">' +
+    '<h3> The Orange Wire: </h3><br>' +
+    '<p><b> Which number are you left with <br> when you do a full round down on PI?</b></p>' +
     '</div>'
   }))
 
@@ -174,10 +175,10 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #4',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2>Clue #4 = ' +
-    answer[3] +
-    '</h2>' +
+    answer: answer[3],
+    clue: '<div class="clue clue4">' +
+    '<h3> The Green Wire: </h3><br>' +
+    '<p><b> What English word is as long as it is valued? </b></p>' +
     '</div>'
   }))
 
@@ -188,10 +189,12 @@ function loadMapMarkers (gameMap) {
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #5',
     icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h2> Clue #5 = ' +
-    answer[4] +
-    '</h2>' +
+    answer: answer[4],
+    clue: '<div class="clue clue5">' +
+    '<h3> The Red Wire: </h3><br>' +
+    '<p><b>Mr. Smith has 4 daughters.' +
+    '<br> Each of his daughters has a brother.<br>' +
+    'How many children does Mr. Smith have?</b></p> ' +
     '</div>'
   }))
 
@@ -203,18 +206,16 @@ function loadMapMarkers (gameMap) {
     title: 'The Bomb',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1> BOMB! </h1>' + '<b>Time left before the bomb explodes</b>' +
-    '<p id="count-down"> </p>' +
-    '<div>' + '<p>Hurry up and disarm it!!! </p>' +
-    '</div>' +
+    '<h1>THE BOMB! </h1>' +
+    '<div>' + '<h6> Hurry up and disarm it!!!</h6>' + '<h6>Make sure to cut the cables <br>at the right place!</h6>' +
     '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
-    '<label for="clue1"> Clue 1 </label>' + '<input type="text" id="clue1" name="clue1" class="inputFields"><br>' +
-   '<label for="clue2"> Clue 2 </label>' + '<input type="text" id="clue2" name="clue2" class="inputFields"><br>' +
-   '<label for="clue3"> Clue 3 </label>' + '<input type="text" name="clue3" id="clue3" class="inputFields"><br>' +
-   '<label for="clue4"> Clue 4 </label>' + '<input type="text" id="clue4" name="clue4" class="inputFields"><br>' +
-   '<label for="clue5"> Clue 5 </label>' + '<input type="text" name="clue5" id="clue5" class="inputFields"><br>' + '<br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider1" id="clue1"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider2" id="clue2"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider3" id="clue3"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider4" id="clue4"><br>' +
+   '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider5" id="clue5"><br>' + '<br>' +
    '<input type="submit" value="DISARM BOMB!" class="btn btn-outline-dark">' +
-   '</form>'
+   '</form>' + '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
@@ -380,7 +381,11 @@ let switchIcon = function (theMarker, icon) {
 let beenToLocations = [
   6,
   2,
-  5
+  5,
+  0,
+  1,
+  4,
+  3
 ]
 
 let beenToLocationCheck = function (a) {

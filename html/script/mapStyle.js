@@ -186,7 +186,7 @@ let mapStyle = [
         "color": "#fdfcf8"
       },
       {
-        "weight": 4.5
+        "weight": 3.5
       }
     ]
   },
