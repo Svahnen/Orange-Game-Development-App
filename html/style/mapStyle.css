@@ -38,16 +38,10 @@ body {
 }
 .all-sliders::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: none;
     height: 30px;
     width: 30px;
-    background: goldenrod;
     background: url('../images/scissor2.png') no-repeat;
     margin-top: 20px;
-    border-radius: 0 !important;
-}
-.all-sliders+.thumb {
-    background-color: #FF8A80 !important;
 }
 
 .all-sliders {
