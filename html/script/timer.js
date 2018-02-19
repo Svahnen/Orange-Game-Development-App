@@ -13,8 +13,10 @@ function countDownTimer (duration, display) {
     seconds = seconds < 10 ? '0' + seconds : seconds
 
     display.textContent = minutes + ':' + seconds
-    // let display2 = document.getElementsByClassName('infoTimer')[0]
-    // display2.textContent = minutes + ':' + seconds
+    let display2 = document.getElementsByClassName('infoTimer')[0]
+    if (display2) {
+      display2.textContent = minutes + ':' + seconds
+    }
 
     if (--timer < 0) {
       // Losing modal
@@ -27,14 +29,14 @@ function countDownTimer (duration, display) {
     }
   }, 1000)
 }
-
+// Starts the timer without displaying it when browser loads
 window.onload = function () {
   let minutes = (60 * 30)
   display = document.getElementsByClassName('timer')[0]
   document.getElementsByClassName('timer')[0].style.display = 'none'
   countDownTimer(minutes, display)
 }
-
+// Function which shows the countDownTimer when beenToLocationCheck = 'The Bomb'
 let showBombTimer = function () {
   document.getElementsByClassName('timer')[0].style.display = 'block'
 }

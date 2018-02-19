@@ -16,6 +16,8 @@ function WinningModal (controlDiv, gameMap) {
   let time = (1800 - endTime)
   let minutes = Math.floor(time / 60)
   let seconds = time - minutes * 60
+  minutes = minutes < 10 ? '0' + minutes : minutes
+  seconds = seconds < 10 ? '0' + seconds : seconds
   let displayTime = minutes + ':' + seconds
     // Set CSS for the control interior.
   let controlText = document.createElement('div')

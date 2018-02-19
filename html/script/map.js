@@ -17,10 +17,6 @@ include('script/functions.js')
 include('script/icons.js')
 include('script/timer.js')
 
-/* eslint no-undef: 0 */
-/* eslint no-unused-vars: 0 */
-/* eslint-env browser */
-
 // When the page loads, the line below calls the function below called 'loadgameMap' to load up the map.
 
 google.maps.event.addDomListener(window, 'load', loadGameMap)

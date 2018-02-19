@@ -138,8 +138,7 @@ let switchIcon = function (theMarker, icon) {
   theMarker.configuration.marker.setMap(gameMap)
 }
 
-let beenToLocations = [
-]
+let beenToLocations = []
 
 let beenToLocationCheck = function (a) {
   for (let i = 0; i < beenToLocations.length; i++) {
