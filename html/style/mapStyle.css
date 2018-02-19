@@ -101,7 +101,7 @@ body {
   position: fixed;
   text-align: center;
   width: 100%;
-  z-index: 9999;
+  z-index: 1;
 }
 
 label {
@@ -114,4 +114,9 @@ label {
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+.infoTimer {
+  color: red;
+  font-size: 3em;
+  font-weight: bold;
 }
