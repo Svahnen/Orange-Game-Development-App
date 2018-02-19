@@ -139,13 +139,6 @@ let switchIcon = function (theMarker, icon) {
 }
 
 let beenToLocations = [
-  6,
-  2,
-  5,
-  0,
-  1,
-  4,
-  3
 ]
 
 let beenToLocationCheck = function (a) {

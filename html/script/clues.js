@@ -88,7 +88,7 @@ function loadMapMarkers (gameMap) {
     icon: iconQuestion,
     clue: '<div class="clue">' +
     '<h1>THE BOMB! </h1>' +
-    '<span id="infoTimer"></span>' +
+    '<span class="infoTimer"></span>' +
     '<div>' + '<h6> Hurry up and disarm it!!!</h6>' + '<h6>Make sure to cut the cables <br>at the right place!</h6>' +
     '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
    '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider1" id="clue1"><br>' +

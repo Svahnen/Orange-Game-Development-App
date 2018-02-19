@@ -13,7 +13,7 @@ function countDownTimer (duration, display) {
     seconds = seconds < 10 ? '0' + seconds : seconds
 
     display.textContent = minutes + ':' + seconds
-    // let display2 = document.getElementById('infoTimer')
+    // let display2 = document.getElementsByClassName('infoTimer')[0]
     // display2.textContent = minutes + ':' + seconds
 
     if (--timer < 0) {
@@ -31,6 +31,7 @@ function countDownTimer (duration, display) {
 window.onload = function () {
   let minutes = (60 * 30)
   display = document.getElementsByClassName('timer')[0]
+  document.getElementsByClassName('timer')[0].style.display = 'none'
   countDownTimer(minutes, display)
 }
 
