@@ -60,15 +60,42 @@ function readBomb () {
 
 // Read beenToLocations from DB and save into the beenToLocations variable
 // let beenToLocations
-function readbeenToLocations () {
+let readbeenToLocations = function () {
   fetch(serverIp + '/getbeenToLocations')
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     beenToLocations = data
   })
 }
 
+let addBeenToLocations = function (locationNr) {
+
+
+  fetch(serverIp + '/addbeenToLocations/' + locationNr + '/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+
+
+}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // Creates a dummy database
 let createTeamsTable = function () {
   console.log('Started')
