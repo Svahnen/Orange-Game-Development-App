@@ -53,6 +53,7 @@ body {
 .slider1 {
   background-color: blue;
 }
+<<<<<<< HEAD
 
 .slider2 {
   background-color: purple;
@@ -102,6 +103,23 @@ body {
   text-align: center;
   width: 100%;
   z-index: 1;
+=======
+.gm-fullscreen-control {
+  display: none;
+}
+
+.timer {
+  background-color: none;
+  color: red;
+  display: center;
+  font-size: 3em;
+  justify-content: center;
+  margin: 0 auto;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 9999;
+>>>>>>> cleanup
 }
 
 label {
