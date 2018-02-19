@@ -189,11 +189,9 @@ let mapStyle = [
         'color': '#fdfcf8'
       },
       {
-<<<<<<< HEAD
+
         "weight": 3.5
-=======
-        'weight': 4.5
->>>>>>> cleanup
+
       }
     ]
   },
