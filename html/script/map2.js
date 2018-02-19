@@ -2,6 +2,18 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
+// this function includes all necessary js files for the application
+function include (file) {
+  let script = document.createElement('script')
+  script.src = file
+  script.type = 'text/javascript'
+  script.defer = true
+
+  document.getElementsByTagName('head').item(0).appendChild(script)
+}
+/* include any js files here */
+// include('script/dbConnections.js')
+
 // When the page loads, the line below calls the function below called 'loadgameMap' to load up the map.
 
 google.maps.event.addDomListener(window, 'load', loadGameMap)
@@ -30,6 +42,8 @@ let iconClue = {
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 let gameMap
 function loadGameMap () {
+  // TODO:
+  // readbeenToLocations()
   // Sets current location as center of the map
   navigator.geolocation.getCurrentPosition(function (position) {
     gameMapCenter = new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
@@ -379,13 +393,7 @@ let switchIcon = function (theMarker, icon) {
 }
 
 let beenToLocations = [
-  6,
-  2,
-  5,
-  0,
-  1,
-  4,
-  3
+  6
 ]
 
 let beenToLocationCheck = function (a) {
