@@ -87,9 +87,10 @@ function loadMapMarkers (gameMap) {
     title: 'The Bomb',
     icon: iconQuestion,
     clue: '<div class="clue">' +
-    '<h1>THE BOMB! </h1>' +
+    '<h3>THE BOMB! </h3>' +
+    '<div>' + '<h6> Hurry up and disarm it!!!</h6>' +
+    '<h6>Make sure to cut the cables <br> at the right place!</h6>' +
     '<span class="infoTimer"></span>' +
-    '<div>' + '<h6> Hurry up and disarm it!!!</h6>' + '<h6>Make sure to cut the cables <br>at the right place!</h6>' +
     '</div>' + '<form id="clueForm" name="clueForm" class="clueForm" onsubmit="return disarmBomb()" method="get">' +
    '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider1" id="clue1"><br>' +
    '<input type="range" min="1" max="5" value="0" step="1" class="all-sliders slider2" id="clue2"><br>' +
@@ -136,6 +137,7 @@ function disarmBomb () {
     gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
+    document.getElementsByClassName('infoTimer')[0].style.display = 'none'
   } else {
     // Losing modal
     let modalDiv = document.createElement('div')
@@ -143,6 +145,7 @@ function disarmBomb () {
     gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
 
     document.getElementsByClassName('timer')[0].style.display = 'none'
+    document.getElementsByClassName('infoTimer')[0].style.display = 'none'
   }
   return false
 }

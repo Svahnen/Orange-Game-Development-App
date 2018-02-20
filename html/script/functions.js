@@ -151,5 +151,8 @@ let beenToLocationCheck = function (a) {
 let addClickEvent = function (theMarker) {
   theMarker.configuration.marker.addListener('click', () => {
     theMarker.configuration.infowindow.open(theMarker.configuration.gameMap, theMarker.configuration.marker)
+    if (theMarker.configuration.title === 'The Bomb') {
+      document.getElementsByClassName('timer')[0].style.display = 'none'
+    }
   })
 }

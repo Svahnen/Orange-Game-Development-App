@@ -26,6 +26,7 @@ function countDownTimer (duration, display) {
 
       clearInterval(interval)
       document.getElementsByClassName('timer')[0].style.display = 'none'
+      document.getElementsByClassName('infoTimer')[0].style.display = 'none'
     }
   }, 1000)
 }
