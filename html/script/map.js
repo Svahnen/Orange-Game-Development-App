@@ -18,7 +18,7 @@ include('script/icons.js')
 include('script/timer.js')
 
 // When the page loads, the line below calls the function below called 'loadgameMap' to load up the map.
-
+google.maps.event.addDomListener(window, 'load', readbeenToLocations)
 google.maps.event.addDomListener(window, 'load', loadGameMap)
 
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS

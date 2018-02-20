@@ -4,38 +4,6 @@
 
 const serverIp = 'https://orange-dev.duckdns.org:3001'
 
-document.getElementsByClassName('createDB')[0].addEventListener('click', function (event) {
-  createTeamsTable()
-})
-
-document.getElementsByClassName('createDB')[1].addEventListener('click', function (event) {
-  createTeams()
-})
-
-document.getElementsByClassName('createDB')[2].addEventListener('click', function (event) {
-  createCluesTable()
-})
-
-document.getElementsByClassName('createDB')[3].addEventListener('click', function (event) {
-  createClues()
-})
-
-document.getElementsByClassName('createDB')[4].addEventListener('click', function (event) {
-  createVisitedTable()
-})
-
-document.getElementsByClassName('createDB')[5].addEventListener('click', function (event) {
-  createVisited()
-})
-
-document.getElementsByClassName('createDB')[6].addEventListener('click', function (event) {
-  createBombTable()
-})
-
-document.getElementsByClassName('createDB')[7].addEventListener('click', function (event) {
-  createBomb()
-})
-
 // Read teams from DB and save into the teams variable
 let teams
 function readTeams () {
@@ -59,17 +27,24 @@ function readBomb () {
 }
 
 // Read beenToLocations from DB and save into the beenToLocations variable
-let beenToLocations
-function readbeenToLocations () {
-  fetch(serverIp + '/getbeentolocations')
+let readbeenToLocations = function () {
+  fetch(serverIp + '/getbeenToLocations')
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     beenToLocations = data
   })
 }
 
-// Creates a dummy database
+let addBeenToLocations = function (locationNr) {
+  fetch(serverIp + '/addbeenToLocations/' + locationNr + '/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+}
+
+// Creates a dummy database //
 let createTeamsTable = function () {
   console.log('Started')
   fetch(serverIp + '/createteamstable', {
@@ -92,9 +67,9 @@ let createCluesTable = function () {
   .then(console.log('Done'))
 }
 
-let createVisitedTable = function () {
+let createBeenToLocationsTable = function () {
   console.log('Started')
-  fetch(serverIp + '/createvisitedtable', {
+  fetch(serverIp + '/createBeenToLocationstable', {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'
@@ -172,15 +147,15 @@ let createClues = function () {
   setTimeout(() => console.log('Done'), 5000)
 }
 
-let createVisited = function () {
+let createBeenToLocations = function () {
   console.log('Started')
-  fetch(serverIp + '/addvisited/6/', {
+  fetch(serverIp + '/addbeenToLocations/6/', {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'
     }
   })
-  setTimeout(() => fetch(serverIp + '/addvisited/2/', {
+  setTimeout(() => fetch(serverIp + '/addbeenToLocations/2/', {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'

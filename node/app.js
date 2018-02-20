@@ -173,8 +173,8 @@ app.get('/getclues', (req, res) => {
 // >>> beenToLocations Start >>>
 
 // Create beenToLocations Table
-app.get('/createvisitedtable/', (req, res) => {
-  let sql = 'CREATE TABLE visited(id int AUTO_INCREMENT, location VARCHAR(255), PRIMARY KEY (id))'
+app.get('/createbeenToLocationstable/', (req, res) => {
+  let sql = 'CREATE TABLE beenToLocations(id int AUTO_INCREMENT, location VARCHAR(255), PRIMARY KEY (id))'
   db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
@@ -183,18 +183,18 @@ app.get('/createvisitedtable/', (req, res) => {
 })
 
 // Add new beenToLocations
-app.get('/addvisited/:location', (req, res) => {
-  let visitedLocation = `${req.params.location}`
-  let location = {location: visitedLocation}
-  let sql = 'INSERT INTO visited SET ?'
+app.get('/addbeenToLocations/:location', (req, res) => {
+  let beenToLocationsLocation = `${req.params.location}`
+  let location = {location: beenToLocationsLocation}
+  let sql = 'INSERT INTO beenToLocations SET ?'
   let query = db.query(sql, location, (err, result) => {
     if (err) throw err
     console.log('result')
   })
 })
 
-app.get('/getbeentolocations', (req, res) => {
-  let sql = 'SELECT * FROM beentolocations'
+app.get('/getbeenToLocations', (req, res) => {
+  let sql = 'SELECT * FROM beenToLocations'
   let content = []
   let query = db.query(sql, (err, results) => {
     if (err) throw err
