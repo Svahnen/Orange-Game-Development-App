@@ -100,7 +100,7 @@ function getDistances (positionSelf, positionMarkers) {
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
         switchIcon(positionMarkers[i], iconBomb)
-        showBombTimer()
+        // showBombTimer()
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
