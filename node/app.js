@@ -205,6 +205,14 @@ app.get('/getbeenToLocations', (req, res) => {
   })
 })
 
+app.get('/deletelocations/', (req, res) => {
+  let sql = `TRUNCATE TABLE beenToLocations`
+  let query = db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
+  })
+})
+
 // <<< beenToLocation Stop <<<
 
 // >>> Bomb Start >>>

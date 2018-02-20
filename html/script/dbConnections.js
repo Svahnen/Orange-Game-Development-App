@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://orange-dev.duckdns.org:3001'
+const serverIp = 'https://localhost:3001'
 
 // Read teams from DB and save into the teams variable
 let teams
@@ -37,6 +37,15 @@ let readbeenToLocations = function () {
 
 let addBeenToLocations = function (locationNr) {
   fetch(serverIp + '/addbeenToLocations/' + locationNr + '/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+}
+
+let deletelocations = function () {
+  fetch(serverIp + '/deletelocations/', {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'
