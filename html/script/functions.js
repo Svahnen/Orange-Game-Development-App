@@ -36,6 +36,9 @@ class ClueMarker {
     this.configuration.infowindow = new google.maps.InfoWindow({
       content: this.configuration.clue
     })
+    this.configuration.infowindow.addListener('closeclick', () => {
+      document.getElementsByClassName('timer')[0].style.display = 'block'
+    })
     // Function for opening a Cluemarker on a marker click event
     // TODO: Figure out if this part is needed or needs to be moved to get info windows
     // to only open when already visited
