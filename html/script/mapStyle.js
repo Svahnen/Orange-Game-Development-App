@@ -190,7 +190,7 @@ let mapStyle = [
       },
       {
 
-        "weight": 3.5
+        'weight': 3.5
 
       }
     ]

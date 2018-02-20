@@ -2,39 +2,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://reexe.duckdns.org:3001'
-
-// document.getElementsByClassName('createDB')[0].addEventListener('click', function (event) {
-//   createTeamsTable()
-// })
-//
-// document.getElementsByClassName('createDB')[1].addEventListener('click', function (event) {
-//   createTeams()
-// })
-//
-// document.getElementsByClassName('createDB')[2].addEventListener('click', function (event) {
-//   createCluesTable()
-// })
-//
-// document.getElementsByClassName('createDB')[3].addEventListener('click', function (event) {
-//   createClues()
-// })
-//
-// document.getElementsByClassName('createDB')[4].addEventListener('click', function (event) {
-//   createBeenToLocationsTable()
-// })
-//
-// document.getElementsByClassName('createDB')[5].addEventListener('click', function (event) {
-//   createBeenToLocations()
-// })
-//
-// document.getElementsByClassName('createDB')[6].addEventListener('click', function (event) {
-//   createBombTable()
-// })
-//
-// document.getElementsByClassName('createDB')[7].addEventListener('click', function (event) {
-//   createBomb()
-// })
+const serverIp = 'https://orange-dev.duckdns.org:3001'
 
 // Read teams from DB and save into the teams variable
 let teams
@@ -59,7 +27,6 @@ function readBomb () {
 }
 
 // Read beenToLocations from DB and save into the beenToLocations variable
-// let beenToLocations
 let readbeenToLocations = function () {
   fetch(serverIp + '/getbeenToLocations')
   .then((res) => res.json())
@@ -69,34 +36,15 @@ let readbeenToLocations = function () {
 }
 
 let addBeenToLocations = function (locationNr) {
-
-
   fetch(serverIp + '/addbeenToLocations/' + locationNr + '/', {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'
     }
   })
-
-
 }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// Creates a dummy database
+
+// Creates a dummy database //
 let createTeamsTable = function () {
   console.log('Started')
   fetch(serverIp + '/createteamstable', {
