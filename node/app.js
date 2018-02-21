@@ -9,7 +9,6 @@ const http = require('http')
 const fs = require('fs')
 const cors = require('cors')
 const app = express()
-const serverIp = 'https://localhost:3001'
 
 const options = {
   key: fs.readFileSync('../cert/key.pem'),
@@ -250,23 +249,42 @@ app.get('/getbomb', (req, res) => {
 
 // <<< Bomb Stop <<<
 
-// Function to recreate the whole database including data
-app.get('/createdummydata', (req, res) => {
-  // fetch(serverIp + '/createteamstable')
-  // .then((res) => res.json())
-  // .then((data) => {
-  // })
-  fetch(serverIp + '/addteam/TeamOne/3000/')
-  fetch(serverIp + '/addteam/Team2/2000/')
-  .then((res) => res.json())
-  .then((data) => {
-  })
-  res.send('Dummy database created')
-})
-
 http.createServer(app).listen(3000, () => {
   console.log('HTTP Server running on port: 3000')
 })
 https.createServer(options, app).listen(3001, () => {
   console.log('HTTPS Server running on port: 3001')
 })
+
+function lala () {
+  console.log('hej')
+}
+
+app.get('/startgame/:teamname/:time', (req, res) => {
+  console.log('hi')
+  let teamname = `${req.params.teamname}`
+  let time = `${req.params.time}`
+  let game = {team: teamname, time: time}
+  let sql = 'INSERT INTO currentGame SET ?'
+  let query = db.query(sql, game, (err, result) => {
+    if (err) throw err
+    console.log('Current game created')
+  })
+})
+
+app.get('/createcurrentgame/', (req, res) => {
+  let sql = 'CREATE TABLE currentGame(id int AUTO_INCREMENT, team VARCHAR(255), time VARCHAR(255), PRIMARY KEY (id))'
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
+    res.send('Current game table created')
+  })
+})
+
+let timeout = function () {
+  minutes = parseInt(timer / 60, 10)
+  seconds = parseInt(timer % 60, 10)
+
+  minutes = minutes < 10 ? '0' + minutes : minutes
+  seconds = seconds < 10 ? '0' + seconds : seconds
+}

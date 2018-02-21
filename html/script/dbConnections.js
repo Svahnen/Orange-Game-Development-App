@@ -45,12 +45,14 @@ let addBeenToLocations = function (locationNr) {
 }
 
 let deletelocations = function () {
+  console.log('delete started')
   fetch(serverIp + '/deletelocations/', {
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'
     }
   })
+  console.log('delete finished')
 }
 
 // Creates a dummy database //
