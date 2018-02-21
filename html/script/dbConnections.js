@@ -100,6 +100,17 @@ let createBombTable = function () {
   .then(console.log('Done'))
 }
 
+let createCurrentGameTable = function () {
+  console.log('Started')
+  fetch(serverIp + '/createcurrentgametable/', {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
+}
+
 let createTeams = function () {
   console.log('Started')
   fetch(serverIp + '/addteam/Team3/1200/', {
@@ -186,6 +197,25 @@ let createBomb = function () {
   setTimeout(() => console.log('Done'), 1000)
 }
 
-function testLog () {
-  setTimeout(() => console.log('hi after 2 sec'), 2000)
+let createNewGame = function () {
+  console.log('Started')
+
+  fetch(serverIp + '/startgame/orange/' + timeNow(), {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => console.log('Done'), 1000)
+}
+
+// Get local time and add 30 min
+function timeNow () {
+  let oldDateObj = new Date()
+  let newDateObj = new Date(oldDateObj.getTime() + 30 * 60000)
+  let d = newDateObj
+  let h = (d.getHours() <10?'0':'') + d.getHours()
+  let m = (d.getMinutes() <10?'0':'') + d.getMinutes()
+  let localTime = h + ':' + m
+  return localTime
 }

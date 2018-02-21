@@ -27,13 +27,15 @@
     <div>
       <div class="createDB">Create BeenToLocationsTable</div>
       <div class="createDB">Create BeenToLocations</div>
+      <div class="createDB">Delete locations</div>
     </div>
     <div>
       <div class="createDB">Create BombTable</div>
       <div class="createDB">Create Bomb</div>
     </div>
     <div>
-      <div class="createDB">Delete locations</div>
+      <div class="createDB">Create Current Game Table</div>
+      <div class="createDB">Create Current Game</div>
     </div>
   </div>
 </div>
@@ -66,19 +68,26 @@
   })
 
   document.getElementsByClassName('createDB')[6].addEventListener('click', function (event) {
-    createBombTable()
+    deletelocations()
   })
 
   document.getElementsByClassName('createDB')[7].addEventListener('click', function (event) {
-    createBomb()
+    createBombTable()
   })
 
   document.getElementsByClassName('createDB')[8].addEventListener('click', function (event) {
-    deletelocations()
+    createBomb()
+  })
+
+  document.getElementsByClassName('createDB')[9].addEventListener('click', function (event) {
+    createCurrentGameTable()
+  })
+
+  document.getElementsByClassName('createDB')[10].addEventListener('click', function (event) {
+    createNewGame()
   })
 
   </script>
   <script src="script/dbConnections.js" charset="utf-8"></script>
-  <script src="test.js" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </html>

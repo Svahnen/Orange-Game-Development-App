@@ -249,17 +249,19 @@ app.get('/getbomb', (req, res) => {
 
 // <<< Bomb Stop <<<
 
-http.createServer(app).listen(3000, () => {
-  console.log('HTTP Server running on port: 3000')
-})
-https.createServer(options, app).listen(3001, () => {
-  console.log('HTTPS Server running on port: 3001')
+// >>> Current Game Start >>>
+
+// Create current game table
+app.get('/createcurrentgametable/', (req, res) => {
+  let sql = 'CREATE TABLE currentGame(id int AUTO_INCREMENT, team VARCHAR(255), time VARCHAR(255), PRIMARY KEY (id))'
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
+    res.send('Current game table created')
+  })
 })
 
-function lala () {
-  console.log('hej')
-}
-
+// Add new game
 app.get('/startgame/:teamname/:time', (req, res) => {
   console.log('hi')
   let teamname = `${req.params.teamname}`
@@ -272,19 +274,23 @@ app.get('/startgame/:teamname/:time', (req, res) => {
   })
 })
 
-app.get('/createcurrentgame/', (req, res) => {
-  let sql = 'CREATE TABLE currentGame(id int AUTO_INCREMENT, team VARCHAR(255), time VARCHAR(255), PRIMARY KEY (id))'
-  db.query(sql, (err, result) => {
+app.get('/gettime', (req, res) => {
+  let sql = 'SELECT time FROM currentGame'
+  let content = []
+  let query = db.query(sql, (err, results) => {
     if (err) throw err
-    console.log('result')
-    res.send('Current game table created')
+    results.forEach((row) => {
+      content.push(row.time)
+    })
+    res.json(content)
   })
 })
 
-let timeout = function () {
-  minutes = parseInt(timer / 60, 10)
-  seconds = parseInt(timer % 60, 10)
+// <<< Current Game Stop <<<
 
-  minutes = minutes < 10 ? '0' + minutes : minutes
-  seconds = seconds < 10 ? '0' + seconds : seconds
-}
+http.createServer(app).listen(3000, () => {
+  console.log('HTTP Server running on port: 3000')
+})
+https.createServer(options, app).listen(3001, () => {
+  console.log('HTTPS Server running on port: 3001')
+})
