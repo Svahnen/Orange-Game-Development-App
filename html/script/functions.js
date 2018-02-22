@@ -156,8 +156,12 @@ let switchIcon = function (theMarker, icon) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 let beenToLocations = [
 ]
+=======
+let beenToLocations = []
+>>>>>>> timer
 =======
 let beenToLocations = []
 >>>>>>> timer
