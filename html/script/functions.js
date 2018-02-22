@@ -36,6 +36,9 @@ class ClueMarker {
     this.configuration.infowindow = new google.maps.InfoWindow({
       content: this.configuration.clue
     })
+    this.configuration.infowindow.addListener('closeclick', () => {
+      document.getElementsByClassName('timer')[0].style.display = 'block'
+    })
     // Function for opening a Cluemarker on a marker click event
     // TODO: Figure out if this part is needed or needs to be moved to get info windows
     // to only open when already visited
@@ -111,7 +114,7 @@ function getDistances (positionSelf, positionMarkers) {
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
         switchIcon(positionMarkers[i], iconBomb)
-        showBombTimer()
+        // showBombTimer()
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
@@ -152,8 +155,12 @@ let switchIcon = function (theMarker, icon) {
   theMarker.configuration.marker.setMap(gameMap)
 }
 
+<<<<<<< HEAD
 let beenToLocations = [
 ]
+=======
+let beenToLocations = []
+>>>>>>> timer
 
 let beenToLocationCheck = function (a) {
   for (let i = 0; i < beenToLocations.length; i++) {
@@ -166,5 +173,8 @@ let beenToLocationCheck = function (a) {
 let addClickEvent = function (theMarker) {
   theMarker.configuration.marker.addListener('click', () => {
     theMarker.configuration.infowindow.open(theMarker.configuration.gameMap, theMarker.configuration.marker)
+    if (theMarker.configuration.title === 'The Bomb') {
+      document.getElementsByClassName('timer')[0].style.display = 'none'
+    }
   })
 }
