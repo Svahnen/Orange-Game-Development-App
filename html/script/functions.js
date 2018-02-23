@@ -76,10 +76,8 @@ function getLocation (gameMap, positionMarkers) {
         // Updates the saved lat/long position in the variable that stores the location
         positionSelf.configuration.latitude = position.coords.latitude
         positionSelf.configuration.longitude = position.coords.longitude
-        console.log('Efter')
       } else {
         getLocationRun = true
-        console.log('Först')
         showPosition(position, gameMap)
       }
       currentPosition = position
@@ -90,12 +88,28 @@ function getLocation (gameMap, positionMarkers) {
   }
 }
 
+let loopTimerCheck = function () {
+  readbeenToLocations()
+  for (i = 0; i < positionMarkers.length; i++) {
+    if (beenToLocationCheck(i)) {
+      addClickEvent(positionMarkers[i])
+      if (positionMarkers[i].configuration.title === 'The Bomb') {
+        switchIcon(positionMarkers[i], iconBomb)
+        showBombTimer()
+      } else {
+        switchIcon(positionMarkers[i], iconClue)
+      }
+    }
+  }
+}
+
+setInterval(loopTimerCheck, 5000)
+
 // Calculates the distance between PositionSelf and all markers and opens up Clue windows if you are within 5 meters of the markers position
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
     if (distance <= 50) {
-      // positionMarkers[i].openClueWindow()
       addClickEvent(positionMarkers[i])
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
@@ -107,7 +121,7 @@ function getDistances (positionSelf, positionMarkers) {
       if (beenToLocationCheck(i)) {
         console.log('Already been at ' + i)
       } else {
-        beenToLocations.push(i)
+        addBeenToLocations(i)
         console.log('Pushing new location ' + i)
       }
     }

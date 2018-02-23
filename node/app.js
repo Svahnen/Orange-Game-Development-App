@@ -9,7 +9,6 @@ const http = require('http')
 const fs = require('fs')
 const cors = require('cors')
 const app = express()
-const serverIp = 'https://localhost:3001'
 
 const options = {
   key: fs.readFileSync('../cert/key.pem'),
@@ -173,8 +172,8 @@ app.get('/getclues', (req, res) => {
 // >>> beenToLocations Start >>>
 
 // Create beenToLocations Table
-app.get('/createvisitedtable/', (req, res) => {
-  let sql = 'CREATE TABLE visited(id int AUTO_INCREMENT, location VARCHAR(255), PRIMARY KEY (id))'
+app.get('/createbeenToLocationstable/', (req, res) => {
+  let sql = 'CREATE TABLE beenToLocations(id int AUTO_INCREMENT, location VARCHAR(255), PRIMARY KEY (id))'
   db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
@@ -183,18 +182,18 @@ app.get('/createvisitedtable/', (req, res) => {
 })
 
 // Add new beenToLocations
-app.get('/addvisited/:location', (req, res) => {
-  let visitedLocation = `${req.params.location}`
-  let location = {location: visitedLocation}
-  let sql = 'INSERT INTO visited SET ?'
+app.get('/addbeenToLocations/:location', (req, res) => {
+  let beenToLocationsLocation = `${req.params.location}`
+  let location = {location: beenToLocationsLocation}
+  let sql = 'INSERT INTO beenToLocations SET ?'
   let query = db.query(sql, location, (err, result) => {
     if (err) throw err
     console.log('result')
   })
 })
 
-app.get('/getbeentolocations', (req, res) => {
-  let sql = 'SELECT * FROM beentolocations'
+app.get('/getbeenToLocations', (req, res) => {
+  let sql = 'SELECT * FROM beenToLocations'
   let content = []
   let query = db.query(sql, (err, results) => {
     if (err) throw err
@@ -202,6 +201,14 @@ app.get('/getbeentolocations', (req, res) => {
       content.push(Number(row.location))
     })
     res.json(content)
+  })
+})
+
+app.get('/deletelocations/', (req, res) => {
+  let sql = `TRUNCATE TABLE beenToLocations`
+  let query = db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
   })
 })
 
@@ -242,19 +249,44 @@ app.get('/getbomb', (req, res) => {
 
 // <<< Bomb Stop <<<
 
-// Function to recreate the whole database including data
-app.get('/createdummydata', (req, res) => {
-  // fetch(serverIp + '/createteamstable')
-  // .then((res) => res.json())
-  // .then((data) => {
-  // })
-  fetch(serverIp + '/addteam/TeamOne/3000/')
-  fetch(serverIp + '/addteam/Team2/2000/')
-  .then((res) => res.json())
-  .then((data) => {
+// >>> Current Game Start >>>
+
+// Create current game table
+app.get('/createcurrentgametable/', (req, res) => {
+  let sql = 'CREATE TABLE currentGame(id int AUTO_INCREMENT, team VARCHAR(255), time VARCHAR(255), PRIMARY KEY (id))'
+  db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
+    res.send('Current game table created')
   })
-  res.send('Dummy database created')
 })
+
+// Add new game
+app.get('/startgame/:teamname/:time', (req, res) => {
+  console.log('hi')
+  let teamname = `${req.params.teamname}`
+  let time = `${req.params.time}`
+  let game = {team: teamname, time: time}
+  let sql = 'INSERT INTO currentGame SET ?'
+  let query = db.query(sql, game, (err, result) => {
+    if (err) throw err
+    console.log('Current game created')
+  })
+})
+
+app.get('/gettime', (req, res) => {
+  let sql = 'SELECT time FROM currentGame'
+  let content = []
+  let query = db.query(sql, (err, results) => {
+    if (err) throw err
+    results.forEach((row) => {
+      content.push(row.time)
+    })
+    res.json(content)
+  })
+})
+
+// <<< Current Game Stop <<<
 
 http.createServer(app).listen(3000, () => {
   console.log('HTTP Server running on port: 3000')
