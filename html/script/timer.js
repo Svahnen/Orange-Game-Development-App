@@ -38,6 +38,6 @@ window.onload = function () {
   countDownTimer(minutes, display)
 }
 // Function which shows the countDownTimer when beenToLocationCheck = 'The Bomb'
-let showBombTimer = function () {
-  document.getElementsByClassName('timer')[0].style.display = 'block'
-}
+// let showBombTimer = function () {
+//   document.getElementsByClassName('timer')[0].style.display = 'block'
+// }
