@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://localhost:3001'
+const serverIp = 'https://10.7.2.168:3001'
 
 // Read teams from DB and save into the teams variable
 let teams
@@ -134,6 +134,17 @@ let createTeams = function () {
   setTimeout(() => console.log('Done'), 3000)
 }
 
+let addWinningTeam = function (score, name) {
+  console.log('Started')
+  fetch(serverIp + '/addteam/' + currentTeamName + '/' + score, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => console.log('Done'), 2000)
+}
+
 let createClues = function () {
   console.log('Started')
   fetch(serverIp + '/addclue/0/59.313304/18.111540/', {
@@ -214,8 +225,19 @@ function timeNow () {
   let oldDateObj = new Date()
   let newDateObj = new Date(oldDateObj.getTime() + 30 * 60000)
   let d = newDateObj
-  let h = (d.getHours() <10?'0':'') + d.getHours()
-  let m = (d.getMinutes() <10?'0':'') + d.getMinutes()
+  let h = (d.getHours() < 10 ? '0' : '') + d.getHours()
+  let m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes()
   let localTime = h + ':' + m
   return localTime
+}
+
+let currentTeamName
+let getCurrentTeamName = function () {
+  fetch(serverIp + '/getcurrentteamname')
+  .then((res) => res.json())
+  .then((data) => {
+    // console.log(data)
+    currentTeamName = data[0]
+  })
+  return currentTeamName
 }

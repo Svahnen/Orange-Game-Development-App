@@ -47,7 +47,7 @@ app.get('/createdb', (req, res) => {
 
 // Create teams Table
 app.get('/createteamstable/', (req, res) => {
-  let sql = 'CREATE TABLE teams(id int AUTO_INCREMENT, name VARCHAR(255), score VARCHAR(255), PRIMARY KEY (id))'
+  let sql = 'CREATE TABLE teams(id int AUTO_INCREMENT, name VARCHAR(255), score INT(255), PRIMARY KEY (id))'
   db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
@@ -65,6 +65,7 @@ app.get('/addteam/:teamName/:score', (req, res) => {
     if (err) throw err
     console.log('result')
     res.json(teamName + ' won with ' + endScore)
+
   })
 })
 
@@ -91,6 +92,7 @@ app.get('/getteams', (req, res) => {
       content.push({time: row.score, name: row.name})
     })
     res.json(content)
+
   })
 })
 
@@ -138,6 +140,7 @@ app.get('/addclue/:clueNumber/:latitude/:longitude', (req, res) => {
   let query = db.query(sql, clue, (err, result) => {
     if (err) throw err
     console.log('result')
+    res.send('RESULT')
   })
 })
 
@@ -189,6 +192,8 @@ app.get('/addbeenToLocations/:location', (req, res) => {
   let query = db.query(sql, location, (err, result) => {
     if (err) throw err
     console.log('result')
+    res.send('RESULT')
+
   })
 })
 
@@ -209,6 +214,7 @@ app.get('/deletelocations/', (req, res) => {
   let query = db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
+    res.send('RESULT')
   })
 })
 
@@ -235,10 +241,10 @@ app.get('/addbomb/:lat/:long', (req, res) => {
   let query = db.query(sql, bomb, (err, result) => {
     if (err) throw err
     console.log('result')
+    res.send('RESULT')
   })
 })
 
-// TODO: bomb
 app.get('/getbomb', (req, res) => {
   let sql = 'SELECT * FROM bomb'
   let query = db.query(sql, (err, result) => {
@@ -271,6 +277,7 @@ app.get('/startgame/:teamname/:time', (req, res) => {
   let query = db.query(sql, game, (err, result) => {
     if (err) throw err
     console.log('Current game created')
+    res.send('GAME STARTED')
   })
 })
 
@@ -281,6 +288,18 @@ app.get('/gettime', (req, res) => {
     if (err) throw err
     results.forEach((row) => {
       content.push(row.time)
+    })
+    res.json(content)
+  })
+})
+
+app.get('/getcurrentteamname', (req, res) => {
+  let sql = 'SELECT team FROM currentGame'
+  let content = []
+  let query = db.query(sql, (err, results) => {
+    if (err) throw err
+    results.forEach((row) => {
+      content.push(row.team)
     })
     res.json(content)
   })

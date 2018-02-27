@@ -40,12 +40,7 @@ class ClueMarker {
       document.getElementsByClassName('timer')[0].style.display = 'block'
     })
     // Function for opening a Cluemarker on a marker click event
-    // TODO: Figure out if this part is needed or needs to be moved to get info windows
-    // to only open when already visited
     this.configuration.marker = this.getMarker()
-    // this.configuration.marker.addListener('click', () => {
-    //   this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
-    // })
   }
 
   // Function which opens an InfoWindow on a marker

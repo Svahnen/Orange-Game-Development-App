@@ -101,20 +101,6 @@ function loadMapMarkers (gameMap) {
    '</form>' + '</div>'
   }))
 
-  positionMarkers.push(new ClueMarker({
-    gameMap: gameMap,
-    latitude: 58.902486,
-    longitude: 17.947655,
-    scaledSize: new google.maps.Size(5, 5),
-    title: 'Ledtråd Nynäshamn',
-    icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h1> Ledtråd Nynäshamn: ' +
-    answer[4] +
-    '</h1>' +
-    '</div>'
-  }))
-
 // The for loop runs through the markers of the array and make sure they are printed out on the map
   for (i = 0; i < positionMarkers.length; i++) {
     positionMarkers[i].createClueWindow()
