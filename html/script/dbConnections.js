@@ -241,3 +241,27 @@ let getCurrentTeamName = function () {
   })
   return currentTeamName
 }
+
+let changeCurrentGameStatus = function (status) {
+  console.log('Started')
+  fetch(serverIp + '/setcurrentgamestatus/' + status, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
+}
+
+let winnerTime
+let getWinnerTime = function () {
+  fetch(serverIp + '/getcurrentgamescore')
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+    winnerTime = data[0]
+  })
+  .then(() => {
+    return winnerTime
+  })
+}

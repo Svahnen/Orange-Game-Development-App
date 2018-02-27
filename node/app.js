@@ -259,7 +259,7 @@ app.get('/getbomb', (req, res) => {
 
 // Create current game table
 app.get('/createcurrentgametable/', (req, res) => {
-  let sql = 'CREATE TABLE currentGame(id int AUTO_INCREMENT, team VARCHAR(255), time VARCHAR(255), PRIMARY KEY (id))'
+  let sql = 'CREATE TABLE currentGame(id int AUTO_INCREMENT, team VARCHAR(255), time VARCHAR(255), status INT(1), score INT(255), PRIMARY KEY (id))'
   db.query(sql, (err, result) => {
     if (err) throw err
     console.log('result')
@@ -269,7 +269,6 @@ app.get('/createcurrentgametable/', (req, res) => {
 
 // Add new game
 app.get('/startgame/:teamname/:time', (req, res) => {
-  console.log('hi')
   let teamname = `${req.params.teamname}`
   let time = `${req.params.time}`
   let game = {team: teamname, time: time}
@@ -300,6 +299,50 @@ app.get('/getcurrentteamname', (req, res) => {
     if (err) throw err
     results.forEach((row) => {
       content.push(row.team)
+    })
+    res.json(content)
+  })
+})
+
+// Change status on current game
+app.get('/setcurrentgamestatus/:status', (req, res) => {
+  let status = `${req.params.status}`
+  let query = db.query('UPDATE currentGame SET status = ' + status, (err, result) => {
+    if (err) throw err
+    console.log('Current game status changed')
+    res.send('GAME STATUS CHANGED')
+  })
+})
+
+app.get('/getcurrentgamestatus', (req, res) => {
+  let sql = 'SELECT status FROM currentGame'
+  let content = []
+  let query = db.query(sql, (err, results) => {
+    if (err) throw err
+    results.forEach((row) => {
+      content.push(row.status)
+    })
+    res.json(content)
+  })
+})
+
+// Change status on current game
+app.get('/setcurrentgamescore/:score', (req, res) => {
+  let score = `${req.params.score}`
+  let query = db.query('UPDATE currentGame SET score = ' + score, (err, result) => {
+    if (err) throw err
+    console.log('Current game score changed')
+    res.send('GAME SCORE CHANGED')
+  })
+})
+
+app.get('/getcurrentgamescore', (req, res) => {
+  let sql = 'SELECT score FROM currentGame'
+  let content = []
+  let query = db.query(sql, (err, results) => {
+    if (err) throw err
+    results.forEach((row) => {
+      content.push(row.score)
     })
     res.json(content)
   })

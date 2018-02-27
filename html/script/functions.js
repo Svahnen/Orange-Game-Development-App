@@ -85,12 +85,14 @@ function getLocation (gameMap, positionMarkers) {
 
 let loopTimerCheck = function () {
   readbeenToLocations()
+  // TODO: add a check for status on current game
+  getCurrentGameStatus()
   for (i = 0; i < positionMarkers.length; i++) {
     if (beenToLocationCheck(i)) {
       addClickEvent(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
         switchIcon(positionMarkers[i], iconBomb)
-        showBombTimer()
+        // showBombTimer()
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
@@ -167,4 +169,51 @@ let addClickEvent = function (theMarker) {
       document.getElementsByClassName('timer')[0].style.display = 'none'
     }
   })
+}
+
+let gameStatus
+let getCurrentGameStatus = function () {
+  fetch(serverIp + '/getcurrentgamestatus')
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+    gameStatus = data[0]
+  })
+  .then(() => {
+    if (modalShown === false) {
+      if (gameStatus === 1) {
+        let modalDiv = document.createElement('div')
+        let modal = new WinningModal(modalDiv, gameMap)
+        gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+      } else if (gameStatus === 2) {
+        let modalDiv = document.createElement('div')
+        let modal = new LosingModal(modalDiv, gameMap)
+        gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+      } else {
+        console.log('fail')
+      }
+    }
+  })
+}
+let modalShown = false
+
+let testStatus
+let getTestStatus = function () {
+  testStatus = 1
+  if (testStatus === 1) {
+    console.log('win')
+  } else if (testStatus === 2) {
+    console.log('lose')
+  } else {
+    console.log('fail')
+  }
+}
+
+let convertToMinutes = function (time) {
+  let minutes = Math.floor(time / 60)
+  let seconds = time - minutes * 60
+  minutes = minutes < 10 ? '0' + minutes : minutes
+  seconds = seconds < 10 ? '0' + seconds : seconds
+  let displayTime = minutes + ':' + seconds
+  return displayTime
 }
