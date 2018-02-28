@@ -21,6 +21,7 @@ include('script/timer.js')
 google.maps.event.addDomListener(window, 'load', readbeenToLocations)
 google.maps.event.addDomListener(window, 'load', loadGameMap)
 google.maps.event.addDomListener(window, 'load', getCurrentTeamName)
+google.maps.event.addDomListener(window, 'load', getCurrentGameTime)
 
 // THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS
 let gameMap

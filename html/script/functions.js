@@ -176,38 +176,27 @@ let getCurrentGameStatus = function () {
   fetch(serverIp + '/getcurrentgamestatus')
   .then((res) => res.json())
   .then((data) => {
-    console.log(data)
     gameStatus = data[0]
   })
   .then(() => {
     if (modalShown === false) {
       if (gameStatus === 1) {
-        let modalDiv = document.createElement('div')
-        let modal = new WinningModal(modalDiv, gameMap)
-        gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+        getWinnerTime()
+        setTimeout(function () {
+          let modalDiv = document.createElement('div')
+          let modal = new WinningModal(modalDiv, gameMap)
+          gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+        }, 1000)
       } else if (gameStatus === 2) {
         let modalDiv = document.createElement('div')
         let modal = new LosingModal(modalDiv, gameMap)
         gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
       } else {
-        console.log('fail')
       }
     }
   })
 }
 let modalShown = false
-
-let testStatus
-let getTestStatus = function () {
-  testStatus = 1
-  if (testStatus === 1) {
-    console.log('win')
-  } else if (testStatus === 2) {
-    console.log('lose')
-  } else {
-    console.log('fail')
-  }
-}
 
 let convertToMinutes = function (time) {
   let minutes = Math.floor(time / 60)
@@ -216,4 +205,25 @@ let convertToMinutes = function (time) {
   seconds = seconds < 10 ? '0' + seconds : seconds
   let displayTime = minutes + ':' + seconds
   return displayTime
+}
+
+function currentTime () {
+  let dateObj = new Date()
+  let d = dateObj
+  let h = (d.getHours() < 10 ? '0' : '') + d.getHours()
+  let m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes()
+  let localTime = h + ':' + m
+  return localTime
+}
+
+function convertToSeconds(str) {
+    var p = str.split(':'),
+        s = 0, m = 1;
+
+    while (p.length > 0) {
+        s += m * parseInt(p.pop(), 10);
+        m *= 60;
+    }
+
+    return s;
 }

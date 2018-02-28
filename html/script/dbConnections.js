@@ -2,7 +2,7 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-const serverIp = 'https://10.7.2.168:3001'
+const serverIp = 'https://reexe.duckdns.org:3001'
 
 // Read teams from DB and save into the teams variable
 let teams
@@ -42,17 +42,6 @@ let addBeenToLocations = function (locationNr) {
       'Content-Type': 'text/plain'
     }
   })
-}
-
-let deletelocations = function () {
-  console.log('delete started')
-  fetch(serverIp + '/deletelocations/', {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'text/plain'
-    }
-  })
-  console.log('delete finished')
 }
 
 // Creates a dummy database //
@@ -263,5 +252,25 @@ let getWinnerTime = function () {
   })
   .then(() => {
     return winnerTime
+  })
+}
+
+let setCurrentGameScore = function (score) {
+  console.log('Started')
+  fetch(serverIp + '/setcurrentgamescore/' + score, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
+}
+
+let currentGameTime
+let getCurrentGameTime = function () {
+  fetch(serverIp + '/gettime')
+  .then((res) => res.json())
+  .then((data) => {
+    currentGameTime = data[0]
   })
 }

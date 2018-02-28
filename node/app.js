@@ -348,6 +348,15 @@ app.get('/getcurrentgamescore', (req, res) => {
   })
 })
 
+app.get('/deletecurrentgame/', (req, res) => {
+  let sql = `TRUNCATE TABLE currentGame`
+  let query = db.query(sql, (err, result) => {
+    if (err) throw err
+    console.log('result')
+    res.send('RESULT')
+  })
+})
+
 // <<< Current Game Stop <<<
 
 http.createServer(app).listen(3000, () => {

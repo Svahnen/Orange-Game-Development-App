@@ -2,7 +2,6 @@
 /* eslint no-unused-vars: 0 */
 /* eslint-env browser */
 
-let time
 function WinningModal (controlDiv, gameMap) {
     // Set CSS for the control border.
   let controlUI = document.createElement('div')
@@ -13,8 +12,6 @@ function WinningModal (controlDiv, gameMap) {
   controlUI.style.marginBottom = '22px'
   controlUI.style.textAlign = 'center'
   controlDiv.appendChild(controlUI)
-
-  time = (1800 - endTime)
     // Set CSS for the control interior.
   let controlText = document.createElement('div')
   controlText.style.color = 'rgb(81, 186, 42)'
@@ -28,7 +25,7 @@ function WinningModal (controlDiv, gameMap) {
   controlText.innerHTML =
   '<h1> Winner </h1>' +
   '<h6> You won with the record time of: <br>' +
-  '</h6>' + '<h3><b>' + convertToMinutes(winnerTime()) + '</b></h3>' +
+  '</h6>' + '<h3><b>' + convertToMinutes(winnerTime) + '</b></h3>' +
   '<div class="modal-buttons">' +
   '<a href="http://orange-dev.duckdns.org/" role="button" class="btn btn-outline-success mb-md-1">New Game</a> <br>' +
   '<a href="http://orange-dev.duckdns.org:3002/" role="button" class="btn btn-outline-success mb-md-1">Leaderboard</a>' +
