@@ -8,10 +8,10 @@ let positionMarkers = []
 function loadMapMarkers (gameMap) {
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    // latitude: 59.313304,
-    // longitude: 18.111540,
-    latitude: 59.307245,
-    longitude: 18.031112,
+    latitude: 59.313304,
+    longitude: 18.111540,
+    // latitude: 59.307245,
+    // longitude: 18.031112,
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #1',
     icon: iconQuestion,
@@ -24,27 +24,27 @@ function loadMapMarkers (gameMap) {
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    // latitude: 59.313050,
-    // longitude: 18.109947,
-    latitude: 58.886911,
-    longitude: 17.940802,
+    latitude: 59.313050,
+    longitude: 18.109947,
+    // latitude: 58.886911,
+    // longitude: 17.940802,
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #2',
     icon: iconQuestion,
     answer: answer[1],
     clue: '<div class="clue clue2">' +
     '<h3> The Purple Wire: </h3><br>' +
-    '<p><b>What even, postive number <br> has the same answer when  <br>' +
+    '<p><b>What even, postive number <br> has the same answer when<br>' +
     'multiplied together as when added together?</b></p>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    // latitude: 59.312622,
-    // longitude: 18.110923,
-    latitude: 58.905182,
-    longitude: 17.949326,
+    latitude: 59.312622,
+    longitude: 18.110923,
+    // latitude: 58.905182,
+    // longitude: 17.949326,
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #3',
     icon: iconQuestion,
@@ -57,26 +57,27 @@ function loadMapMarkers (gameMap) {
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.302364,
-    longitude: 18.235740,
-    // latitude: 59.314193,
-    // longitude: 18.110961,
+    // latitude: 59.302364,
+    // longitude: 18.235740,
+    latitude: 59.314193,
+    longitude: 18.110961,
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #4',
     icon: iconQuestion,
     answer: answer[3],
     clue: '<div class="clue clue4">' +
     '<h3> The Green Wire: </h3><br>' +
-    '<p><b> What English word is as long as it is valued? </b></p>' +
+    // '<p><b> What English number is as long as it is valued? </b></p>' +
+    '<p><b> What is "four".length equal to? </b></p>' +
     '</div>'
   }))
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    // latitude: 59.313848,
-    // longitude: 18.111878,
-    latitude: 58.886911,
-    longitude: 17.940902,
+    latitude: 59.313848,
+    longitude: 18.111878,
+    // latitude: 58.886911,
+    // longitude: 17.940902,
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #5',
     icon: iconQuestion,
@@ -91,10 +92,10 @@ function loadMapMarkers (gameMap) {
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    // latitude: 59.312370,
-    // longitude: 18.108613,
-    latitude: 59.307288,
-    longitude: 18.031729,
+    latitude: 59.312370,
+    longitude: 18.108613,
+    // latitude: 59.307288,
+    // longitude: 18.031729,
     scaledSize: new google.maps.Size(5, 5),
     title: 'The Bomb',
     icon: iconQuestion,
