@@ -142,7 +142,6 @@ function disarmBomb () {
     let modalDiv = document.createElement('div')
     let modal = new LosingModal(modalDiv, gameMap)
     gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
-
     document.getElementsByClassName('timer')[0].style.display = 'none'
     document.getElementsByClassName('infoTimer')[0].style.display = 'none'
   }
