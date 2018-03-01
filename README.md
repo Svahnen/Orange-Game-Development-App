@@ -5,7 +5,7 @@
 ## Information
 This game is split up into two parts:
 * [Leaderboard repo](https://github.com/Svahnen/Orange-Game-Development)
-* [Mobile client](https://github.com/Svahnen/Orange-Game-Development-App)
+* [Mobile client repo](https://github.com/Svahnen/Orange-Game-Development-App)
 
 ## Getting Started
 
