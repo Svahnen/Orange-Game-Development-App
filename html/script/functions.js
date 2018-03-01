@@ -40,12 +40,7 @@ class ClueMarker {
       document.getElementsByClassName('timer')[0].style.display = 'block'
     })
     // Function for opening a Cluemarker on a marker click event
-    // TODO: Figure out if this part is needed or needs to be moved to get info windows
-    // to only open when already visited
     this.configuration.marker = this.getMarker()
-    // this.configuration.marker.addListener('click', () => {
-    //   this.configuration.infowindow.open(this.configuration.gameMap, this.configuration.marker)
-    // })
   }
 
   // Function which opens an InfoWindow on a marker
@@ -90,12 +85,14 @@ function getLocation (gameMap, positionMarkers) {
 
 let loopTimerCheck = function () {
   readbeenToLocations()
+  // TODO: add a check for status on current game
+  getCurrentGameStatus()
   for (i = 0; i < positionMarkers.length; i++) {
     if (beenToLocationCheck(i)) {
       addClickEvent(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
         switchIcon(positionMarkers[i], iconBomb)
-        showBombTimer()
+        // showBombTimer()
       } else {
         switchIcon(positionMarkers[i], iconClue)
       }
@@ -172,4 +169,61 @@ let addClickEvent = function (theMarker) {
       document.getElementsByClassName('timer')[0].style.display = 'none'
     }
   })
+}
+
+let gameStatus
+let getCurrentGameStatus = function () {
+  fetch(serverIp + '/getcurrentgamestatus')
+  .then((res) => res.json())
+  .then((data) => {
+    gameStatus = data[0]
+  })
+  .then(() => {
+    if (modalShown === false) {
+      if (gameStatus === 1) {
+        getWinnerTime()
+        setTimeout(function () {
+          let modalDiv = document.createElement('div')
+          let modal = new WinningModal(modalDiv, gameMap)
+          gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+        }, 1000)
+      } else if (gameStatus === 2) {
+        let modalDiv = document.createElement('div')
+        let modal = new LosingModal(modalDiv, gameMap)
+        gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
+      } else {
+      }
+    }
+  })
+}
+let modalShown = false
+
+let convertToMinutes = function (time) {
+  let minutes = Math.floor(time / 60)
+  let seconds = time - minutes * 60
+  minutes = minutes < 10 ? '0' + minutes : minutes
+  seconds = seconds < 10 ? '0' + seconds : seconds
+  let displayTime = minutes + ':' + seconds
+  return displayTime
+}
+
+function currentTime () {
+  let dateObj = new Date()
+  let d = dateObj
+  let h = (d.getHours() < 10 ? '0' : '') + d.getHours()
+  let m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes()
+  let localTime = h + ':' + m
+  return localTime
+}
+
+function convertToSeconds(str) {
+    var p = str.split(':'),
+        s = 0, m = 1;
+
+    while (p.length > 0) {
+        s += m * parseInt(p.pop(), 10);
+        m *= 60;
+    }
+
+    return s;
 }

@@ -44,17 +44,6 @@ let addBeenToLocations = function (locationNr) {
   })
 }
 
-let deletelocations = function () {
-  console.log('delete started')
-  fetch(serverIp + '/deletelocations/', {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Content-Type': 'text/plain'
-    }
-  })
-  console.log('delete finished')
-}
-
 // Creates a dummy database //
 let createTeamsTable = function () {
   console.log('Started')
@@ -132,6 +121,17 @@ let createTeams = function () {
     }
   }), 2000)
   setTimeout(() => console.log('Done'), 3000)
+}
+
+let addWinningTeam = function (score, name) {
+  console.log('Started')
+  fetch(serverIp + '/addteam/' + currentTeamName + '/' + score, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  setTimeout(() => console.log('Done'), 2000)
 }
 
 let createClues = function () {
@@ -214,8 +214,63 @@ function timeNow () {
   let oldDateObj = new Date()
   let newDateObj = new Date(oldDateObj.getTime() + 30 * 60000)
   let d = newDateObj
-  let h = (d.getHours() <10?'0':'') + d.getHours()
-  let m = (d.getMinutes() <10?'0':'') + d.getMinutes()
+  let h = (d.getHours() < 10 ? '0' : '') + d.getHours()
+  let m = (d.getMinutes() < 10 ? '0' : '') + d.getMinutes()
   let localTime = h + ':' + m
   return localTime
+}
+
+let currentTeamName
+let getCurrentTeamName = function () {
+  fetch(serverIp + '/getcurrentteamname')
+  .then((res) => res.json())
+  .then((data) => {
+    // console.log(data)
+    currentTeamName = data[0]
+  })
+  return currentTeamName
+}
+
+let changeCurrentGameStatus = function (status) {
+  console.log('Started')
+  fetch(serverIp + '/setcurrentgamestatus/' + status, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
+}
+
+let winnerTime
+let getWinnerTime = function () {
+  fetch(serverIp + '/getcurrentgamescore')
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+    winnerTime = data[0]
+  })
+  .then(() => {
+    return winnerTime
+  })
+}
+
+let setCurrentGameScore = function (score) {
+  console.log('Started')
+  fetch(serverIp + '/setcurrentgamescore/' + score, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    }
+  })
+  .then(console.log('Done'))
+}
+
+let currentGameTime
+let getCurrentGameTime = function () {
+  fetch(serverIp + '/gettime')
+  .then((res) => res.json())
+  .then((data) => {
+    currentGameTime = data[0]
+  })
 }

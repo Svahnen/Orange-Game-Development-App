@@ -101,20 +101,6 @@ function loadMapMarkers (gameMap) {
    '</form>' + '</div>'
   }))
 
-  positionMarkers.push(new ClueMarker({
-    gameMap: gameMap,
-    latitude: 58.902486,
-    longitude: 17.947655,
-    scaledSize: new google.maps.Size(5, 5),
-    title: 'Ledtråd Nynäshamn',
-    icon: iconQuestion,
-    clue: '<div class="clue">' +
-    '<h1> Ledtråd Nynäshamn: ' +
-    answer[4] +
-    '</h1>' +
-    '</div>'
-  }))
-
 // The for loop runs through the markers of the array and make sure they are printed out on the map
   for (i = 0; i < positionMarkers.length; i++) {
     positionMarkers[i].createClueWindow()
@@ -122,7 +108,6 @@ function loadMapMarkers (gameMap) {
   return positionMarkers
 }
 
-let endTime
 function disarmBomb () {
   let clue1 = document.forms['clueForm']['clue1'].value
   let clue2 = document.forms['clueForm']['clue2'].value
@@ -130,16 +115,17 @@ function disarmBomb () {
   let clue4 = document.forms['clueForm']['clue4'].value
   let clue5 = document.forms['clueForm']['clue5'].value
   if (clue1 === answer[0] && clue2 === answer[1] && clue3 === answer[2] && clue4 === answer[3] && clue5 === answer[4] && timer > 0) {
-    endTime = timer
-    // Winning modal
-    let modalDiv = document.createElement('div')
-    let modal = new WinningModal(modalDiv, gameMap)
-    gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
-
     document.getElementsByClassName('timer')[0].style.display = 'none'
     document.getElementsByClassName('infoTimer')[0].style.display = 'none'
+    let time = (1800 - timer)
+    setCurrentGameScore(time)
+    changeCurrentGameStatus(1)
+    setTimeout(() => {
+      addWinningTeam(time, currentTeamName)
+    }, 3000)
   } else {
     // Losing modal
+    changeCurrentGameStatus(2)
     let modalDiv = document.createElement('div')
     let modal = new LosingModal(modalDiv, gameMap)
     gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
