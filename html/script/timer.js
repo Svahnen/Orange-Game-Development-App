@@ -20,6 +20,7 @@ function countDownTimer (duration, display) {
 
     if (--timer < 0) {
       // Losing modal
+      changeCurrentGameStatus(2)
       let modalDiv = document.createElement('div')
       let modal = new LosingModal(modalDiv, gameMap)
       gameMap.controls[google.maps.ControlPosition.CENTER].push(modalDiv)
