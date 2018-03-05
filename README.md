@@ -67,10 +67,13 @@ apm install linter-js-standard
 * [NodeJS](https://nodejs.org/en/) - Rest API
 * [Google API](https://developers.google.com/maps/) - Google Maps API
 
-
 ## Versioning
 
 * [GitHub](https://github.com)
+
+## Other Links
+
+* [Trello](https://trello.com/b/nIYAm6OR/team-orange)
 
 ## Authors
 
