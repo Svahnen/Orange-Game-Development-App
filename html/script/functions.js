@@ -106,7 +106,7 @@ setInterval(loopTimerCheck, 5000)
 function getDistances (positionSelf, positionMarkers) {
   for (i = 0; i < positionMarkers.length; i++) {
     let distance = positionMarkers[i].getDistanceBetween(positionSelf)
-    if (distance <= 10) {
+    if (distance <= 15) {
       addClickEvent(positionMarkers[i])
       console.log(positionMarkers[i])
       if (positionMarkers[i].configuration.title === 'The Bomb') {
