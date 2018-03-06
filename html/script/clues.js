@@ -8,8 +8,8 @@ let positionMarkers = []
 function loadMapMarkers (gameMap) {
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.313010,
-    longitude: 18.108854,
+    latitude: 59.313956,
+    longitude: 18.108972,
     scaledSize: new google.maps.Size(5, 5),
     title: 'Clue #1',
     icon: iconQuestion,
@@ -81,8 +81,8 @@ function loadMapMarkers (gameMap) {
 
   positionMarkers.push(new ClueMarker({
     gameMap: gameMap,
-    latitude: 59.312370,
-    longitude: 18.108613,
+    latitude: 59.314568,
+    longitude: 18.112877,
     scaledSize: new google.maps.Size(5, 5),
     title: 'The Bomb',
     icon: iconQuestion,
